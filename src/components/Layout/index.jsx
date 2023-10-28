@@ -8,112 +8,86 @@ import {
   NewspaperIcon,
 } from "@heroicons/react/24/solid";
 import logoBlanco from "../../assets/logo3.png";
+import { useState } from "react";
 
 export default function Layout() {
+  const [open, setOpen] = useState(true);
+  const menus = [
+    { title: "Trabajadores", src: <UserIcon className="w-5" /> },
+    { title: "Haberes", src: <PlusIcon className="w-5" /> },
+    { title: "Descuentos", src: <MinusIcon className="w-5" /> },
+    { title: "Aportaciones", src: <HandThumbUpIcon className="w-5" /> },
+    { title: "Calculos", src: <BookOpenIcon className="w-5" /> },
+    { title: "Reportes", src: <NewspaperIcon className="w-5" /> },
+  ];
+
   return (
-    <div>
-        <nav className="fixed top-0 z-50 w-full bg-red-700 border-gray-200 border">
-          <div className="px-3 py-3 lg:px-5 lg:pl-3">
-            <div className="flex items-center justify-end">
-              <div className="flex items-center">
-                <div className="flex items-center ml-3 gap-5">
-                  <button
-                    type="button"
-                    className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                    aria-expanded="false"
-                    data-dropdown-toggle="dropdown-user"
-                  >
-                    <img
-                      className="w-10 h-10 rounded-full"
-                      src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                      alt="user photo"
-                    />
-                  </button>
-                  <div className="text-white">
-                    <p className="text-sm dark:text-white" role="none">
-                      Iván Perez
-                    </p>
-                    <p
-                      className="text-sm font-medium truncate dark:text-gray-300"
-                      role="none"
-                    >
-                      ADMINISTRADOR
-                    </p>
-                  </div>
-                </div>
-              </div>
+    <div className="flex">
+      <div
+        className={`${
+          open ? "w-72" : "w-20"
+        } duration-300 p-5 pt-8 h-screen bg-red-700 relative border-black`}
+      >
+        <img
+          src="./src/assets/control.png"
+          className={`absolute cursor-pointer rounded-full -right-3 top-9 w-7 border-2 border-red-700 ${
+            !open && "rotate-180"
+          }`}
+          onClick={() => setOpen(!open)}
+        />
+        <div>
+          <img
+            src={`${
+              open ? "./src/assets/logo3.png" : "./src/assets/logo3short.png"
+            }`}
+            className={`cursor-pointer duration-500`}
+          />
+        </div>
+        <div className="flex flex-col">
+          <ul className="pt-6">
+            {menus.map((menu, index) => (
+              <li
+                key={index}
+                className={`text-white text-lg flex gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md font-semibold`}
+              >
+                {menu.src}
+                <span
+                  className={`${!open && "hidden"} origin-left duration-200`}
+                >
+                  {menu.title}
+                </span>
+              </li>
+            ))}
+          </ul>
+          
+          <div className="flex gap-3 items-center hover:bg-black rounded-md font-semibold p-2">
+          <img src="./src/assets/logout.png" className="w-5 h-5 ml-1" />
+          <span className={`${!open && "hidden"} origin-left duration-200 text-white text-lg cursor-pointer`}>Cerrar Sesion</span>
+          </div>
+          
+        </div>
+      </div>
+      <div className="w-full">
+      <div className="p-5 text-2xl font-semibold w-full h-20 bg-red-700 border-black">
+        <div className="flex items-center justify-end gap-10">
+          <img src="./src/assets/configuracion.png" className="w-7 font-bold" />
+          <div className="flex items-center justify-center gap-5">
+            <img
+              src="./src/assets/administrator.png"
+              className="w-7 rounded-full border"
+            />
+            <div className="flex flex-col text-xs text-white font-bold">
+              <span>Ivan Pérez</span>
+              <span>ADMINISTRATOR</span>
             </div>
           </div>
-        </nav>
-      <aside
-          id=""
-          className="border border-gree fixed top-0 left-0 z-40 w-1/6 h-screen pt-20 transition-transform -translate-x-full bg-red-700 border-r border-gray-200 sm:translate-x-0"
-        >
-          <div className=" flex justify-center my-10">
-            <img src={logoBlanco} alt="" className="w-[200px]" />
-          </div>
-          <div className="h-full px-3 pb-4 overflow-y-auto">
-            <ul className="space-y-2 font-medium">
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-900 hover:text-black dark:hover:bg-gray-700 group"
-                >
-                  <div className="flex items-cente">
-                    <UserIcon className="w-5 text-white" />
-                    <span className="ml-3 text-white text-xl">Empleados</span>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-900 dark:hover:bg-gray-700 group"
-                >
-                  <PlusIcon className="w-5 text-white" />
-                  <span className="ml-3 text-white text-xl">Haberes</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-900 dark:hover:bg-gray-700 group"
-                >
-                  <MinusIcon className="w-5 text-white" />
-                  <span className="ml-3 text-white text-xl">Descuentos</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-900 dark:hover:bg-gray-700 group"
-                >
-                  <HandThumbUpIcon className="w-5 text-white" />
-                  <span className="ml-3 text-white text-xl">Aportaciones</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-900 dark:hover:bg-gray-700 group"
-                >
-                  <BookOpenIcon className="w-5 text-white" />
-                  <span className="ml-3 text-white text-xl">Planillas</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-900 dark:hover:bg-gray-700 group"
-                >
-                  <NewspaperIcon className="w-5 text-white" />
-                  <span className="ml-3 text-white text-xl">Reportes</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </aside>
+        </div>
+      </div>
+        <div className="">
         <Outlet />
-  </div>
+        </div>
+      </div>
+      
+    </div>
   );
 }
