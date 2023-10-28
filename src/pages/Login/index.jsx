@@ -1,5 +1,4 @@
 import { Frame, Card, TextField } from "../../components";
-// import planillas from "../../assets/logo2.jpeg";
 import ImportLogin from "../../assets/logoLogin.png";
 
 export default function Login () {
