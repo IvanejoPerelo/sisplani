@@ -7,14 +7,16 @@ export default function Router(){
     return(
         <BrowserRouter>
             <Routes>
-                <Route element={<Layout/>}>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/login" element={<Login/>}/>
-                    <Route path="/registroemp" element={<RegistroEmp/>}/>
-                    <Route path="/registrohab" element={<RegistroHab/>}/>
-                    <Route path="/registrodes" element={<RegistroDes/>}/>
-                    <Route path="/registroafp" element={<RegistroAfp/>}/>                   
-                   <Route /> 
+                <Route>
+                    {/* <Route path="/" element={<Home/>}/> */}
+                    <Route path="/" element={<Login/>}/>
+                    <Route element={<Layout/>}>
+                        <Route path="/inicio" element={<Home/>}/>
+                        <Route path="/registroemp" element={<RegistroEmp/>}/>
+                        <Route path="/registrohab" element={<RegistroHab/>}/>
+                        <Route path="/registrodes" element={<RegistroDes/>}/>
+                        <Route path="/registroafp" element={<RegistroAfp/>}/>                   
+                   </Route> 
                 </Route>
             </Routes>
         </BrowserRouter>
