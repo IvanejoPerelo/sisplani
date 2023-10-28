@@ -1,6 +1,5 @@
 import { Frame, Card, TextField } from "../../components";
-// import planillas from "../../assets/logo2.jpeg";
-// import ImportLogin from "../../assets/ImageLogin.jpg";
+import ImportLogin from "../../assets/logoLogin.png";
 
 export default function Login () {
   return (
@@ -13,8 +12,8 @@ export default function Login () {
 
           <div className="w-full lg:w-1/2 px-16 py-12">
             <img
-              className="w-1/2 h-auto mt-6 rounded-l-lg mb-4"
-              src="/sisplani.jpg"
+              className="w-1/2 h-auto mt-6 rounded-l-lg mb-4 m-auto"
+              src={ImportLogin}
               alt=""
             />
             <h2 className="text-3xl mb-4">Bienvenidos al Sistema</h2>
