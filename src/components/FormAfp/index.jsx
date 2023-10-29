@@ -1,7 +1,7 @@
 import{Button, Card, TextField} from "../../components";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { createAfp } from "../../services/config";
+import { createURL2 } from "../../services";
 
 export default function FormAfp() {
   const [textNombre, setTextNombre] = useState("");
@@ -46,13 +46,25 @@ export default function FormAfp() {
       return;
     }
 
-    const response = await createAfp({
+/*     const response = await createAfp({
       nombre: textNombre,
       aporte: textAporte,
       seguros: textSeguros,
       comision: textComision,
       maxasegurable: textMaxAsegurable,
-    });
+    }); */
+
+    await createURL2 ({  
+      nombre: textNombre,
+      aporte: textAporte,
+      seguros: textSeguros,
+      comision: textComision,
+      maxasegurable: textMaxAsegurable,
+     },
+     "afp"
+     ); 
+
+
     setTextNombre("");
     setTextAporte("0.00");
     setTextSeguros("0.00");

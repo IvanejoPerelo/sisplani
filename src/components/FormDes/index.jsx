@@ -1,6 +1,6 @@
 import {Button, Card,  SelectOptions, TextField} from "../../components";
 import { useState } from "react";
-import { createDescuentos } from "../../services/config";
+import { create } from "../../services";
 import Swal from "sweetalert2";
 
 export default function FormDes() {
@@ -48,13 +48,16 @@ export default function FormDes() {
     if (selectTipo == "V") {
       //Como hacer para que la caja de texto del  monto sea vuelva cero y disabled si esta en V
     }
+    const urlNumber = false;
 
-    const response = await createDescuentos({
+    const response = await create(urlNumber, {
+
       nombredes: textNombre,
       descripciondes: textDescripcion,
       tipodes: selectTipo,
       montodes: textMonto,
-    });
+    }, "items" );
+
 
     setTextNombre("");
     setTextDescripcion("");
