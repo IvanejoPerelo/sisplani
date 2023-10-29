@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"; 
-import { Home, Login, RegistroDes, RegistroHab, RegistroAfp, ListarEmp } from "../pages";
+import { Home, Login, RegistroDes, RegistroHab,  RegistroAfp, RegistroApo, ListarEmp } from "../pages";
 import { Layout } from "../components";
 import RegistroEmp from "../pages/RegistroEmp";
 
@@ -16,6 +16,7 @@ export default function Router(){
                         <Route path="/registrohab" element={<RegistroHab/>}/>
                         <Route path="/registrodes" element={<RegistroDes/>}/>
                         <Route path="/registroafp" element={<RegistroAfp/>}/>    
+                        <Route path="/registroapo" element={<RegistroApo />} />
                         <Route path="/listaremp" element={<ListarEmp/>}/>    
                    </Route> 
                 </Route>
