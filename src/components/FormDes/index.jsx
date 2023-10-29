@@ -1,6 +1,6 @@
 import {Button, Card,  SelectOptions, TextField} from "../../components";
 import { useState } from "react";
-import { createDescuentos } from "../../services/config";
+// import { createDescuentos } from "../../services/config";
 import Swal from "sweetalert2";
 
 export default function FormDes() {
