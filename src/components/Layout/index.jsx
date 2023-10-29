@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import {
   UserIcon,
   PlusIcon,
@@ -8,8 +8,15 @@ import {
   NewspaperIcon,
 } from "@heroicons/react/24/solid";
 import logoBlanco from "../../assets/logo3.png";
+import { useSelector } from "react-redux";
 
 export default function Layout() {
+
+  const user = useSelector((state) => state.user.data)
+
+  if(user) return <Navigate to="/inicio" />
+
+
   return (
     <div>
         <nav className="fixed top-0 z-50 w-full bg-red-700 border-gray-200 border">

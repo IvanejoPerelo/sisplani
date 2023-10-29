@@ -1,10 +1,24 @@
-import { Frame, Card, TextField } from "../../components";
+import { Frame, FormLogin } from "../../components";
+import { inputs } from "./Form";
+import { useForm } from "../../hooks/useForm"
 import ImportLogin from "../../assets/logoLogin.png";
+// import { read } from "../../services"
 
 export default function Login () {
-  return (
-      <>
+  const { values, errors, handleInputChange, validateIfValuesHasEmpty} = useForm({
+    user: "",
+    password: "",
+  })
 
+  const handleFormSubmit = (e) =>{
+    e.preventDefault()
+    if(!validateIfValuesHasEmpty()) return
+    console.log("funciona?")
+    // const users = await read("users")
+  }
+
+    return (
+      <>
         <Frame wmiddle={"w-full xl:w-2/5"}>
           <div className="w-full lg:w-1/2 flex flex-col text-black items-center justify-center bg-[url('/../../src/assets/planillas.jpg')] bg-no-repeat bg-center bg-cover">
             <h1 className="text-4xl font-bold text-red-700">Welcome</h1>
@@ -18,22 +32,14 @@ export default function Login () {
             />
             <h2 className="text-3xl mb-4">Bienvenidos al Sistema</h2>
             <p className="mb-4">Por favor Ingrese sus Datos</p>
-            <form action="">
-              
-              <TextField label="Usuario" name="usuario"/>
-              <TextField label="Contraseña" name="contrasena"/>
-              
-              <div className="mt-1 flex items-center">
-              <TextField  type="checkbox" name="conectado" placeholder="Mantenerse Conectado" className={"focus:ring-red-700"}/>
-              <span className="mt-3 ml-2">Mantenerse Conectado</span>
-              </div>
-
-              <div className="mt-7">
-                <button className="w-full bg-red-700 py-3 text-center text-white">
-                  Ingresar
-                </button>
-              </div>
-            </form>
+            <FormLogin
+              inputs={inputs}
+              errors={errors}
+              handleFormSubmit={handleFormSubmit}
+              handleInputChange={handleInputChange}
+              textButton="Iniciar Sesion"
+              values={values}
+            />
           </div>
         </Frame>
       </>
