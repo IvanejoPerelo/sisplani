@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import {
   UserIcon,
   PlusIcon,
@@ -8,9 +8,14 @@ import {
   NewspaperIcon,
 } from "@heroicons/react/24/solid";
 import logoBlanco from "../../assets/logo3.png";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
 export default function Layout() {
+  
+  const user = useSelector((state) => state.user.data)
+  if(user) return <Navigate to="/inicio" />
+  
   const [open, setOpen] = useState(true);
   const menus = [
     { title: "Trabajadores", src: <UserIcon className="w-5" /> },

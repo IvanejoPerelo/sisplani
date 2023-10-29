@@ -4,11 +4,11 @@ export default function TextField({
   label,
   value,
   name,
-  onChange
+  onChange,
 }) {
   return (
     <div className="">
-      <label htmlFor="">{label}</label>
+      <span>{label}</span>
       <input
         className={`border border-red-200 focus:border-red-700 focus:bg-red-100 outline-none py-1 px-2 text-right w-full ${className}`}
         value={value}

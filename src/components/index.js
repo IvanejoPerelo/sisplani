@@ -6,6 +6,7 @@ export { default as FormAfp } from "./FormAfp"
 export { default as FormDes } from "./FormDes"
 export { default as FormEmp } from "./FormEmp"
 export { default as FormHab } from "./FormHab"
+export { default as FormLogin} from "./FormLogin"
 export { default as Frame } from "./Frame"
 
 export { default as Layout } from "./Layout"
