@@ -17,7 +17,7 @@ export default function Layout() {
     { title: "Haberes", src: <PlusIcon className="w-5" /> },
     { title: "Descuentos", src: <MinusIcon className="w-5" /> },
     { title: "Aportaciones", src: <HandThumbUpIcon className="w-5" /> },
-    { title: "Calculos", src: <BookOpenIcon className="w-5" /> },
+    { title: "Procesos", src: <BookOpenIcon className="w-5" /> },
     { title: "Reportes", src: <NewspaperIcon className="w-5" /> },
   ];
 
