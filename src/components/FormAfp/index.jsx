@@ -1,6 +1,4 @@
-import TextField from "../TextField";
-import Card from "../Card";
-import Button from "../Button";
+import{Button, Card, TextField} from "../../components";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { createAfp } from "../../services";
