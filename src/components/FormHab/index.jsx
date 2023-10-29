@@ -1,7 +1,7 @@
 import {Button, Card, SelectOptions, TextField} from "../../components";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { createHaberes } from "../../services";
+import { createHaberes } from "../../services/config";
 
 export default function FormHab() {
   const [textNombre, setTextNombre] = useState("");

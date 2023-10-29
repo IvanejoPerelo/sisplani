@@ -1,7 +1,7 @@
 import { Button, Card, TextField } from "../../components";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { createAfp } from "../../services";
+import { createAfp } from "../../services/config";
 
 export default function FormApo() {
   const [textNombre, setTextNombre] = useState("");
