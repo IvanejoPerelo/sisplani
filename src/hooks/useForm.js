@@ -13,7 +13,7 @@ export function useForm(inputs){
         })
     }
 
-     const validateIfValuesHasEmpty = () => {
+    const validateIfValuesHasEmpty = () => {
     const empties = Object.keys(values)
       .filter((value) => !values[value])
       .map((value) => [value, "Este campo es requerido"]);
