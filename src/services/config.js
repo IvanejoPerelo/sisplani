@@ -10,13 +10,12 @@ let baseURL = ""
 
 export async function makeHttpRequestURL1({urlNumber, url, id, body, method = "GET"}){
 
-
   if (urlNumber) {
     baseURL = baseURL2
   } else {
     baseURL = baseURL1
   }
-  
+
   const finalUrl = id ? `${url}/${id}`: url
 
   const response = await fetch(`${baseURL}${finalUrl}`, {

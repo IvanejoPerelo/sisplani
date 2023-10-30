@@ -1,5 +1,5 @@
 import { Frame, FormLogin } from "../../components";
-import { inputs } from "./Form";
+import { inputs } from "./form";
 import { useForm } from "../../hooks/useForm"
 import ImportLogin from "../../assets/logoLogin.png";
 // import { read } from "../../services"
