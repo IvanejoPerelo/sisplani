@@ -1,4 +1,9 @@
-export const input = [
+export const inputs = [
+    {
+        label: "Código",
+        name: "codigoapo",
+        className: "relative block",
+    },
     {
         label: "Nombre:",
         name: "nombreapo",
@@ -10,5 +15,6 @@ export const input = [
     {
         label: "Porcentaje (%):",
         name: "porcentajeapo",
+        placeholder: "0.0"
     }
 ]
