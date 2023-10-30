@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   Home,
+  ListarEmp,
   Login,
   RegistroDes,
   RegistroHab,
   RegistroAfp,
   RegistroApo,
-  ListarEmp,
   Planillas,
 } from "../pages";
 import { Layout } from "../components";
