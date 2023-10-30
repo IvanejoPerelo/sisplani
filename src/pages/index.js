@@ -2,7 +2,7 @@
 export { default as Home } from "./Home";
 
 export { default as Login } from "./Login";
-
+export { default as ListarEmp } from "./ListarEmp"
 export {default as Planillas} from "./Planillas";
 
 export { default as RegistroAfp } from "./RegistroAfp";
