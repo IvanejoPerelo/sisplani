@@ -48,13 +48,16 @@ export default function FormDes() {
     if (selectTipo == "V") {
       //Como hacer para que la caja de texto del  monto sea vuelva cero y disabled si esta en V
     }
+    const urlNumber = false;
 
-    const response = await createDescuentos({
+    const response = await create(urlNumber, {
+
       nombredes: textNombre,
       descripciondes: textDescripcion,
       tipodes: selectTipo,
       montodes: textMonto,
-    });
+    }, "items" );
+
 
     setTextNombre("");
     setTextDescripcion("");
