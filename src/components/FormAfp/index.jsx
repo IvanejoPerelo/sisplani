@@ -46,10 +46,18 @@ export default function FormAfp() {
       });
       return;
     }
-    
-    const urlNumber = false
 
-    await create (urlNumber,{  
+    // const response = await createAfp({
+    //   nombre: textNombre,
+    //   aporte: textAporte,
+    //   seguros: textSeguros,
+    //   comision: textComision,
+    //   maxasegurable: textMaxAsegurable,
+    // });
+    
+    const urlNumber = true
+
+    await create ("2",{  
       name: textNombre,
       aporte: textAporte,
       seguros: textSeguros,
