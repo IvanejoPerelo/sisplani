@@ -6,20 +6,21 @@ export default function FormLogin({
     values, 
     handleInputChange, 
     errors,
-    textButton
+    textButton,
     }){
     return (
         <form onSubmit={handleFormSubmit}>
               {inputs.map((input)=>(
-                <div key={input.name}>
+                <div key={input.name} className="mb-4">
                   <TextField 
                     label={input.label} 
                     name={input.name} 
                     value={values[input.name]}
+                    placeholder={input.placeholder}
                     onChange={handleInputChange}
                     type={input.type ?? "text"}
                   />
-                  <span className="text-red-500 mt-1 text-sm">
+                  <span className="text-red-500 mt-1 text-xs">
                     {errors[input.name]}
                   </span>
                 </div>

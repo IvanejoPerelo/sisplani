@@ -5,6 +5,7 @@ export default function TextField({
   value,
   name,
   onChange,
+  placeholder =""
 }) {
   return (
     <div className="">
@@ -15,6 +16,7 @@ export default function TextField({
         onChange={onChange}
         type={type}
         name={name}
+        placeholder={placeholder}
       />
     </div>
   );
