@@ -44,5 +44,4 @@ export default function Login () {
         </Frame>
       </>
   );
-
 }
