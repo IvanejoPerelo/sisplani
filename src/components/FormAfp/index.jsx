@@ -1,8 +1,4 @@
-import { Button, Card, TextField } from "../../components";
-import { useState } from "react";
-import Swal from "sweetalert2";
-import { create } from "../../services";
-// import { createAfp } from "../../services/config";
+import { Button, TextField } from "../../components"
 
 export default function FormAfp() {
   const [textNombre, setTextNombre] = useState("");
@@ -81,71 +77,35 @@ export default function FormAfp() {
 
   };
 
+export default function FormAfp({
+  handleFormSubmit, 
+    inputs,
+    values, 
+    handleInputChange, 
+    errors,
+}) {
   return (
-    <>
-      <form onSubmit={handleFormSubmit}>
-        <Card className="items-center justify-center bg-gray-50">
-          <div className="w-full  text-white p-1 mt-3 mb-2">
-            <h1 className="bg-red-700 font-semibold text-xl px-2">
-              Registro de AFP
-            </h1>
-            <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
-              <div className="flex flex-row items-center justify-end gap-3 mb-2 mt-2">
-                <label htmlFor="">Código:</label>
-                <label
-                  htmlFor=""
-                  className="bg-red-100 w-[20%] rounded border py-1 text-center font-bold"
-                >
-                  AFP-001
-                </label>
-              </div>
+    <form onSubmit={handleFormSubmit}>
+          {inputs.map((input)=>(
+            <div key={input.name}>
+              <TextField 
+                label={input.label} 
+                name={input.name} 
+                value={values[input.name]}
+                onChange={handleInputChange}
+                type={input.type ?? "text"}
+              />
+              <span className="text-red-500 mt-1 text-sm">
+                {errors[input.name]}
+              </span>
+            </div>
+          ))}
+          
+          {/* <div className="mt-1 flex items-center">
+          <TextField  type="checkbox" name="conectado" placeholder="Mantenerse Conectado" className={"focus:ring-red-700"}/>
+          <span className="mt-3 ml-2">Mantenerse Conectado</span>
+          </div> */}
 
-              <div className="flex flex-col items-left mx-1 mb-1">
-                <TextField
-                  label="Nombre:"
-                  name="nombreafp"
-                  value={textNombre}
-                  onChange={handleInputChangeN}
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-5 mx-1  mb-2 items-center">
-                <TextField
-                  label="Porcentaje de Aporte:"
-                  name="aporteafp"
-                  value={textAporte}
-                  onChange={handleInputChangeA}
-                />
-
-                <TextField
-                  label="Prima de Seguros:"
-                  name="segurosafp"
-                  value={textSeguros}
-                  onChange={handleInputChangeS}
-                />
-
-                <TextField
-                  label="Comisión Variable:"
-                  name="comisionafp"
-                  value={textComision}
-                  onChange={handleInputChangeC}
-                />
-
-                <TextField
-                  label="Remuneración Max Asegurable:"
-                  name="maxasegurableafp"
-                  value={textMaxAsegurable}
-                  onChange={handleInputChangeM}
-                />
-              </div>
-            </Card>
-          </div>
-          <div className="w-[50%] flex items-center justify-right gap-4">
-            <Button text="Grabar AFP" type="submit" />
-            <Button text="Salir" type="button" />
-          </div>
-        </Card>
-      </form>
-    </>
-  );
+    </form>
+)
 }
