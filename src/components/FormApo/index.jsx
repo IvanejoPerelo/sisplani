@@ -1,10 +1,27 @@
 import { FormLogin, Card } from "../../components"
 import { inputs } from "./form";
 import { useForm } from "../../hooks/useForm"
-import { create } from "../../services";
+import { create, read } from "../../services";
+import { useState, useEffect } from "react";
   
   
 export default function FormApo() {
+
+  const urlNumber = true
+
+  const [codApo, setCodApo] = useState([])
+
+  const getCodApo = async () => {
+    const response = await read(urlNumber,"items")
+    setCodApo(response)
+  }
+
+  useEffect(() => {
+    getCodApo()
+  }, [])
+ 
+  console.log(codApo)
+
   const { values, errors, handleInputChange, validateIfValuesHasEmpty} = useForm({
     nombreapo: "",
     descripcionapo: "",
@@ -15,7 +32,7 @@ export default function FormApo() {
       e.preventDefault()
       if(!validateIfValuesHasEmpty()) return
 
-      const urlNumber = true
+      
       const user = await create(urlNumber,values,"items")
 
     }  

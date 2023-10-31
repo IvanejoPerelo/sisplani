@@ -1,5 +1,5 @@
-import { makeHttpRequestURL } from "./config"; // empleado y planilla
-// import { makeHttpRequestURL2 } from "./config"; // items y afp
+import { makeHttpRequestURL } from "./config"; // true = empleado y planilla
+                                               // false =  items y afp
 
 export async function create (urlNumber, body, url){ 
     return await makeHttpRequestURL({urlNumber, url, body, method: "POST" })
