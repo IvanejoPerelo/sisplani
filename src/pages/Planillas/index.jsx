@@ -7,7 +7,7 @@ import {
   CardReportes,
   CardPlanilla,
 } from "../../components";
-import {meses} from "./meses"
+// import {meses} from "./meses"
 
 export default function Planillas() {
   const [selectMes, setSelectMes] = [""];
