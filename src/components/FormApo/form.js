@@ -1,9 +1,9 @@
 export const inputs = [
-    {
-        label: "Código",
-        name: "codigoapo",
-        className: "relative block",
-    },
+    // {
+    //     label: "Código",
+    //     name: "codigoapo",
+    //     className: "relative block",
+    // },
     {
         label: "Nombre:",
         name: "nombreapo",

@@ -27,7 +27,7 @@ export default function FormApo() {
                 Registro de Aportaciones
               </h1>
               <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
-                <div className="flex flex-row items-center justify-end gap-3 mb-2 mt-2">
+                <div className="gap-3 mb-2 mt-2">
                   <FormLogin
                     inputs={inputs}
                     errors={errors}
