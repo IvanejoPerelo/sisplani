@@ -3,6 +3,8 @@ import FormLogin from "./FormLogin"
 export { default as Button } from "./Button"
 
 export { default as Card } from "./Card"
+export { default as CardPlanilla } from "./CardPlanilla"
+export { default as CardReportes } from "./CardReportes"
 
 export { default as FormAfp } from "./FormAfp"
 export { default as FormApo } from "./FormApo"
