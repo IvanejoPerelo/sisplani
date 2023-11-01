@@ -1,9 +1,14 @@
-import { FormLogin, Card } from "../../components";
-import { inputs } from "./form"
+import { FormLogin, Card } from "../../components"
+import { inputs } from "./form";
 import { useForm } from "../../hooks/useForm"
 import { create } from "../../services";
+import { useCod } from "../../hooks/useCod";
+import Swal from "sweetalert2";
 
 export default function FormAfp() {
+  const urlNumber = true
+  const item = "AFP"
+  const {prefijo} = useCod (item)
   const { values, errors, handleInputChange, validateIfValuesHasEmpty} = useForm({
     nombreafp: "",
     aporteafp: "",
@@ -16,8 +21,15 @@ export default function FormAfp() {
     e.preventDefault();
     if(!validateIfValuesHasEmpty()) return
 
-    const urlNumber = true
-    const afp = await create(urlNumber,values,"afp")
+    await create(urlNumber,values,"afp")
+    if(values){
+      Swal.fire({
+        title: "Success",
+        text: "Se creó la tarea correctamente",
+        icon: "success"
+       })
+      return;
+    }
   };
 
   return (
