@@ -13,7 +13,7 @@ export default function Login () {
   const handleFormSubmit = (e) =>{
     e.preventDefault()
     if(!validateIfValuesHasEmpty()) return
-    console.log("funciona?")
+    // console.log("funciona?")
     // const users = await read("users")
   }
 
