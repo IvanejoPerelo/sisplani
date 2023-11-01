@@ -8,7 +8,9 @@ import Swal from "sweetalert2";
 export default function FormAfp() {
   const urlNumber = true
   const item = "AFP"
-  const {prefijo} = useCod (item)
+  const url = "afp"
+  const {prefijo} = useCod (item,url)
+  
   const { values, errors, handleInputChange, validateIfValuesHasEmpty} = useForm({
     nombreafp: "",
     aporteafp: "",
@@ -41,6 +43,7 @@ export default function FormAfp() {
           </h1>
         </div>
         <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
+          <span className="text-right">{ prefijo }</span>
           <div className="gap-3 mb-2 mt-2">
             <FormLogin
               inputs={inputs}

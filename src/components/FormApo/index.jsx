@@ -2,27 +2,30 @@ import { FormLogin, Card } from "../../components"
 import { inputs } from "./form";
 import { useForm } from "../../hooks/useForm"
 import { create, read } from "../../services";
-// import { useState, useEffect } from "react";
 import { useCod } from "../../hooks/useCod";
 import Swal from "sweetalert2";
   
 export default function FormApo() {
-
   const urlNumber = true
   const item = "APO"
-  const {prefijo} = useCod (item)
+  const url = "items"
+  const tipo = "A"
+  const {prefijo} = useCod (item, url, tipo)
  
   const { values, errors, handleInputChange, validateIfValuesHasEmpty} = useForm({
     nombreapo: "",
     descripcionapo: "",
     porcentajeapo:"",
+    tipo,
+    codigo: prefijo
   })
   
+    // console.log(typeof(prefijo))
     const handleFormSubmit = async (e) =>{
-      // e.preventDefault()
+      e.preventDefault()
       if(!validateIfValuesHasEmpty()) return
       
-      const user = await create(urlNumber,values,"items")
+      await create(urlNumber,values,url)
       if(values){
         Swal.fire({
           title: "Success",
@@ -42,7 +45,7 @@ export default function FormApo() {
                 Registro de Aportaciones
               </h1>
               <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
-                  <span className="text-right">{ prefijo }</span>
+                <span className="text-right">{`Código: ${prefijo}`}</span>
                 <div className="gap-3 mb-2 mt-2">
                   <FormLogin
                     inputs={inputs}
