@@ -17,7 +17,7 @@ export default function Router(){
                         <Route path="/registrodes" element={<RegistroDes/>}/>
                         <Route path="/registroafp" element={<RegistroAfp/>}/>    
                         <Route path="/listaremp" element={<ListarEmp/>}/>    
-                   </Route> 
+                </Route> 
                 </Route>
             </Routes>
         </BrowserRouter>
