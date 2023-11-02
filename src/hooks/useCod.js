@@ -1,25 +1,24 @@
 import { useState, useEffect } from "react";
 import { read } from "../services";
 
-export function useCod(item, url, tipo){
-    const urlNumber = true
+export function useCod(item, url, tipo) {
+  const urlNumber = true;
 
-    const [cod, setCod] = useState([])
-    const prefijo =`${item}${cod.length+1}`
+  const [prefijo, setPrefijo] = useState("");
 
-    const getCod = async () => {
-        const response = await read(urlNumber, url)
-        return (response)
-    }
-    useEffect(() => {
-        getCod()
-        .then(data => {
-        setCod(data.filter((buscarCod)=> buscarCod.tipo==tipo))
-        })
-    }, [])
+  const getCod = async () => {
+    const response = await read(urlNumber, url);
+    const cod = response.filter((buscarCod) => buscarCod.tipo == tipo);
+    console.log("item + cod.length", item + cod.length);
+    setPrefijo(item + cod.length);
+  };
 
-    return{
-        prefijo
-    }
+  useEffect(() => {
+    getCod();
+  }, []);
+
+  return {
+    prefijo,
+    getCod,
+  };
 }
-

@@ -12,7 +12,7 @@ import { useState } from "react";
 
 export default function Layout() {
   const [open, setOpen] = useState(true);
-  const [openSM, setOpenSM] = useState(false);
+  const [openSM, setOpenSM] = useState(false); //abrir y cerrar
   const [properties, setPropierties] = useState("");
 
   const menus = [
@@ -108,7 +108,7 @@ export default function Layout() {
                 className={`${
                   menu.tipo == "M"
                     ? "text-lg block"
-                    : menu.property == properties && openSM
+                    : menu.property == "H" && openSM
                     ? "text-sm block"
                     : "hidden"
                 } text-white flex gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md font-semibold`}

@@ -12,11 +12,11 @@ export default function FormAfp() {
   const {prefijo} = useCod (item,url)
   
   const { values, errors, handleInputChange, validateIfValuesHasEmpty} = useForm({
-    nombreafp: "",
-    aporteafp: "",
-    segurosafp:"",
-    comisionafp:"",
-    maxasegurableafp:"",
+    nombre: "",
+    aporte: "",
+    seguros:"",
+    comision:"",
+    maxremaseg:"",
   })
 
   const handleFormSubmit = async (e) => {
