@@ -17,5 +17,6 @@ export { default as Frame } from "./Frame"
 export { default as Layout } from "./Layout"
 
 export {default as SelectOptions} from "./SelectOptions"
+export {default as SubMenu} from "./Submenu"
 
 export { default as TextField } from "./TextField"
