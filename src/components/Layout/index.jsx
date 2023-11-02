@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { SubMenu } from "../../components";
 import {
   UserIcon,
   PlusIcon,
@@ -8,75 +10,45 @@ import {
   NewspaperIcon,
 } from "@heroicons/react/24/solid";
 import logoBlanco from "../../assets/logo3.png";
-import { useState } from "react";
 
 export default function Layout() {
   const [open, setOpen] = useState(true);
-  const [openSM, setOpenSM] = useState(false); //abrir y cerrar
-  const [properties, setPropierties] = useState("");
+  const [gotcha, setGotcha] = useState("");
 
   const menus = [
     {
       title: "Empleados",
       src: <UserIcon className="w-5" />,
-      tipo: "M",
-      property: "E",
-    },
-    {
-      title: "Nuevo Empleado",
-      src: <UserIcon className="w-5 ml-5" />,
-      tipo: "SM",
-      property: "E",
-    },
-    {
-      title: "Modificar Empleado",
-      src: <UserIcon className="w-5 ml-5" />,
-      tipo: "SM",
-      property: "E",
+      submenu: [{ title: "Nuevo Empleado" }, { title: "Modificar Empleado" }],
     },
     {
       title: "Haberes",
       src: <PlusIcon className="w-5" />,
-      tipo: "M",
-      property: "H",
-    },
-    {
-      title: "Nuevo Haber",
-      src: <UserIcon className="w-5 ml-5" />,
-      tipo: "SM",
-      property: "H",
-    },
-    {
-      title: "Modificar Haber",
-      src: <UserIcon className="w-5 ml-5" />,
-      tipo: "SM",
-      property: "H",
+      submenu: [{ title: "Nuevo Haber" }, { title: "Modificar Haber" }],
     },
     {
       title: "Descuentos",
       src: <MinusIcon className="w-5" />,
-      tipo: "M",
+      submenu: [],
     },
     {
       title: "Aportaciones",
       src: <HandThumbUpIcon className="w-5" />,
-      tipo: "M",
+      submenu: [],
     },
     {
       title: "Procesos",
       src: <BookOpenIcon className="w-5" />,
-      tipo: "M",
+      submenu: [],
     },
     {
       title: "Reportes",
       src: <NewspaperIcon className="w-5" />,
-      tipo: "M",
+      submenu: [],
     },
   ];
-  const actualizacion = (value) => {
-    () => setOpenSM(!openSM);
-    () => setPropierties(value);
-  };
+
+  const Submenu = (property) => {};
 
   return (
     <div className="flex">
@@ -102,26 +74,8 @@ export default function Layout() {
         </div>
         <div className="flex flex-col">
           <ul className="pt-6">
-            {menus.map((menu, index) => (
-              <li
-                key={index}
-                className={`${
-                  menu.tipo == "M"
-                    ? "text-lg block"
-                    : menu.property == "H" && openSM
-                    ? "text-sm block"
-                    : "hidden"
-                } text-white flex gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md font-semibold`}
-                
-                onClick={()=>setOpenSM(!openSM)}
-              >
-                {menu.src}
-                <span
-                  className={`${!open && "hidden"} origin-left duration-200`}
-                >
-                  {menu.title}
-                </span>
-              </li>
+            {menus.map((menu) => (
+              <SubMenu menu={menu} open={open} />
             ))}
           </ul>
 
