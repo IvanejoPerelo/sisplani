@@ -1,13 +1,10 @@
-import { useState } from "react";
-
 export default function SelectOptions({ titulo, onChange, arrayselect }) {
-
-
   return (
     <>
       <div className="flex flex-col items-left">
         <span>{titulo}</span>
         <select
+          defaultValue={"DEFAULT"}
           id="selectoptions"
           name="selectoptions"
           className="border border-red-200 text-gray-900 text-sm rounded focus:ring-red-500
@@ -15,13 +12,12 @@ export default function SelectOptions({ titulo, onChange, arrayselect }) {
             dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           onChange={onChange}
         >
-          <option selected>Seleccione</option>
+          <option value="DEFAULT" disabled>
+            Seleccione opción
+          </option>
           {arrayselect.map((a) => {
             return (
-              <option
-                key={a.value}
-                value={a.value}
-              >
+              <option key={a.value} value={a.value}>
                 {a.option}
               </option>
             );

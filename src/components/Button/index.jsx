@@ -15,7 +15,7 @@ export default function Button({
       <button
         type={type}
         className={`mb-3 w-full py-1 rounded ${colors[variant]} ${className}`}
-        onclick={onclick}
+        onClick={onclick}
       >
         {text}
       </button>

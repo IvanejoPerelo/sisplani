@@ -1,5 +1,6 @@
 import {Button, Card,  SelectOptions, TextField} from "../../components";
 import { useState } from "react";
+import { create } from "../../services";
 // import { createDescuentos } from "../../services/config";
 import Swal from "sweetalert2";
 
@@ -50,7 +51,7 @@ export default function FormDes() {
     }
     const urlNumber = false;
 
-    const response = await create(urlNumber, {
+    await create(urlNumber, {
 
       nombredes: textNombre,
       descripciondes: textDescripcion,

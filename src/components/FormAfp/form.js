@@ -1,22 +1,22 @@
 export const inputs = [
     {
         label: "Nombre:",
-        name: "nombreafp",
+        name: "nombre",
     },
     {
         label: "Porcentaje de Aporte (%):",
-        name: "aporteafp",
+        name: "aporte",
     },
     {
         label: "Prima de Seguros (%):",
-        name : "segurosafp",
+        name : "seguros",
     },
     {
         label: "Comisión Variable (%):",
-        name: "comisionafp",
+        name: "comision",
     },
     {
         label: "Remuneración Max Asegurable (%):",
-        name: "maxasegurableafp",
+        name: "maxremaseg",
     }
 ]
