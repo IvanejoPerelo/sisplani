@@ -1,20 +1,32 @@
-import TextField from "../TextField";
-import SelectFour from "../SelectFour";
-import SelectOptions from "../SelectOptions";
-import Card from "../Card";
-import Button from "../Button";
+import {Button, Card, SelectOptions, TextField} from "../../components";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { createHaberes } from "../../services";
+// import { createHaberes } from "../../services/config";
 
 export default function FormHab() {
-
-
   const [textNombre, setTextNombre] = useState("");
   const [textDescripcion, setTextDescripcion] = useState("");
   const [selectPeriodo, setSelectPeriodo] = useState("");
   const [textVariable, setTextVariable] = useState("");
   const [textFormula, setTextFormula] = useState("");
+  const periodicidad = [
+    {
+      value: "M",
+      option: "Mensual",
+    },
+    {
+      value: "T",
+      option: "Trimestral",
+    },
+    {
+      value: "S",
+      option: "Semestral",
+    },
+    {
+      value: "A",
+      option: "Anual",
+    },
+  ];
 
   const handleInputChangeN = (e) => setTextNombre(e.target.value);
   const handleInputChangeD = (e) => setTextDescripcion(e.target.value);
@@ -107,9 +119,10 @@ export default function FormHab() {
               </div>
               <div className="grid grid-cols-2 gap-5 mb-1 items-center">
                 <div className="flex flex-col px-1">
-                <SelectOptions 
-                  title="Periodicidad" 
-                  onChange={handleSelectPeriodo}
+                  <SelectOptions
+                    titulo={"Periodo"}
+                    onChange={handleSelectPeriodo}
+                    arrayselect={periodicidad}
                   />
                 </div>
 

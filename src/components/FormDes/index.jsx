@@ -1,9 +1,7 @@
-import TextField from "../TextField";
-import SelectTri from "../SelectTri";
-import Card from "../Card";
-import Button from "../Button";
+import {Button, Card,  SelectOptions, TextField} from "../../components";
 import { useState } from "react";
-import { createDescuentos } from "../../services";
+import { create } from "../../services";
+// import { createDescuentos } from "../../services/config";
 import Swal from "sweetalert2";
 
 export default function FormDes() {
@@ -11,6 +9,16 @@ export default function FormDes() {
   const [textDescripcion, setTextDescripcion] = useState("");
   const [selectTipo, setSelectTipo] = useState("");
   const [textMonto, setTextMonto] = useState("0.00");
+  const tipo = [
+    {
+      value: "F",
+      option: "Fijo",
+    },
+    {
+      value: "V",
+      option: "Variable",
+    }
+  ];
 
   const handleInputChangeN = (e) => setTextNombre(e.target.value);
   const handleInputChangeD = (e) => setTextDescripcion(e.target.value);
@@ -41,13 +49,16 @@ export default function FormDes() {
     if (selectTipo == "V") {
       //Como hacer para que la caja de texto del  monto sea vuelva cero y disabled si esta en V
     }
+    const urlNumber = false;
 
-    const response = await createDescuentos({
+    await create(urlNumber, {
+
       nombredes: textNombre,
       descripciondes: textDescripcion,
       tipodes: selectTipo,
       montodes: textMonto,
-    });
+    }, "items" );
+
 
     setTextNombre("");
     setTextDescripcion("");
@@ -100,15 +111,10 @@ export default function FormDes() {
 
               <div className="grid grid-cols-2 gap-5 mb-1 items-center">
                 <div className="flex flex-col px-1">
-                  <SelectTri
-                    title={"Tipo"}
-                    option1={"Fijo"}
-                    value1={"F"}
-                    option2={"Variable"}
-                    value2={"V"}
-                    option3={"Otros"}
-                    value3={"O"}
+                <SelectOptions
+                    titulo={"Tipo"}
                     onChange={handleSelectTipo}
+                    arrayselect={tipo}
                   />
                 </div>
                 <TextField
