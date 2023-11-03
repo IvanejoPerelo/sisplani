@@ -1,8 +1,16 @@
+import { Frame, FormListEmp } from "../../components"
+import React from "react"
+
+
 export default function ListarEmp(){
     return(
         <>
-            <p>Alejandro</p>
+            <Frame className={"w-2/3"}>
+                < FormListEmp/>
+            </Frame>
         
         </>
     )
+
+
 }
