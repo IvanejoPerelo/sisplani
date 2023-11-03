@@ -29,6 +29,7 @@ export default function Planillas() {
 
   const handleSelectMes = (e) => setSelectMes(e.target.value);
 
+
   return (
     <>
       <Frame className={"w-full"}>
