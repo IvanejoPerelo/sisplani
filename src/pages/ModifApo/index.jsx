@@ -15,7 +15,6 @@ export default function ModifApo() {
 
   const getTablaApo = async () => {
     const response = await read(true, "items");
-    //setDetailTable(response);
     setDetailTable(response.filter((item) => item.tipo === "A"));
   };
 
