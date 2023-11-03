@@ -20,3 +20,8 @@ export {default as SelectOptions} from "./SelectOptions"
 export {default as SubMenu} from "./Submenu"
 
 export { default as TextField } from "./TextField"
+
+//Listar Emppleados
+export {default as EditEmp} from "./EditEmp"
+export {default as SelectEmp} from "./SelectEmp"
+export { default as FormListEmp} from "./FormListEmp"
