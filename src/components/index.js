@@ -18,6 +18,7 @@ export { default as Frame } from "./Frame"
 export { default as Layout } from "./Layout"
 
 export { default as EditAfp } from "./EditAfp"
+export { default as EditApo } from "./EditApo"
 
 export {default as SelectOptions} from "./SelectOptions"
 export {default as SubMenu} from "./Submenu"

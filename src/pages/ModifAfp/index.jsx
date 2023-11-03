@@ -64,7 +64,7 @@ export default function ModiAfp() {
                 />
               </div>
             </div>
-             <EditAfp header={afp} values={detailTable}/>
+             <EditAfp header={afp} valuesAfp={detailTable}/>
           </div>
         </Card>
       </Frame>
