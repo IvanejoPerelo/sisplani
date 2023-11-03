@@ -2,10 +2,10 @@ import { FormApo } from "../../components";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 
-export default function EditApo({header, valuesApo}) {
-    const [open, setOpen] = useState(false);
-    const [row, setRow] = useState([]);
-    const [rowSelect, setRowSelect] = useState(null);
+export default function EditApo({ header, valuesApo }) {
+  const [open, setOpen] = useState(false);
+  const [row, setRow] = useState([]);
+  const [rowSelect, setRowSelect] = useState(null);
 
   return (
     <>
@@ -19,7 +19,7 @@ export default function EditApo({header, valuesApo}) {
             ))}
           </tr>
         </thead>
-        
+
         <tbody>
           {valuesApo.map((value) => (
             <tr
@@ -33,7 +33,7 @@ export default function EditApo({header, valuesApo}) {
                 {value.nombre}
               </th>
               <td className="px-4 py-4 "> {value.descripcion}</td>
-              <td className="px-4 py-4 "> {value.porcentajeapo}</td>           
+              <td className="px-4 py-4 "> {value.porcentajeapo}</td>
 
               <td
                 className={`${
@@ -65,12 +65,12 @@ export default function EditApo({header, valuesApo}) {
                 <div className="fixed inset-0 flex items-center justify-center p-4">
                   <Dialog.Panel className="bg-white mx-auto  rounded p-4 ">
                     <div className="flex items-center justify-center">
-{/*                       <FormAfp
-                        title={"Modificación de AFP"}
-                        valuesAfp={valuesAfp}
+                      <FormApo
+                        title={"Modificación de Aportaciones"}
+                        valuesAfp={valuesApo}
                         modify={true}
                         rowselect={rowSelect}
-                      /> */}
+                      />
                     </div>
                   </Dialog.Panel>
                 </div>
@@ -78,7 +78,6 @@ export default function EditApo({header, valuesApo}) {
             </tr>
           ))}
         </tbody>
-
       </table>
     </>
   );
