@@ -7,7 +7,7 @@ export default function SubMenu({ menu, open }) {
     <>
       <ul className="text-sm">
         <li
-          className={`text-white flex flex-col gap-x-4 cursor-pointer p-2 hover:bg-gray-500 rounded-md font-semibold`}
+          className={`text-white flex flex-col gap-x-4 cursor-pointer p-2 hover:bg-red-500 rounded-md font-semibold`}
           onClick={() => setOpenSM(!openSM)}
         >
           <div className="flex items-center gap-4 text-lg">
@@ -19,7 +19,7 @@ export default function SubMenu({ menu, open }) {
           {menu.submenu.length > 0 && (
             <ul className={`${openSM ? "block" : "hidden"}`}>
               {menu.submenu.map((item) => (
-                <li className={`ml-9 py-1 hover:bg-gray-700 rounded`}>
+                <li className={`ml-9 py-1 hover:bg-red-700 rounded`}>
                   {item.title}
                 </li>
               ))}
