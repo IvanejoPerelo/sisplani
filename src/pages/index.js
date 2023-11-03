@@ -3,6 +3,10 @@ export { default as Home } from "./Home";
 
 export {default as ListarEmp} from "./ListarEmp";
 export { default as Login } from "./Login";
+
+export { default as ModifAfp } from "./ModifAfp";
+export { default as ModifApo } from "./ModifApo";
+
 export {default as Planillas} from "./Planillas";
 
 export { default as RegistroAfp } from "./RegistroAfp";
