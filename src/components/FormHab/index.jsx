@@ -24,7 +24,7 @@ export default function FormHab() {
     e.preventDefault();
     values.codigo = prefijo;
     if (!validateIfValuesHasEmpty()) return;
-    values.tipo = "H"
+    values.tipo = tipo
     await create(urlNumber, values, url);
     if (values) {
       cleanInput();
