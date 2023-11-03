@@ -14,7 +14,10 @@ export { default as FormHab } from "./FormHab"
 export { default as FormLogin } from "./FormLogin"
 export { default as FormPla } from "./FormPla"
 export { default as Frame } from "./Frame"
+
 export { default as Layout } from "./Layout"
+
+export { default as EditAfp } from "./EditAfp"
 
 export {default as SelectOptions} from "./SelectOptions"
 export {default as SubMenu} from "./Submenu"
