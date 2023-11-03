@@ -16,7 +16,7 @@ export default function FormDes() {
     nombre: "",
     descripcion: "",
     tipodes: "",
-    tipo,
+    // tipo,
     montodes: "",
   });
 
@@ -25,7 +25,7 @@ export default function FormDes() {
     // debugger
     values.codigo = prefijo;
     if (!validateIfValuesHasEmpty()) return;
-
+    values.tipo = tipo
     await create(urlNumber, values, url);
     if (values) {
       cleanInput();
