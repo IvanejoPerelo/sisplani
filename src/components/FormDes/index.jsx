@@ -1,82 +1,69 @@
-import {Button, Card,  SelectOptions, TextField} from "../../components";
-import { useState } from "react";
-import { create } from "../../services";
-// import { createDescuentos } from "../../services/config";
+import { FormLogin, Card } from "../../components";
+import { inputs } from "./form";
+import { useForm } from "../../hooks/useForm";
+import { create, read } from "../../services";
+import { useCod } from "../../hooks/useCod";
 import Swal from "sweetalert2";
 
 export default function FormDes() {
-  const [textNombre, setTextNombre] = useState("");
-  const [textDescripcion, setTextDescripcion] = useState("");
-  const [selectTipo, setSelectTipo] = useState("");
-  const [textMonto, setTextMonto] = useState("0.00");
-  const tipo = [
-    {
-      value: "F",
-      option: "Fijo",
-    },
-    {
-      value: "V",
-      option: "Variable",
-    }
-  ];
+  const urlNumber = true;
+  const item = "DES";
+  const url = "items";
+  const tipo = "D";
+  const { prefijo, getCod } = useCod(item, url, tipo);
 
-  const handleInputChangeN = (e) => setTextNombre(e.target.value);
-  const handleInputChangeD = (e) => setTextDescripcion(e.target.value);
-  const handleSelectTipo = (e) => setSelectTipo(e.target.value);
-  const handleInputChangeM = (e) => setTextMonto(e.target.value);
+  const { values, errors, handleInputChange, validateIfValuesHasEmpty, cleanInput, } = useForm({
+    nombre: "",
+    descripcion: "",
+    tipodes: "",
+    tipo,
+    montodes: "",
+  });
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    // debugger
+    values.codigo = prefijo;
+    if (!validateIfValuesHasEmpty()) return;
 
-    if (!textNombre || !textDescripcion) {
+    await create(urlNumber, values, url);
+    if (values) {
+      cleanInput();
+      await getCod();
       Swal.fire({
-        title: "Error",
-        text: "Completar los campos",
-        icon: "error",
+        title: "Success",
+        text: "Se creó la tarea correctamente",
+        icon: "success",
       });
       return;
     }
-
-    if (selectTipo == "") {
-      Swal.fire({
-        title: "Error",
-        text: "Seleccionar opción",
-        icon: "error",
-      });
-      return;
-    }
-
-    if (selectTipo == "V") {
-      //Como hacer para que la caja de texto del  monto sea vuelva cero y disabled si esta en V
-    }
-    const urlNumber = false;
-
-    await create(urlNumber, {
-
-      nombredes: textNombre,
-      descripciondes: textDescripcion,
-      tipodes: selectTipo,
-      montodes: textMonto,
-    }, "items" );
-
-
-    setTextNombre("");
-    setTextDescripcion("");
-    setTextMonto("0.00");
-    setSelectTipo("");
-    // Como hacer para que el select vuelva a su estado inicial
-    // Bloquear el text Monto
-
-    Swal.fire({
-      title: "Success",
-      text: "Se grabo correctamente",
-      icon: "success",
-    });
   };
-
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
+    <Card className="items-center justify-center bg-gray-50">
+      <div className="w-full  text-white p-1 mt-3 mb-2">
+        <h1 className="bg-red-700 font-semibold text-xl px-2 text-center">
+            Registro de Aportaciones
+        </h1> 
+      </div>
+      <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
+        <span className="text-right">{`Código: ${prefijo}`}</span>    
+        <div className="items-center justify-end gap-3 mb-2 mt-2">
+          <FormLogin
+            inputs={inputs}
+            errors={errors}
+            handleFormSubmit={handleFormSubmit}
+            handleInputChange={handleInputChange}
+            textButton="Registrar"
+            values={values}
+            
+          />
+        </div>
+      </Card>
+      {console.log(values)}
+    </Card>
+
+      {/* <form onSubmit={handleFormSubmit}>
         <Card className="items-center justify-center bg-gray-50">
           <div className="w-full  text-white p-1 mt-3 mb-2">
             <h1 className="bg-red-700 font-semibold text-xl px-2">
@@ -131,7 +118,7 @@ export default function FormDes() {
             <Button text="Salir" type="button" />
           </div>
         </Card>
-      </form>
+      </form> */}
     </>
   );
 }

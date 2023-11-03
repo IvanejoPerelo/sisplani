@@ -16,7 +16,8 @@ export default function FormLogin({
             <SelectOptions
               titulo={input.label}
               arrayselect={input.data}
-              onChange={() => console.log("onchange")}
+              onChange={handleInputChange}
+              nameSelected={input.name}
             />
           ) : (
             <>
