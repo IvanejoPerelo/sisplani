@@ -12,17 +12,11 @@ export default function FormApo() {
   const tipo = "A";
   const { prefijo, getCod } = useCod(item, url, tipo);
 
-  const {
-    values,
-    errors,
-    handleInputChange,
-    validateIfValuesHasEmpty,
-    cleanInput,
-  } = useForm({
+  const {     values, errors, handleInputChange, validateIfValuesHasEmpty, cleanInput } = useForm({
     nombre: "",
     descripcion: "",
     porcentajeapo: "",
-    tipo,
+    // tipo,
   });
 
   // console.log(typeof(prefijo))
@@ -30,7 +24,7 @@ export default function FormApo() {
     e.preventDefault();
     values.codigo = prefijo;
     if (!validateIfValuesHasEmpty()) return;
-
+    values.tipo = tipo
     await create(urlNumber, values, url);
     if (values) {
       cleanInput();

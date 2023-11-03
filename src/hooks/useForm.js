@@ -27,7 +27,9 @@ export function useForm(inputs) {
   };
 
   const cleanInput = () => {
+    console.log(inputs)
     const keys = Object.keys(inputs).map((key) => {
+      // if(key === "tipo") return
       return [[key], ""];
     });
 
