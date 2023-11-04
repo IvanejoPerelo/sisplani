@@ -9,17 +9,6 @@ export default function ModalDes ({valuesMd, modify}) {
         
     return (
        <>
-      <td className="px-4 py-4">
-        <img
-          className="w-8 ml-2 cursor-pointer"
-          src="./src/assets/modificar.png"
-          onClick={() => {
-            setOpen(true);
-            setRowSelect(value);
-            console.log(value);
-          }}
-        />
-      </td>
               <Dialog
                 className={"relative z-50"}
                 open={open}
@@ -31,7 +20,7 @@ export default function ModalDes ({valuesMd, modify}) {
                     <div className="flex items-center justify-center">
                       <FormDes
                         title={"Modificación de Descuentos"}
-                        modify={modify} select={rowSelect}
+                        modify={true} select={rowSelect}
                       />
                     </div>
                   </Dialog.Panel>

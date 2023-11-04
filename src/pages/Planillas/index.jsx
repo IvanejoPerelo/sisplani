@@ -16,6 +16,7 @@ import {
   DocumentIcon,
   LockClosedIcon,
 } from "@heroicons/react/24/solid";
+import Swal from "sweetalert2";
 
 const meses = [
   { value: "ene", option: "Enero" },
@@ -41,6 +42,7 @@ const cardPlanillas = [
 export default function Planillas() {
   const [selectMes, setSelectMes] = [""];
   const [planillas, setPlanillas] = useState([]);
+  const [selectFilter, setSelectFilter] = useState([]);
   const [proceso, setProceso] = useState(false);
 
   const handleSelectMes = (e) => setSelectMes(e.target.value);
@@ -48,6 +50,7 @@ export default function Planillas() {
   const getPlanillas = async () => {
     const response = await read(false, "Planilla");
     setPlanillas(response);
+    setSelectFilter(response.filter((item) => item.mes === selectMes));
   };
 
   useEffect(() => {
@@ -82,7 +85,7 @@ export default function Planillas() {
 
           <SelectOptions
             titulo={"Mes de Planilla:"}
-            onChange={handleSelectMes}
+            onclick ={console.log(handleSelectMes)}
             arrayselect={meses}
             className={"flex w-[30%] text-lg font-semibold"}
           />
@@ -93,13 +96,12 @@ export default function Planillas() {
           </div>
 
           <div className="grid grid-cols-3 gap-2 w-30 h-20 m-y-5">
-            {
-              cardPlanillas.map((cardPlanilla) => (
-                <CardReportes
+            {cardPlanillas.map((cardPlanilla) => (
+              <CardReportes
                 titulo={cardPlanilla.title}
                 estado={cardPlanilla.status}
               />
-              ))}
+            ))}
           </div>
 
           {planillas.length > 0 &&
