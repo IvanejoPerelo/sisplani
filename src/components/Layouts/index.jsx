@@ -27,12 +27,12 @@ export default function Layout() {
     {
       title: "Haberes",
       src: <PlusIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Haber", ruta:"registrohab" }, { title: "Modificar Haber", ruta:"registrohab" }],
+      submenu: [{ title: "Nuevo Haber", ruta:"registrohab" }, { title: "Modificar Haber", ruta:"registrohab", ruta:"modifhab" }],
     },
     {
       title: "Descuentos",
       src: <MinusIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Descuento", ruta:"registrodes" }, { title: "Modificar Descuento" }],
+      submenu: [{ title: "Nuevo Descuento", ruta:"registrodes" }, { title: "Modificar Descuento", ruta:"modifdes" }],
     },
     {
       title: "Aportaciones",
