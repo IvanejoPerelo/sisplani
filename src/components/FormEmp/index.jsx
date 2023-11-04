@@ -5,8 +5,18 @@ import {
   SelectOptions,
   TextField,
 } from "../../components";
+import { create } from "../../services";
+import Swal from "sweetalert2";
 
 export default function FormEmp() {
+  const [textDni, setTextDni] = useState("");
+  const [textApePat, setTextApePat] = useState("");
+  const [textApeMat, setTextApeMat] = useState("");
+  const [textNombres, setTextNombres] = useState("");
+  const [textDireccion, setTextDireccion] = useState("");
+  const [textCargo, setTextCargo] = useState("");
+  const [textRemu, setTextRemu] = useState("");
+
   const [selectSexo, setSelectSexo] = useState("");
   const [selectRegimen, setSelectRegimen] = useState("");
   const [selectCategoria, setSelectCategoria] = useState("");
@@ -44,15 +54,58 @@ export default function FormEmp() {
     { value: "P", option: "Prima" },
   ];
 
+  const handleInputChangeD =(e) => setTextDni(e.target.value);
+  const handleInputChangeAP =(e) => setTextApePat(e.target.value);
+  const handleInputChangeAM =(e) => setTextApeMat(e.target.value);
+  const handleInputChangeN =(e) => setTextNombres(e.target.value);
+  const handleInputChangeDi =(e) => setTextDireccion(e.target.value);
+  const handleInputChangeC =(e) => setTextCargo(e.target.value);
+  const handleInputChangeR =(e) => setTextRemu(e.target.value);
+
+
   const handleSelectSexo = (e) => setSelectSexo(e.target.value);
   const handleSelectRegimen = (e) => setSelectRegimen(e.target.value);
   const handleSelectCategoria = (e) => setSelectCategoria(e.target.value);
   const handleSelectPensionario = (e) => setSelectPensionario(e.target.value);
   const handleSelectAfp = (e) => setSelectAfp(e.target.value);
 
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!textDni || !textApeMat || !textApePat || !textNombres || !textDireccion || !textCargo || !textRemu) {
+      Swal.fire({
+        title: "Error",
+        text: "Completa el campo de tareas",
+        icon: "error",
+      });
+      return;
+    }
+  
+  const response = await create (false,{
+    dni: textDni,
+    apellido_p: textApeMat,
+    apellido_m: textApeMat,
+    nombres: textNombres,
+    sexo: selectSexo,
+    direccion: textDireccion,
+    regimen_lab: selectRegimen,
+    categoria_ocu: selectCategoria,
+    cargo: textCargo,
+    regimen_pen: selectPensionario,
+    afp: selectAfp,
+    remuneracion:textRemu
+  },"empleados");
+
+  Swal.fire ({
+    title: "Success",
+    text: "Se grabo correctamente",
+    icon: "success",
+  });
+  }
+
   return (
     <>
-      <form action="">
+      <form onSubmit={handleFormSubmit}>
         <Card className="items-center justify-center bg-gray-50">
           <div className="w-full  text-white p-1 mt-3 mb-1">
             <h1 className="bg-gray-700 font-semibold text-xl px-2">
