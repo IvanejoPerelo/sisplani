@@ -4,9 +4,9 @@ import { create } from "../../services";
 import Swal from "sweetalert2";
 
 export default function FormEmp() {
-  const urlNumber = false;
-  const url = "empleados";
 
+  const urlNumber = false
+  const url = "empleados"
   const [textDni, setTextDni] = useState("");
   const [textApePat, setTextApePat] = useState("");
   const [textApeMat, setTextApeMat] = useState("");
@@ -14,7 +14,6 @@ export default function FormEmp() {
   const [textDireccion, setTextDireccion] = useState("");
   const [textCargo, setTextCargo] = useState("");
   const [textRemu, setTextRemu] = useState("");
-
   const [selectSexo, setSelectSexo] = useState("");
   const [selectRegimen, setSelectRegimen] = useState("");
   const [selectCategoria, setSelectCategoria] = useState("");
@@ -86,6 +85,29 @@ export default function FormEmp() {
       return;
     }
 
+   await create (urlNumber,{
+    dni: textDni,
+    apellido_p: textApePat,
+    apellido_m: textApeMat,
+    nombres: textNombres,
+    sexo: selectSexo,
+    direccion: textDireccion,
+    regimen_lab: selectRegimen,
+    categoria_ocu: selectCategoria,
+    cargo: textCargo,
+    regimen_pen: selectPensionario,
+    afp: selectAfp,
+    remuneracion:textRemu
+  },url);
+
+  Swal.fire ({
+    title: "Success",
+    text: "Se grabo correctamente",
+    icon: "success",
+  });
+  }
+=======
+
     const response = await create(
       urlNumber,
       {
@@ -116,7 +138,7 @@ export default function FormEmp() {
       <form onSubmit={handleFormSubmit}>
         <Card className="items-center justify-center bg-gray-50">
           <div className="w-full  text-white p-1 mt-3 mb-1">
-            <h1 className="bg-gray-700 font-semibold text-xl px-2">
+            <h1 className="text-red-700 font-semibold text-xl px-2">
               Registro de Trabajadores
             </h1>
 
@@ -128,13 +150,17 @@ export default function FormEmp() {
               <div className="flex flex-row items-center justify-left">
                 <div className="w-[80%] pr-2">
                   <div className="grid grid-cols-3 gap-5 items-center justify-center mb-2">
-                    <TextField label="DNI" name="dni" />
-                    <TextField label="Apellido Paterno" name="apepaterno" />
-                    <TextField label="Apellido Materno" name="apermaterno" />
+                    <TextField label="DNI" name="dni" onChange={handleInputChangeD} />
+                    <TextField label="Apellido Paterno" name="apepaterno" onChange={handleInputChangeAP}/>
+                    <TextField label="Apellido Materno" name="apermaterno" onChange={handleInputChangeAM} />
                   </div>
 
-                  <TextField label="Nombres" name="nombres" />
+                  <TextField label="Nombres" name="nombres" onChange={handleInputChangeN}/>
                 </div>
+
+                <div className="w-[20%] h-full p-1">
+                  <TextField label="Foto" name="foto" className={"h-[80px]"} />
+                </div> */}
 
               </div>
 
@@ -144,7 +170,7 @@ export default function FormEmp() {
                   onChange={handleSelectSexo}
                   arrayselect={sexo}
                 />
-                <TextField label="Dirección" name="direccion" />
+                <TextField label="Dirección" name="direccion" onChange={handleInputChangeDi}/>
               </div>
             </Card>
 
@@ -167,7 +193,7 @@ export default function FormEmp() {
                   onChange={handleSelectCategoria}
                   arrayselect={categoria}
                 />
-                <TextField label="Cargo" name="cargo" />
+                <TextField label="Cargo" name="cargo" onChange={handleInputChangeC}/>
               </div>
 
               <div className="grid grid-cols-3 gap-5 items-center mb-3">
@@ -181,7 +207,7 @@ export default function FormEmp() {
                   onChange={handleSelectAfp}
                   arrayselect={afp}
                 />
-                <TextField label="Remuneración Básica" name="remuneracion" />
+                <TextField label="Remuneración Básica" name="remuneracion" onChange={handleInputChangeR}/>
               </div>
             </Card>
           </div>
