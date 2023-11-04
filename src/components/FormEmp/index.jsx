@@ -1,14 +1,12 @@
 import { useState } from "react";
-import {
-  Button,
-  Card,
-  SelectOptions,
-  TextField,
-} from "../../components";
+import { Button, Card, SelectOptions, TextField } from "../../components";
 import { create } from "../../services";
 import Swal from "sweetalert2";
 
 export default function FormEmp() {
+  const urlNumber = false;
+  const url = "empleados";
+
   const [textDni, setTextDni] = useState("");
   const [textApePat, setTextApePat] = useState("");
   const [textApeMat, setTextApeMat] = useState("");
@@ -54,14 +52,13 @@ export default function FormEmp() {
     { value: "P", option: "Prima" },
   ];
 
-  const handleInputChangeD =(e) => setTextDni(e.target.value);
-  const handleInputChangeAP =(e) => setTextApePat(e.target.value);
-  const handleInputChangeAM =(e) => setTextApeMat(e.target.value);
-  const handleInputChangeN =(e) => setTextNombres(e.target.value);
-  const handleInputChangeDi =(e) => setTextDireccion(e.target.value);
-  const handleInputChangeC =(e) => setTextCargo(e.target.value);
-  const handleInputChangeR =(e) => setTextRemu(e.target.value);
-
+  const handleInputChangeD = (e) => setTextDni(e.target.value);
+  const handleInputChangeAP = (e) => setTextApePat(e.target.value);
+  const handleInputChangeAM = (e) => setTextApeMat(e.target.value);
+  const handleInputChangeN = (e) => setTextNombres(e.target.value);
+  const handleInputChangeDi = (e) => setTextDireccion(e.target.value);
+  const handleInputChangeC = (e) => setTextCargo(e.target.value);
+  const handleInputChangeR = (e) => setTextRemu(e.target.value);
 
   const handleSelectSexo = (e) => setSelectSexo(e.target.value);
   const handleSelectRegimen = (e) => setSelectRegimen(e.target.value);
@@ -71,8 +68,16 @@ export default function FormEmp() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!textDni || !textApeMat || !textApePat || !textNombres || !textDireccion || !textCargo || !textRemu) {
+
+    if (
+      !textDni ||
+      !textApeMat ||
+      !textApePat ||
+      !textNombres ||
+      !textDireccion ||
+      !textCargo ||
+      !textRemu
+    ) {
       Swal.fire({
         title: "Error",
         text: "Completa el campo de tareas",
@@ -80,28 +85,31 @@ export default function FormEmp() {
       });
       return;
     }
-  
-  const response = await create (false,{
-    dni: textDni,
-    apellido_p: textApeMat,
-    apellido_m: textApeMat,
-    nombres: textNombres,
-    sexo: selectSexo,
-    direccion: textDireccion,
-    regimen_lab: selectRegimen,
-    categoria_ocu: selectCategoria,
-    cargo: textCargo,
-    regimen_pen: selectPensionario,
-    afp: selectAfp,
-    remuneracion:textRemu
-  },"empleados");
 
-  Swal.fire ({
-    title: "Success",
-    text: "Se grabo correctamente",
-    icon: "success",
-  });
-  }
+    const response = await create(
+      urlNumber,
+      {
+        dni: textDni,
+        apellido_p: textApeMat,
+        apellido_m: textApeMat,
+        nombres: textNombres,
+        sexo: selectSexo,
+        direccion: textDireccion,
+        regimen_lab: selectRegimen,
+        categoria_ocu: selectCategoria,
+        cargo: textCargo,
+        regimen_pen: selectPensionario,
+        afp: selectAfp,
+        remuneracion: textRemu,
+      },
+      url);
+
+    Swal.fire({
+      title: "Success",
+      text: "Se grabo correctamente",
+      icon: "success",
+    });
+  };
 
   return (
     <>
@@ -128,9 +136,6 @@ export default function FormEmp() {
                   <TextField label="Nombres" name="nombres" />
                 </div>
 
-                <div className="w-[20%] h-full p-1">
-                  <TextField label="Foto" name="foto" className={"h-[80px]"} />
-                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-5 mb-3 items-center justify-center">
