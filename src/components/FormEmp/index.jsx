@@ -1,58 +1,5 @@
-import { FormLogin, Card } from "../../components";
-import { inputs } from "./form";
-import { useForm } from "../../hooks/useForm";
-import { create, read } from "../../services";
-import { useCod } from "../../hooks/useCod";
-import Swal from "sweetalert2";
 
 export default function FormEmp() {
-  const urlNumber = true
-  const url = "afp"
-  const tipo_log = "E"
-
-  const { values, errors, handleInputChange, validateIfValuesHasEmpty} = useForm({
-    dni: "",
-    apellido_p: "",
-    apellido_m:"",
-    nombres:"",
-    sexo:"",
-    direccion: "",
-    regimen_lab: "",
-    categoria_ocu: "",
-    cargo: "",
-    regimen_pen: "",
-    remuneracion: "",
-    fecha_ing: "",
-    tipo_log: "",
-
-  })
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    if(!validateIfValuesHasEmpty()) return
-
-    await create(urlNumber,values,"afp")
-    if(values){
-      Swal.fire({
-        title: "Success",
-        text: "Se creó la tarea correctamente",
-        icon: "success"
-       })
-      return;
-    }
-  };
-
-  return (
-    <>
-      <Card className="items-center justify-center bg-gray-50">
-        <div className="w-full  text-white p-1 mt-3 mb-2">
-        <h1 className="bg-red-700 font-semibold text-xl px-2">
-            Registro de Empleado
-        </h1>
-        </div>
-      </Card>
-    </>
-  )
   // const [selectSexo, setSelectSexo] = useState("");
   // const [selectRegimen, setSelectRegimen] = useState("");
   // const [selectCategoria, setSelectCategoria] = useState("");

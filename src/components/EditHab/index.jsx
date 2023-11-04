@@ -1,9 +1,10 @@
-import { ModalApo } from "../../components";
+import { ModalHab } from "../../components";
 import { useState } from "react";
 
-export default function EditApo({ header, valuesApo }) {
+export default function EditHab({ header, valuesHab }) {
   const [open, setOpen] = useState(false);
   const [rowSelect, setRowSelect] = useState(null);
+
   return (
     <>
       <table className="w-[70%] text-sm text-left text-gray-500 dark:text-gray-400">
@@ -18,7 +19,7 @@ export default function EditApo({ header, valuesApo }) {
         </thead>
 
         <tbody>
-          {valuesApo.map((value) => (
+          {valuesHab.map((value) => (
             <tr
               key={value.id}
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -30,7 +31,7 @@ export default function EditApo({ header, valuesApo }) {
                 {value.nombre}
               </th>
               <td className="px-4 py-4 "> {value.descripcion}</td>
-              <td className="px-4 py-4 "> {value.porcentajeapo}</td>
+              <td className="px-4 py-4 "> {value.meshab}</td>
 
               <td
                 className={`${
@@ -52,7 +53,7 @@ export default function EditApo({ header, valuesApo }) {
                   }}
                 />
               </td>
-              <ModalApo rowSelect={rowSelect} openModal={open}/>
+              <ModalHab rowSelect={rowSelect}  openModal={open} />
             </tr>
           ))}
         </tbody>
