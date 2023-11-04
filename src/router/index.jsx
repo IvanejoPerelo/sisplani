@@ -6,6 +6,7 @@ import {
   Login,
   ModifAfp,
   ModifApo,
+  ModifDes,
   RegistroDes,
   RegistroHab,
   RegistroAfp,

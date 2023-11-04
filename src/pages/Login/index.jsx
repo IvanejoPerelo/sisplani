@@ -22,10 +22,9 @@ export default function Login () {
 
   const handleFormSubmit = async (e) =>{
     e.preventDefault()
+    console.log("ddfdsfds")
     if(!validateIfValuesHasEmpty()) return
-    // console.log("funciona?")
     const user = await read(urlNumber,url)
-    // const user = users.find((u) => u.dni === values.user)
     
     if(!user || user.dni !== values.user){
       Swal.fire({

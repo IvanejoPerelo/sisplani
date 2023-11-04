@@ -5,7 +5,7 @@ import { create, read } from "../../services";
 import { useCod } from "../../hooks/useCod";
 import Swal from "sweetalert2";
 
-export default function FormDes() {
+export default function FormDes(title, valuesDes, modify, rowSelect) {
   const urlNumber = true;
   const item = "DES";
   const url = "items";
@@ -43,7 +43,7 @@ export default function FormDes() {
     <Card className="items-center justify-center bg-gray-50">
       <div className="w-full  text-white p-1 mt-3 mb-2">
         <h1 className="bg-red-700 font-semibold text-xl px-2 text-center">
-            Registro de Aportaciones
+            Registro de Descuentos
         </h1> 
       </div>
       <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">

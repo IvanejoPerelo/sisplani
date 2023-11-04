@@ -1,8 +1,8 @@
-import { FormAfp } from "../../components";
+import { FormApo } from "../../components";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 
-export default function EditAfp({ header, valuesAfp }) {
+export default function EditApo({ header, valuesApo }) {
   const [open, setOpen] = useState(false);
   const [row, setRow] = useState([]);
   const [rowSelect, setRowSelect] = useState(null);
@@ -21,7 +21,7 @@ export default function EditAfp({ header, valuesAfp }) {
         </thead>
 
         <tbody>
-          {valuesAfp.map((value) => (
+          {valuesApo.map((value) => (
             <tr
               key={value.id}
               className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -32,9 +32,9 @@ export default function EditAfp({ header, valuesAfp }) {
               >
                 {value.nombre}
               </th>
-              <td className="px-4 py-4 "> {value.aporte}</td>
-              <td className="px-4 py-4">{value.seguros}</td>
-              <td className="px-4 py-4">{value.comision}</td>
+              <td className="px-4 py-4 "> {value.descripcion}</td>
+              <td className="px-4 py-4 "> {value.porcentajeapo}</td>
+
               <td
                 className={`${
                   value.estado === "A"
@@ -65,9 +65,9 @@ export default function EditAfp({ header, valuesAfp }) {
                 <div className="fixed inset-0 flex items-center justify-center p-4">
                   <Dialog.Panel className="bg-white mx-auto  rounded p-4 ">
                     <div className="flex items-center justify-center">
-                      <FormAfp
-                        title={"Modificación de AFP"}
-                        valuesAfp={valuesAfp}
+                      <FormApo
+                        title={"Modificación de Aportaciones"}
+                        valuesAfp={valuesApo}
                         modify={true}
                         rowselect={rowSelect}
                       />

@@ -12,23 +12,4 @@ export const inputs = [
     name: "porcentajeapo",
     placeholder: "0.0",
   },
-  // {
-  //   label: "Pais",
-  //   name: "country",
-  //   isSelect: true,
-  //   data: [
-  //     {
-  //       value: "Peru",
-  //       option: "Perú",
-  //     },
-  //     {
-  //       value: "Argentina",
-  //       option: "Argentina",
-  //     },
-  //     {
-  //       value: "Chile",
-  //       option: "Chile",
-  //     },
-  //   ],
-  // },
 ];

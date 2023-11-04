@@ -1,35 +1,36 @@
-import { Card, EditApo, Frame } from "../../components";
+import { Card, EditDes, Frame } from "../../components";
 import { read } from "../../services";
 import { useState, useEffect } from "react";
 
-export default function ModifApo() {
-  const aportaciones = [
-    { title: "Nombre", action: false },
-    { title: "Descripción", action: false },
-    { title: "Porcentaje (%)", action: false },
-    { title: "Estado", action: true },
-    { title: "Accion", action: true },
-  ];
+export default function ModifDes () {
+    const descuentos = [
+        { title: "Nombre", action: false },
+        { title: "Descripción", action: false },
+        { title: "Tipo", action: false },
+        { title: "Estado", action: true },
+        { title: "Accion", action: true },
+      ];
 
-  const [detailTable, setDetailTable] = useState([]);
+      const [detailTable, setDetailTable] = useState([]);
 
-  const getTablaApo = async () => {
-    const response = await read(true, "items");
-    setDetailTable(response.filter((item) => item.tipo === "A"));
-  };
+      const getTablaDes = async () => {
+        const response = await read(true, "items");
+        setDetailTable(response.filter((item) => item.tipo === "D"));
+      };
 
-  useEffect(() => {
-    getTablaApo();
-  }, []);
+      useEffect(() => {
+        getTablaDes();
+      }, []);
+    
 
-  return (
-    <>
-      <Frame>
+    return (
+        <>
+        <Frame>
         <Card className={"mb-4"}>
           <div className="mb-3">
             <div className="w-full  text-white p-1 mt-3">
               <h1 className="bg-red-700 font-semibold text-xl px-2">
-                Listado de Aportaciones
+                Listado de Descuentos
               </h1>
             </div>
           </div>
@@ -37,7 +38,7 @@ export default function ModifApo() {
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div className="flex items-center justify-left pb-4">
               <span className="pr-3" for="table-search">
-                Búsqueda de Aportaciones:
+                Búsqueda de Descuentos:
               </span>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -63,10 +64,11 @@ export default function ModifApo() {
                 />
               </div>
             </div>
-            <EditApo header={aportaciones} valuesApo={detailTable}/>
+            <EditDes header={descuentos} valuesDes={detailTable}/>
           </div>
         </Card>
       </Frame>
-    </>
-  );
+
+        </>
+    );
 }
