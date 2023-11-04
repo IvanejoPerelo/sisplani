@@ -7,28 +7,66 @@ import {
   CardReportes,
   CardPlanilla,
 } from "../../components";
-// import {meses} from "./meses"
+import { useState, useEffect } from "react";
+import { read } from "../../services";
+import {
+  BanknotesIcon,
+  EllipsisVerticalIcon,
+  DocumentTextIcon,
+  DocumentIcon,
+  LockClosedIcon,
+} from "@heroicons/react/24/solid";
+
+const meses = [
+  { value: "ene", option: "Enero" },
+  { value: "feb", option: "Febrero" },
+  { value: "mar", option: "Marzo" },
+  { value: "abr", option: "Abril" },
+  { value: "may", option: "Mayo" },
+  { value: "jun", option: "Junio" },
+  { value: "jul", option: "Julio" },
+  { value: "ago", option: "Agosto" },
+  { value: "set", option: "Setiembre" },
+  { value: "oct", option: "Octubre" },
+  { value: "nov", option: "Noviembre" },
+  { value: "dic", option: "Diciembre" },
+];
+
+const cardPlanillas = [
+  { title: "Planilla de Empleados", status: "No Procesado" },
+  { title: "Planilla de Empleados", status: "No Procesado" },
+  { title: "Planilla de Empleados", status: "No Procesado" },
+];
 
 export default function Planillas() {
   const [selectMes, setSelectMes] = [""];
-
-  const meses = [
-    { value: "ene", option: "Enero" },
-    { value: "feb", option: "Febrero" },
-    { value: "mar", option: "Marzo" },
-    { value: "abr", option: "Abril" },
-    { value: "may", option: "Mayo" },
-    { value: "jun", option: "Junio" },
-    { value: "jul", option: "Julio" },
-    { value: "ago", option: "Agosto" },
-    { value: "set", option: "Setiembre" },
-    { value: "oct", option: "Octubre" },
-    { value: "nov", option: "Noviembre" },
-    { value: "dic", option: "Dic" },
-  ];
+  const [planillas, setPlanillas] = useState([]);
+  const [proceso, setProceso] = useState(false);
 
   const handleSelectMes = (e) => setSelectMes(e.target.value);
 
+  const getPlanillas = async () => {
+    const response = await read(false, "Planilla");
+    setPlanillas(response);
+  };
+
+  useEffect(() => {
+    getPlanillas();
+  }, []);
+
+  const handlePlanillaSubmit = async (e) => {
+    e.preventDefault();
+
+    await create(false, "planilla");
+    if (values) {
+      Swal.fire({
+        title: "Success",
+        text: "Se creó la Planilla Correctamente",
+        icon: "success",
+      });
+      await getPlanillas();
+    }
+  };
 
   return (
     <>
@@ -53,26 +91,24 @@ export default function Planillas() {
             <Button text="Cerrar Planilla" type="button" />
             <Button text="Salir" type="button" />
           </div>
-          
+
           <div className="grid grid-cols-3 gap-2 w-30 h-20 m-y-5">
-            <CardReportes
-              titulo={"Planillas de Empleados"}
-              estado={"No Procesado"}
-            />
-            <CardReportes
-              titulo={"Resumen de Planilla"}
-              estado={"No Procesado"}
-            />
-            <CardReportes
-              titulo={"Boletas de Pago PDF"}
-              estado={"No Procesado"}
-            />
+            {
+              cardPlanillas.map((cardPlanilla) => (
+                <CardReportes
+                titulo={cardPlanilla.title}
+                estado={cardPlanilla.status}
+              />
+              ))}
           </div>
 
-          <CardPlanilla mesLetra={"Setiembre 2023"} estado={"Cerrado"} />
-          <CardPlanilla mesLetra={"Agosto 2023"} estado={"Cerrado"} />
-          <CardPlanilla mesLetra={"Julio 2023"} estado={"Cerrado"} />
-          <CardPlanilla mesLetra={"Junio 2023"} estado={"Cerrado"} />
+          {planillas.length > 0 &&
+            planillas.map((planilla) => (
+              <CardPlanilla
+                mesLetra={`${planilla.mes} - ${planilla.anio}`}
+                estado={planilla.estado}
+              />
+            ))}
         </Card>
       </Frame>
     </>

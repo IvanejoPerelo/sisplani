@@ -1,9 +1,9 @@
 import { ModalApo } from "../../components";
 import { useState } from "react";
-import { Dialog } from "@headlessui/react";
 
 export default function EditApo({ header, valuesApo }) {
-
+  const [open, setOpen] = useState(false);
+  const [rowSelect, setRowSelect] = useState(null);
   return (
     <>
       <table className="w-[70%] text-sm text-left text-gray-500 dark:text-gray-400">
@@ -41,7 +41,18 @@ export default function EditApo({ header, valuesApo }) {
               >
                 {value.estado === "A" ? "Activo" : "Inactivo"}
               </td>
-              <ModalApo valuesMa={valuesApo} modify={true} />
+              <td className="px-4 py-4">
+                <img
+                  className="w-8 ml-2 cursor-pointer"
+                  src="./src/assets/modificar.png"
+                  onClick={() => {
+                    setOpen(true);
+                    setRowSelect(value);
+                    console.log(value);
+                  }}
+                />
+              </td>
+              <ModalApo rowSelect={rowSelect} openModal={open}/>
             </tr>
           ))}
         </tbody>
