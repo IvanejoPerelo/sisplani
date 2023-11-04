@@ -36,7 +36,7 @@ export default function Layout() {
     },
     {
       title: "Aportaciones",
-      src: <HandThumbUpIcon className="w-5" />,
+      src: <HandThumbUpIcon className="w-5"/>,
       submenu: [{ title: "Nuevo Aportación", ruta: "/registroapo" }, { title: "Modificar Aportación", ruta: "/modifapo" }],
     },
     {
