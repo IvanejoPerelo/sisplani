@@ -9,6 +9,7 @@ export { default as CardReportes } from "./CardReportes"
 export { default as EditAfp } from "./EditAfp"
 export { default as EditApo } from "./EditApo"
 export { default as EditDes } from "./EditDes"
+export { default as EditHab } from "./EditHab"
 
 export { default as FormAfp } from "./FormAfp"
 export { default as FormApo } from "./FormApo"
@@ -24,6 +25,7 @@ export { default as Layout } from "./Layout"
 
 export { default as ModalApo } from "./ModalApo"
 export { default as ModalDes } from "./ModalDes"
+export { default as ModalHab } from "./ModalHab"
 
 export {default as SelectOptions} from "./SelectOptions"
 export {default as SubMenu} from "./Submenu"
