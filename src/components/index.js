@@ -6,6 +6,10 @@ export { default as Card } from "./Card"
 export { default as CardPlanilla } from "./CardPlanilla"
 export { default as CardReportes } from "./CardReportes"
 
+export { default as EditAfp } from "./EditAfp"
+export { default as EditApo } from "./EditApo"
+export { default as EditDes } from "./EditDes"
+
 export { default as FormAfp } from "./FormAfp"
 export { default as FormApo } from "./FormApo"
 export { default as FormDes } from "./FormDes"
@@ -17,9 +21,8 @@ export { default as Frame } from "./Frame"
 
 export { default as Layout } from "./Layout"
 
-export { default as EditAfp } from "./EditAfp"
-export { default as EditApo } from "./EditApo"
-export { default as EditDes } from "./EditDes"
+
+export { default as ModalApo } from "./ModalApo"
 
 export {default as SelectOptions} from "./SelectOptions"
 export {default as SubMenu} from "./Submenu"
