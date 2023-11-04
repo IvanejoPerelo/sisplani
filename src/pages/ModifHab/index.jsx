@@ -17,14 +17,14 @@ export default function ModifHab () {
 
       const handleInputChangeSearch = (e) => setTextBusqueda(e.target.value);
 
-      const getTablaDes = async () => {
+      const getTablaHab = async () => {
         const response = await read(true, "items");
         setDetailTable(response.filter((item) => item.tipo === "H"));
         setGlobal(response.filter((item) => item.tipo === "H"));
       };
 
       useEffect(() => {
-        getTablaDes();
+        getTablaHab();
       }, []);
     
       useEffect(() => {
@@ -43,7 +43,7 @@ export default function ModifHab () {
           <div className="mb-3">
             <div className="w-full  text-white p-1 mt-3">
               <h1 className="bg-red-700 font-semibold text-xl px-2">
-                Listado de Descuentos
+                Listado de Haberes
               </h1>
             </div>
           </div>

@@ -2,26 +2,14 @@ import { FormHab } from "../../components";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 
-export default function ModalHab ({valuesMh, modify}) {
+export default function ModalHab ({rowSelect, openModal}) {
     const [open, setOpen] = useState(false);
-    const [rowSelect, setRowSelect] = useState(null);
         
     return (
        <>
-      <td className="px-4 py-4">
-        <img
-          className="w-8 ml-2 cursor-pointer"
-          src="./src/assets/modificar.png"
-          onClick={() => {
-            setOpen(true);
-            setRowSelect(value);
-            console.log(value);
-          }}
-        />
-      </td>
               <Dialog
                 className={"relative z-50"}
-                open={open}
+                open={openModal}
                 onClose={() => setOpen(false)}
               >
                 <div className="fixed inset-0 bg-black/30" />
@@ -29,8 +17,7 @@ export default function ModalHab ({valuesMh, modify}) {
                   <Dialog.Panel className="bg-white mx-auto  rounded p-4 ">
                     <div className="flex items-center justify-center">
                       <FormHab
-                        title={"Modificación de Haberes"}
-                        modify={modify} select={rowSelect}
+                        modify={true} select={rowSelect}
                       />
                     </div>
                   </Dialog.Panel>

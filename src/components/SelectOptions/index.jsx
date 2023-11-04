@@ -1,4 +1,4 @@
-export default function SelectOptions({ titulo, onChange, arrayselect, nameSelected }) {
+export default function SelectOptions({ titulo, onChange, arrayselect, nameSelected, onClick }) {
   return (
     <>
       <div className="flex flex-col items-left">
@@ -11,6 +11,7 @@ export default function SelectOptions({ titulo, onChange, arrayselect, nameSelec
            focus:border-red-500 block w-full p-0.5 dark:bg-red-700 dark:border-red-600 dark:placeholder-red-400
             dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           onChange={onChange}
+          onClick={onclick}
         >
           <option value="DEFAULT" disabled>
             Seleccione opción

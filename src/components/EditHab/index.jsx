@@ -1,6 +1,5 @@
-import { FormHab, ModalHab } from "../../components";
+import { ModalHab } from "../../components";
 import { useState } from "react";
-import { Dialog } from "@headlessui/react";
 
 export default function EditHab({ header, valuesHab }) {
   const [open, setOpen] = useState(false);
@@ -43,7 +42,18 @@ export default function EditHab({ header, valuesHab }) {
               >
                 {value.estado === "A" ? "Activo" : "Inactivo"}
               </td>
-              <ModalHab valuesMh={valuesHab} modify={true} />
+              <td className="px-4 py-4">
+                <img
+                  className="w-8 ml-2 cursor-pointer"
+                  src="./src/assets/modificar.png"
+                  onClick={() => {
+                    setOpen(true);
+                    setRowSelect(value);
+                    console.log(value);
+                  }}
+                />
+              </td>
+              <ModalHab rowSelect={rowSelect}  openModal={open} />
             </tr>
           ))}
         </tbody>
