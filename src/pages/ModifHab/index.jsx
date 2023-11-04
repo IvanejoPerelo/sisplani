@@ -1,48 +1,49 @@
-import { Card, EditApo, Frame } from "../../components";
+import { Card, EditHab, Frame } from "../../components";
 import { read } from "../../services";
 import { useState, useEffect } from "react";
 
-export default function ModifApo() {
-  const aportaciones = [
-    { title: "Nombre", action: false },
-    { title: "Descripción", action: false },
-    { title: "Porcentaje (%)", action: false },
-    { title: "Estado", action: true },
-    { title: "Accion", action: true },
-  ];
+export default function ModifHab () {
+    const haberes = [
+        { title: "Nombre", action: false },
+        { title: "Descripción", action: false },
+        { title: "Periodo", action: false },
+        { title: "Estado", action: true },
+        { title: "Accion", action: true },
+      ];
+    
+      const [detailTable, setDetailTable] = useState([]);
+      const [global, setGlobal] = useState ([]);
+      const [textBusqueda, setTextBusqueda] = useState("");
 
-  const [detailTable, setDetailTable] = useState([]);
-  const [global, setGlobal] = useState ([]);
-  const [textBusqueda, setTextBusqueda] = useState("");
+      const handleInputChangeSearch = (e) => setTextBusqueda(e.target.value);
 
-  const handleInputChangeSearch = (e) => setTextBusqueda(e.target.value);
+      const getTablaHab = async () => {
+        const response = await read(true, "items");
+        setDetailTable(response.filter((item) => item.tipo === "H"));
+        setGlobal(response.filter((item) => item.tipo === "H"));
+      };
 
-  const getTablaApo = async () => {
-    const response = await read(true, "items");
-    setDetailTable(response.filter((item) => item.tipo === "A"));
-    setGlobal(response.filter((item) => item.tipo === "A"));
-  };
+      useEffect(() => {
+        getTablaHab();
+      }, []);
+    
+      useEffect(() => {
+        setGlobal(
+          detailTable.filter(
+            row => row.nombre.toLowerCase().includes(textBusqueda.toLowerCase())
+          )
+        )
+      }, [textBusqueda]);
 
-  useEffect(() => {
-    getTablaApo();
-  }, []);
+    return (
 
-  useEffect(() => {
-    setGlobal(
-      detailTable.filter(
-        row => row.nombre.toLowerCase().includes(textBusqueda.toLowerCase())
-      )
-    )
-  }, [textBusqueda]);
-
-  return (
     <>
-      <Frame>
+    <Frame>
         <Card className={"mb-4"}>
           <div className="mb-3">
             <div className="w-full  text-white p-1 mt-3">
               <h1 className="bg-red-700 font-semibold text-xl px-2">
-                Listado de Aportaciones
+                Listado de Haberes
               </h1>
             </div>
           </div>
@@ -50,7 +51,7 @@ export default function ModifApo() {
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div className="flex items-center justify-left pb-4">
               <span className="pr-3" for="table-search">
-                Búsqueda de Aportaciones:
+                Búsqueda de Haberes:
               </span>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -72,18 +73,18 @@ export default function ModifApo() {
                   type="text"
                   id="table-search"
                   className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Ingrese nombre de la aportación"
+                  placeholder="busqueda de Haberes"
                   value={textBusqueda}
                   onChange={handleInputChangeSearch}
                   autocomplete="off"
                 />
               </div>
-              {textBusqueda}
             </div>
-            <EditApo header={aportaciones} valuesApo={global} />
+            <EditHab header={haberes} valuesHab={global}/>
           </div>
         </Card>
       </Frame>
     </>
-  );
+    );
+
 }

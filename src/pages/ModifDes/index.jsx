@@ -12,16 +12,28 @@ export default function ModifDes () {
       ];
 
       const [detailTable, setDetailTable] = useState([]);
+      const [global, setGlobal] = useState ([]);
+      const [textBusqueda, setTextBusqueda] = useState("");
+
+      const handleInputChangeSearch = (e) => setTextBusqueda(e.target.value);
 
       const getTablaDes = async () => {
         const response = await read(true, "items");
         setDetailTable(response.filter((item) => item.tipo === "D"));
+        setGlobal(response.filter((item) => item.tipo === "D"));
       };
 
       useEffect(() => {
         getTablaDes();
       }, []);
     
+      useEffect(() => {
+        setGlobal(
+          detailTable.filter(
+            row => row.nombre.toLowerCase().includes(textBusqueda.toLowerCase())
+          )
+        )
+      }, [textBusqueda]);
 
     return (
         <>
@@ -60,11 +72,14 @@ export default function ModifDes () {
                   type="text"
                   id="table-search"
                   className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="busqueda de Aportaciones"
+                  placeholder="busqueda de Descuentos"
+                  value={textBusqueda}
+                  onChange={handleInputChangeSearch}
+                  autocomplete="off"
                 />
               </div>
             </div>
-            <EditDes header={descuentos} valuesDes={detailTable}/>
+            <EditDes header={descuentos} valuesDes={global}/>
           </div>
         </Card>
       </Frame>

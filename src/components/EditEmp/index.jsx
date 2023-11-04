@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Dialog } from "@headlessui/react"
 import { PencilIcon } from "@heroicons/react/24/solid"
-import { updateEmp } from "../../services"
+import { update } from "../../services"
 import Swal from "sweetalert2"
 import SelectEmp from "../SelectEmp"
 import TextField from "../TextField"
@@ -11,6 +11,10 @@ const cargo = ["Asistente", "Sub-Gerente", "Administrador", "Gerente"]
 
 export default function EditEmp({ empleado, getEmp }) {
 
+    
+    const urlNumber=false 
+    const url= "empleados"
+    
     const [open, setOpen] = useState(false)
 
     const [regimenEmp, setRegimenEmp] = useState(regimen[0])
@@ -28,14 +32,14 @@ export default function EditEmp({ empleado, getEmp }) {
     
     const handleEditSubmit = async (e) => {
         e.preventDefault();
-        await updateEmp(empleado.id, {
+        await update(urlNumber, empleado.id, {
             nombres,
             apellido_p,
             apellido_m,
             dni,
             regimenEmp,
             cargoEmp,
-        })
+        }, url)
         Swal.fire({
             title: "Success",
             icon: "success",
@@ -74,21 +78,21 @@ export default function EditEmp({ empleado, getEmp }) {
                                 onChange={handleChangeNombres}
                                 className="rounded text-justify "
                             />
-                            <div className="flex  gap-3  ">
+                            <div className="flex gap-3">
                             
                             <TextField
                                 type="text"
                                 label="Apellidos"
                                 value={apellido_p}
                                 onChange={handleChangeApellido_p}
-                                className="flex rounded text-justify "
+                                className="rounded text-justify "
 
                             />
                             <TextField
                                 type="text"
                                 value={apellido_m}
                                 onChange={handleChangeApellido_m}
-                                className="flex rounded text-justify mt-5"
+                                className="rounded text-justify mt-5"
 
                             />
                             </div>

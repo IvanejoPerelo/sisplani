@@ -12,7 +12,7 @@ export default function FormApo(title, valuesApo, modify, rowSelect) {
   const tipo = "A";
   const { prefijo, getCod } = useCod(item, url, tipo);
 
-  const {     values, errors, handleInputChange, validateIfValuesHasEmpty, cleanInput } = useForm({
+  const { values, errors, handleInputChange, validateIfValuesHasEmpty, cleanInput } = useForm({
     nombre: "",
     descripcion: "",
     porcentajeapo: "",
@@ -42,10 +42,10 @@ export default function FormApo(title, valuesApo, modify, rowSelect) {
       <Card className="items-center justify-center bg-gray-50">
         <div className="w-full  text-white p-1 mt-3 mb-2">
           <h1 className="bg-red-700 font-semibold text-xl px-2 text-center">
-          {modify ? {title} : "Registro de Aportaciones"}
+          {modify ? "Modificación de Aportaciones" : "Registro de Aportaciones"}
           </h1>
           <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
-            <span className="text-right">{`Código: ${prefijo}`}</span>
+            <span className="text-right p-2 font-semibold">{`Código: ${prefijo}`}</span>
             <div className="gap-3 mb-2 mt-2">
               <FormLogin
                 inputs={inputs}
