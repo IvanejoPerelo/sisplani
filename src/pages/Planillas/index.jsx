@@ -19,33 +19,38 @@ import {
 import Swal from "sweetalert2";
 
 const meses = [
-  { value: "ene", option: "Enero" },
-  { value: "feb", option: "Febrero" },
-  { value: "mar", option: "Marzo" },
-  { value: "abr", option: "Abril" },
-  { value: "may", option: "Mayo" },
-  { value: "jun", option: "Junio" },
-  { value: "jul", option: "Julio" },
-  { value: "ago", option: "Agosto" },
-  { value: "set", option: "Setiembre" },
-  { value: "oct", option: "Octubre" },
-  { value: "nov", option: "Noviembre" },
-  { value: "dic", option: "Diciembre" },
+  { value: "Enero", option: "Enero" },
+  { value: "Febrero", option: "Febrero" },
+  { value: "Marzo", option: "Marzo" },
+  { value: "Abril", option: "Abril" },
+  { value: "Mayo", option: "Mayo" },
+  { value: "Junio", option: "Junio" },
+  { value: "Julio", option: "Julio" },
+  { value: "Agosto", option: "Agosto" },
+  { value: "Setiembre", option: "Setiembre" },
+  { value: "Octubre", option: "Octubre" },
+  { value: "Noviembre", option: "Noviembre" },
+  { value: "Diciembre", option: "Diciembre" },
 ];
 
-const cardPlanillas = [
-  { title: "Planilla de Empleados", status: "No Procesado" },
-  { title: "Planilla de Empleados", status: "No Procesado" },
-  { title: "Planilla de Empleados", status: "No Procesado" },
-];
+
 
 export default function Planillas() {
-  const [selectMes, setSelectMes] = [""];
+  const [selectMes, setSelectMes] = useState("");
   const [planillas, setPlanillas] = useState([]);
   const [selectFilter, setSelectFilter] = useState([]);
   const [proceso, setProceso] = useState(false);
 
-  const handleSelectMes = (e) => setSelectMes(e.target.value);
+  const [cardPlanillas, setCardPlanillas] = useState([
+    { title: "Planilla de Empleados", status: "No Procesado" },
+    { title: "Resumen de Planilla", status: "No Procesado" },
+    { title: "Boletas de Empleados", status: "No Procesado" },
+  ]);
+
+  const handleSelectMes = (e) => {
+    setSelectMes(e.target.value);
+    console.log(e.target.value);
+  };
 
   const getPlanillas = async () => {
     const response = await read(false, "Planilla");
@@ -53,11 +58,19 @@ export default function Planillas() {
     setSelectFilter(response.filter((item) => item.mes === selectMes));
   };
 
+  const resultado = () => {
+    setCardPlanillas([
+      { title: "Planilla de Empleados", status: "Procesado" },
+      { title: "Resumen de Planilla", status: "Procesado" },
+      { title: "Boletas de Empleados", status: "Procesado" },
+    ]);
+  };
+
   useEffect(() => {
     getPlanillas();
   }, []);
 
-  const handlePlanillaSubmit = async (e) => {
+  /*   const handlePlanillaSubmit = async (e) => {
     e.preventDefault();
 
     await create(false, "planilla");
@@ -68,8 +81,9 @@ export default function Planillas() {
         icon: "success",
       });
       await getPlanillas();
+      console.log(selectMes);
     }
-  };
+  }; */
 
   return (
     <>
@@ -85,12 +99,16 @@ export default function Planillas() {
 
           <SelectOptions
             titulo={"Mes de Planilla:"}
-            onclick ={console.log(handleSelectMes)}
+            onChange={handleSelectMes}
             arrayselect={meses}
             className={"flex w-[30%] text-lg font-semibold"}
           />
           <div className="w-full flex jusitfy-right gap-2 mt-3 p-2">
-            <Button text="Procesar Planilla" type="button" />
+            <Button
+              text="Procesar Planilla"
+              type="button"
+              onclick={resultado}
+            />
             <Button text="Cerrar Planilla" type="button" />
             <Button text="Salir" type="button" />
           </div>
