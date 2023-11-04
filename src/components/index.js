@@ -23,6 +23,7 @@ export { default as Layout } from "./Layout"
 
 
 export { default as ModalApo } from "./ModalApo"
+export { default as ModalDes } from "./ModalDes"
 
 export {default as SelectOptions} from "./SelectOptions"
 export {default as SubMenu} from "./Submenu"
