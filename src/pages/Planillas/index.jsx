@@ -8,7 +8,7 @@ import {
   CardPlanilla,
 } from "../../components";
 import { useState, useEffect } from "react";
-import { read } from "../../services";
+import { create, read } from "../../services";
 import {
   BanknotesIcon,
   EllipsisVerticalIcon,
@@ -40,6 +40,7 @@ export default function Planillas() {
   const [planillas, setPlanillas] = useState([]);
   const [selectFilter, setSelectFilter] = useState([]);
   const [proceso, setProceso] = useState(false);
+  const [estadoPlanilla, setEstadoPlanilla] = useState([])
 
   const [cardPlanillas, setCardPlanillas] = useState([
     { title: "Planilla de Empleados", status: "No Procesado" },
@@ -58,13 +59,31 @@ export default function Planillas() {
     setSelectFilter(response.filter((item) => item.mes === selectMes));
   };
 
-  const resultado = () => {
+  const resultado = async() => {
     setCardPlanillas([
       { title: "Planilla de Empleados", status: "Procesado" },
       { title: "Resumen de Planilla", status: "Procesado" },
       { title: "Boletas de Empleados", status: "Procesado" },
     ]);
+   
+    const values =
+      {
+        anio: "2023",
+        mes: selectMes,
+        estado: "Abierto",
+      }
+    await create(false,values,"Planilla")
+    
+    await getPlanillas()
   };
+
+  const cerrarPlanillas = async() => {
+    const abc = await read(false, "Planilla")
+    console.log(abc)
+    // setEstadoPlanilla([
+
+    // ]);
+  }
 
   useEffect(() => {
     getPlanillas();
@@ -118,6 +137,7 @@ export default function Planillas() {
               <CardReportes
                 titulo={cardPlanilla.title}
                 estado={cardPlanilla.status}
+                onclick={cerrarPlanillas}
               />
             ))}
           </div>

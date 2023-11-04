@@ -27,7 +27,7 @@ export default function Layout() {
     {
       title: "Haberes",
       src: <PlusIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Haber", ruta:"registrohab" }, { title: "Modificar Haber" }],
+      submenu: [{ title: "Nuevo Haber", ruta:"registrohab" }, { title: "Modificar Haber", ruta:"registrohab" }],
     },
     {
       title: "Descuentos",
