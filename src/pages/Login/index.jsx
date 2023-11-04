@@ -2,21 +2,39 @@ import { Frame, FormLogin } from "../../components";
 import { inputs } from "./Form";
 import { useForm } from "../../hooks/useForm"
 import ImportLogin from "../../assets/logoLogin.png";
-import { useDispatch } from "react-redux";
+import { read } from "../../services";
+import Swal from "sweetalert2";
 import { saveUser } from "../../slices/userSlice"
-// import {  } from "../../services"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 export default function Login () {
+  const urlNumber = false;
+  const url = "empleados";
+  
   const { values, errors, handleInputChange, validateIfValuesHasEmpty} = useForm({
     user: "",
     password: "",
   })
 
-  const handleFormSubmit = (e) =>{
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleFormSubmit = async (e) =>{
     e.preventDefault()
+    console.log("ddfdsfds")
     if(!validateIfValuesHasEmpty()) return
-    // console.log("funciona?")
-    // const users = await read("users")
+    const user = await read(urlNumber,url)
+    
+    if(!user || user.dni !== values.user){
+      Swal.fire({
+        icon: "error",
+        text: "Email y/o password incorrecto",
+      });
+    }
+    
+    dispatch(saveUser(user))
+    navigate("/registroapo")
   }
 
     return (

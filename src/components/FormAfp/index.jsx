@@ -5,13 +5,12 @@ import { create } from "../../services";
 import { useCod } from "../../hooks/useCod";
 import Swal from "sweetalert2";
 
-export default function FormAfp({title, valuesAfp, modify, rowSelect}) {
+export default function FormAfp() {
   const urlNumber = true
   const item = "AFP"
   const url = "afp"
   const {prefijo} = useCod (item,url)
-
-
+  
   const { values, errors, handleInputChange, validateIfValuesHasEmpty} = useForm({
     nombre: "",
     aporte: "",
@@ -40,7 +39,7 @@ export default function FormAfp({title, valuesAfp, modify, rowSelect}) {
       <Card className="items-center justify-center bg-gray-50">
         <div className="w-full  text-white p-1 mt-3 mb-2">
           <h1 className="bg-red-700 font-semibold text-xl px-2">
-            {title}
+            Registro de AFP
           </h1>
         </div>
         <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
