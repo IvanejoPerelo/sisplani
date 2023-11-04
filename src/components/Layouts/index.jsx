@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
-import { SubMenu } from "../../components";
+import { Outlet, Navigate } from "react-router-dom";
+import { SubMenu } from "..";
 import {
   UserIcon,
   PlusIcon,
@@ -10,10 +10,14 @@ import {
   NewspaperIcon,
 } from "@heroicons/react/24/solid";
 import logoBlanco from "../../assets/logo3.png";
+import { useSelector } from "react-redux";
 
 export default function Layout() {
   const [open, setOpen] = useState(true);
   const [gotcha, setGotcha] = useState("");
+  const user = useSelector((state) => state.user.data)
+
+  if(!user) return <Navigate to="/" />
 
   const menus = [
     {
