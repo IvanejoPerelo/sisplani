@@ -1,14 +1,19 @@
 import { Button, TextField, FormEmp } from "../../components"
 import { useState, useEffect } from "react"
-import { readEmp } from "../../services"
+import { read } from "../../services"
 import EditEmp from "../../components/EditEmp"
 
 export default function FormListEmp(){
-   
-    const [search, setSearch] = useState("")
+
+    const urlNumber=false 
+    const url= "empleados"
+
+    // const [search, setSearch] = useState("")
+    // const [filterEmp, setFilterEmp] = useState([])
+
     const [emp, setEmp] = useState([])
     const getEmp = async () => {
-        const response = await readEmp();
+        const response = await read(urlNumber, url);
         setEmp(response);
     }
 
@@ -17,9 +22,9 @@ export default function FormListEmp(){
         getEmp();
     }, [])
     
-    const filterEmp = emp.filter((item) =>
-        item.nombres.toLowerCase().includes(search.toLocaleLowerCase())
-    )
+    // const buscarEmp = emp.filter((item) =>
+    //     item.nombres.toLowerCase().includes(search.toLocaleLowerCase())
+    // )
 
     return(
         
@@ -69,6 +74,7 @@ export default function FormListEmp(){
                         type = "button"
                         className="max-w-[25%]"
                         variant = "primary"
+                        
                         
                     />
                     <TextField
