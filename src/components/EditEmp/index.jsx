@@ -4,6 +4,7 @@ import { PencilIcon } from "@heroicons/react/24/solid"
 import { updateEmp } from "../../services"
 import Swal from "sweetalert2"
 import SelectEmp from "../SelectEmp"
+import TextField from "../TextField"
 
 const regimen = ["Contratado", "Servicios", "Nombrado", "Permanente"]
 const cargo = ["Asistente", "Sub-Gerente", "Administrador", "Gerente"]
@@ -15,16 +16,22 @@ export default function EditEmp({ empleado, getEmp }) {
     const [regimenEmp, setRegimenEmp] = useState(regimen[0])
     const [cargoEmp, setCargoEmp] = useState(cargo[0])
 
-    const [name, setName] = useState(empleado.nombres)
+    const [nombres, setNombres] = useState(empleado.nombres)
+    const [apellido_p, setApellido_p] = useState(empleado.apellido_p)
+    const [apellido_m, setApellido_m] = useState(empleado.apellido_m)
     const [dni, setDni] = useState(empleado.dni)
 
-    const handleChangeName = (e) => setName(e.target.value)
+    const handleChangeNombres = (e) => setNombres(e.target.value)
+    const handleChangeApellido_p = (e) => setApellido_p(e.target.value)
+    const handleChangeApellido_m = (e) => setApellido_m(e.target.value)
     const handleChangeDni = (e) => setDni(e.target.value)
-
+    
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         await updateEmp(empleado.id, {
-            name,
+            nombres,
+            apellido_p,
+            apellido_m,
             dni,
             regimenEmp,
             cargoEmp,
@@ -40,6 +47,7 @@ export default function EditEmp({ empleado, getEmp }) {
     }
 
 
+
     return (
         <>
             <PencilIcon
@@ -49,30 +57,48 @@ export default function EditEmp({ empleado, getEmp }) {
             <Dialog
                 open={open}
                 onClose={() => setOpen(false)}
-                className="relative z-50"
+                className="relative z-50 "
             >
 
                 <div className="fixed inset-0 bg-black/30" />
-                <div className="fixed inset-0 flex items-center  ">
-                    <Dialog.Panel className="bg-white mx-auto w-full ml-20 md:max-w-md rounded p-4 ">
+                <div className="fixed inset-0 flex items-center justify-center">
+                    <Dialog.Panel className="bg-white mx-auto w-full ml-20 md:max-w-[40%] position: absolute m-auto rounded p-4">
 
                         <Dialog.Title>Editar Datos de Empleado:  </Dialog.Title>
                         <form className="my-10" onSubmit={handleEditSubmit}>
-                            <input
+                            <TextField
                                 type="text"
                                 name="nombres"
-                                value={name}
-                                onChange={handleChangeName}
-                                placeholder="Editar Nombre"
-                                className="border w-full px-2 py-3 rounded-l outline-none "
+                                label= "Nombres"
+                                value={nombres}
+                                onChange={handleChangeNombres}
+                                className="rounded text-justify "
                             />
-                            <input
+                            <div className="flex  gap-3  ">
+                            
+                            <TextField
+                                type="text"
+                                label="Apellidos"
+                                value={apellido_p}
+                                onChange={handleChangeApellido_p}
+                                className="flex rounded text-justify "
+
+                            />
+                            <TextField
+                                type="text"
+                                value={apellido_m}
+                                onChange={handleChangeApellido_m}
+                                className="flex rounded text-justify mt-5"
+
+                            />
+                            </div>
+                            <TextField
                                 type="text"
                                 name="dni"
+                                label="DNI"
                                 value={dni}
                                 onChange={handleChangeDni}
-                                placeholder="Editar DNI"
-                                className="border w-full px-2 py-3 rounded-l outline-none "
+                                className="border rounded text-justify outline-none "
                             />
                             <div className="mt-5">
                                 <SelectEmp
