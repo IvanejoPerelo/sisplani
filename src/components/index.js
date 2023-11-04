@@ -15,7 +15,7 @@ export { default as FormLogin } from "./FormLogin"
 export { default as FormPla } from "./FormPla"
 export { default as Frame } from "./Frame"
 
-export { default as Layout } from "./Layout"
+export { default as Layout } from "./Layouts"
 
 export { default as EditAfp } from "./EditAfp"
 
