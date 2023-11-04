@@ -53,7 +53,7 @@ export default function FormListEmp(){
                         </thead>
                         <tbody>
                             {
-                                filterEmp.map((empleado) =>(
+                                filterEmp.length > 0 && filterEmp.map((empleado) =>(
                                     <tr key={empleado.id} >
                                             <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{empleado.dni}</td>
                                             <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{empleado.nombres}</td>

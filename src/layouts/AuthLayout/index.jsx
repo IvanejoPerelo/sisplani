@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 export default function AuthLayout(){
     const user = useSelector((state) => state.user.data)
 
-    if(user) return <Navigate to="/modifapo" />
+    if(user) return <Navigate to="/inicio" />
     
     return(
         <>
