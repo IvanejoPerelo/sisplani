@@ -23,7 +23,6 @@ export default function SubMenu({ menu, open }) {
               {menu.submenu.map((item) => (
                 <li className={`ml-9 py-1 hover:bg-red-700 rounded`}>
                   {/* {item.title} {item.ruta} */}
-                  console.log(menu)
                   <Link to={item.ruta}>{item.title}</Link>
                 </li>
               ))}
