@@ -55,7 +55,7 @@ export default function FormEmp() {
       <form action="">
         <Card className="items-center justify-center bg-gray-50">
           <div className="w-full  text-white p-1 mt-3 mb-1">
-            <h1 className="bg-red-700 font-semibold text-xl px-2">
+            <h1 className="bg-gray-700 font-semibold text-xl px-2">
               Registro de Trabajadores
             </h1>
 
