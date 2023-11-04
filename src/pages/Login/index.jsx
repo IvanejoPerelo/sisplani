@@ -22,11 +22,12 @@ export default function Login () {
 
   const handleFormSubmit = async (e) =>{
     e.preventDefault()
-    console.log("ddfdsfds")
+
     if(!validateIfValuesHasEmpty()) return
-    const user = await read(urlNumber,url)
+    const users = await read(urlNumber,url)
+    const user = users.find((u)=> u.dni === values.user )
     
-    if(!user || user.dni !== values.user){
+    if(!user || user.dni !== values.user || user.dni !== values.password){
       Swal.fire({
         icon: "error",
         text: "Email y/o password incorrecto",

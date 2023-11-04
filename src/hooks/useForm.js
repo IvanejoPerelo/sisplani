@@ -29,10 +29,23 @@ export function useForm(inputs) {
   const cleanInput = () => {
     console.log(inputs)
     const keys = Object.keys(inputs).map((key) => {
-      // if(key === "tipo") return
-      return [[key], ""];
-    });
+      if(!inputs.isSelect ){
+        return [[key], ""];}
+      else{
+        return (
+            [[key], inputs[0].value ]
 
+            // option key={a.value} value={a.value} selected={a.value===valueSelect}
+            // {arrayselect.map((a) => {
+            //   return (
+            //     <option key={a.value} value={a.value} selected={a.value===valueSelect}>
+            //       {a.option}
+            //     </option>
+            //   );
+        );
+      }
+    });
+      // nombreSelect[0].values
     setValues(Object.fromEntries(keys));
   };
 

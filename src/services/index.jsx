@@ -12,11 +12,11 @@ export async function read (urlNumber, url){
     return await makeHttpRequestURL({ urlNumber, url })
 }
 
-export async function update (id, body, url){
+export async function update (urlNumber, id, body, url){
     return await makeHttpRequestURL({urlNumber, url, id, body, method: "PUT" })
 }
 
-export async function destroy(id, url){
+export async function destroy(urlNumber, id, url){
     return await makeHttpRequestURL({urlNumber, id, url, method: "DELETE" })
 }
 
