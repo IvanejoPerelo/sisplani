@@ -12,7 +12,7 @@ export default function FormApo(title, valuesApo, modify, rowSelect) {
   const tipo = "A";
   const { prefijo, getCod } = useCod(item, url, tipo);
 
-  const {     values, errors, handleInputChange, validateIfValuesHasEmpty, cleanInput } = useForm({
+  const { values, errors, handleInputChange, validateIfValuesHasEmpty, cleanInput } = useForm({
     nombre: "",
     descripcion: "",
     porcentajeapo: "",

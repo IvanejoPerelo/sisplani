@@ -1,11 +1,8 @@
-import { FormApo } from "../../components";
+import { ModalApo } from "../../components";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 
 export default function EditApo({ header, valuesApo }) {
-  const [open, setOpen] = useState(false);
-  const [row, setRow] = useState([]);
-  const [rowSelect, setRowSelect] = useState(null);
 
   return (
     <>
@@ -44,37 +41,7 @@ export default function EditApo({ header, valuesApo }) {
               >
                 {value.estado === "A" ? "Activo" : "Inactivo"}
               </td>
-              <td className="px-4 py-4">
-                <a
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
-                  onClick={() => {
-                    setOpen(true);
-                    setRowSelect(value);
-                    console.log(value);
-                  }}
-                >
-                  Editar
-                </a>
-              </td>
-              <Dialog
-                className={"relative z-50"}
-                open={open}
-                onClose={() => setOpen(false)}
-              >
-                <div className="fixed inset-0 bg-black/30" />
-                <div className="fixed inset-0 flex items-center justify-center p-4">
-                  <Dialog.Panel className="bg-white mx-auto  rounded p-4 ">
-                    <div className="flex items-center justify-center">
-                      <FormApo
-                        title={"Modificación de Aportaciones"}
-                        valuesAfp={valuesApo}
-                        modify={true}
-                        rowselect={rowSelect}
-                      />
-                    </div>
-                  </Dialog.Panel>
-                </div>
-              </Dialog>
+              <ModalApo valuesMa={valuesApo} modify={true} />
             </tr>
           ))}
         </tbody>
