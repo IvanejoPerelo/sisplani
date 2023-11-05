@@ -9,7 +9,6 @@ import {
   BookOpenIcon,
   NewspaperIcon,
 } from "@heroicons/react/24/solid";
-import logoBlanco from "../../assets/logo3.png";
 import { useSelector } from "react-redux";
 
 export default function Layout() {
@@ -23,27 +22,27 @@ export default function Layout() {
     {
       title: "Empleados",
       src: <UserIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Empleado" }, { title: "Modificar Empleado" }],
+      submenu: [{ title: "Nuevo Empleado", ruta: "/registroemp" }, { title: "Modificar Empleado", ruta: "/listaremp" }],
     },
     {
       title: "Haberes",
       src: <PlusIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Haber" }, { title: "Modificar Haber" }],
+      submenu: [{ title: "Nuevo Haber", ruta:"registrohab" }, { title: "Modificar Haber" }],
     },
     {
       title: "Descuentos",
       src: <MinusIcon className="w-5" />,
-      submenu: [],
+      submenu: [{ title: "Nuevo Descuento", ruta:"registrodes" }, { title: "Modificar Descuento" }],
     },
     {
       title: "Aportaciones",
-      src: <HandThumbUpIcon className="w-5" />,
-      submenu: [],
+      src: <HandThumbUpIcon className="w-5"/>,
+      submenu: [{ title: "Nuevo Aportación", ruta: "/registroapo" }, { title: "Modificar Aportación", ruta: "/modifapo" }],
     },
     {
       title: "Procesos",
       src: <BookOpenIcon className="w-5" />,
-      submenu: [],
+      submenu: [{ title: "Nuevo Proceso", ruta: "/planillas" }]
     },
     {
       title: "Reportes",
@@ -79,7 +78,9 @@ export default function Layout() {
         <div className="flex flex-col">
           <ul className="pt-6">
             {menus.map((menu) => (
-              <SubMenu menu={menu} open={open} />
+              <SubMenu menu={menu} open={open}
+              onClick={() => setOpen(!open)}
+              />
             ))}
           </ul>
 

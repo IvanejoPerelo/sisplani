@@ -51,6 +51,7 @@ return(
                             <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase ">CARGO</th>
                             <th className="px-5 py-3 text-xs font-medium text-gray-500 uppercase"></th>
                             </tr>
+<<<<<<< HEAD
                     </thead>
                     <tbody>
                     {
@@ -67,6 +68,25 @@ return(
                     </tbody>
                 </table>
             </div>
+=======
+                        </thead>
+                        <tbody>
+                            {
+                                filterEmp.length > 0 && filterEmp.map((empleado) =>(
+                                    <tr key={empleado.id} >
+                                            <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{empleado.dni}</td>
+                                            <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{empleado.nombres}</td>
+                                            <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{empleado.apellido_p}</td>
+                                            <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{empleado.apellido_m}</td>
+                                            <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{empleado.cargo}</td>
+                                            <td className="px-3  text-center text-xs font-medium"><EditEmp key={empleado.id} empleado={empleado} getEmp={getEmp} /></td>
+                                    </tr>
+                                ))}
+                        </tbody>
+                    </table>
+                                    
+                </div>
+>>>>>>> cdaad52759e9ccd623e66ed8baed2309ab879dd3
                 <div className="flex gap-3 items-center ">
                     <Button
                         text="Listar Trabajador"

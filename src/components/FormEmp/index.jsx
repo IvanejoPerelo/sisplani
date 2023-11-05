@@ -1,17 +1,18 @@
 import { useState } from "react";
-import {
-  Button,
-  Card,
-  SelectOptions,
-  TextField,
-} from "../../components";
+import { Button, Card, SelectOptions, TextField } from "../../components";
 import { create } from "../../services";
 import Swal from "sweetalert2";
 
 export default function FormEmp() {
+<<<<<<< HEAD
   const urlNumber=false
   const url= "empleados"
 
+=======
+
+  const urlNumber = false
+  const url = "empleados"
+>>>>>>> cdaad52759e9ccd623e66ed8baed2309ab879dd3
   const [textDni, setTextDni] = useState("");
   const [textApePat, setTextApePat] = useState("");
   const [textApeMat, setTextApeMat] = useState("");
@@ -19,7 +20,6 @@ export default function FormEmp() {
   const [textDireccion, setTextDireccion] = useState("");
   const [textCargo, setTextCargo] = useState("");
   const [textRemu, setTextRemu] = useState("");
-
   const [selectSexo, setSelectSexo] = useState("");
   const [selectRegimen, setSelectRegimen] = useState("");
   const [selectCategoria, setSelectCategoria] = useState("");
@@ -57,14 +57,13 @@ export default function FormEmp() {
     { value: "P", option: "Prima" },
   ];
 
-  const handleInputChangeD =(e) => setTextDni(e.target.value);
-  const handleInputChangeAP =(e) => setTextApePat(e.target.value);
-  const handleInputChangeAM =(e) => setTextApeMat(e.target.value);
-  const handleInputChangeN =(e) => setTextNombres(e.target.value);
-  const handleInputChangeDi =(e) => setTextDireccion(e.target.value);
-  const handleInputChangeC =(e) => setTextCargo(e.target.value);
-  const handleInputChangeR =(e) => setTextRemu(e.target.value);
-
+  const handleInputChangeD = (e) => setTextDni(e.target.value);
+  const handleInputChangeAP = (e) => setTextApePat(e.target.value);
+  const handleInputChangeAM = (e) => setTextApeMat(e.target.value);
+  const handleInputChangeN = (e) => setTextNombres(e.target.value);
+  const handleInputChangeDi = (e) => setTextDireccion(e.target.value);
+  const handleInputChangeC = (e) => setTextCargo(e.target.value);
+  const handleInputChangeR = (e) => setTextRemu(e.target.value);
 
   const handleSelectSexo = (e) => setSelectSexo(e.target.value);
   const handleSelectRegimen = (e) => setSelectRegimen(e.target.value);
@@ -74,8 +73,16 @@ export default function FormEmp() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!textDni || !textApeMat || !textApePat || !textNombres || !textDireccion || !textCargo || !textRemu) {
+
+    if (
+      !textDni ||
+      !textApeMat ||
+      !textApePat ||
+      !textNombres ||
+      !textDireccion ||
+      !textCargo ||
+      !textRemu
+    ) {
       Swal.fire({
         title: "Error",
         text: "Completa el campo de tareas",
@@ -83,10 +90,15 @@ export default function FormEmp() {
       });
       return;
     }
+<<<<<<< HEAD
   
   const response = await create (urlNumber,{
+=======
+
+   await create (urlNumber,{
+>>>>>>> cdaad52759e9ccd623e66ed8baed2309ab879dd3
     dni: textDni,
-    apellido_p: textApeMat,
+    apellido_p: textApePat,
     apellido_m: textApeMat,
     nombres: textNombres,
     sexo: selectSexo,
@@ -97,7 +109,11 @@ export default function FormEmp() {
     regimen_pen: selectPensionario,
     afp: selectAfp,
     remuneracion:textRemu
+<<<<<<< HEAD
   }, url);
+=======
+  },url);
+>>>>>>> cdaad52759e9ccd623e66ed8baed2309ab879dd3
 
   Swal.fire ({
     title: "Success",
@@ -105,13 +121,39 @@ export default function FormEmp() {
     icon: "success",
   });
   }
+=======
+
+    const response = await create(
+      urlNumber,
+      {
+        dni: textDni,
+        apellido_p: textApeMat,
+        apellido_m: textApeMat,
+        nombres: textNombres,
+        sexo: selectSexo,
+        direccion: textDireccion,
+        regimen_lab: selectRegimen,
+        categoria_ocu: selectCategoria,
+        cargo: textCargo,
+        regimen_pen: selectPensionario,
+        afp: selectAfp,
+        remuneracion: textRemu,
+      },
+      url);
+
+    Swal.fire({
+      title: "Success",
+      text: "Se grabo correctamente",
+      icon: "success",
+    });
+  };
 
   return (
     <>
       <form onSubmit={handleFormSubmit}>
         <Card className="items-center justify-center bg-gray-50">
           <div className="w-full  text-white p-1 mt-3 mb-1">
-            <h1 className="bg-gray-700 font-semibold text-xl px-2">
+            <h1 className="text-red-700 font-semibold text-xl px-2">
               Registro de Trabajadores
             </h1>
 
@@ -123,17 +165,18 @@ export default function FormEmp() {
               <div className="flex flex-row items-center justify-left">
                 <div className="w-[80%] pr-2">
                   <div className="grid grid-cols-3 gap-5 items-center justify-center mb-2">
-                    <TextField label="DNI" name="dni" />
-                    <TextField label="Apellido Paterno" name="apepaterno" />
-                    <TextField label="Apellido Materno" name="apermaterno" />
+                    <TextField label="DNI" name="dni" onChange={handleInputChangeD} />
+                    <TextField label="Apellido Paterno" name="apepaterno" onChange={handleInputChangeAP}/>
+                    <TextField label="Apellido Materno" name="apermaterno" onChange={handleInputChangeAM} />
                   </div>
 
-                  <TextField label="Nombres" name="nombres" />
+                  <TextField label="Nombres" name="nombres" onChange={handleInputChangeN}/>
                 </div>
 
                 <div className="w-[20%] h-full p-1">
                   <TextField label="Foto" name="foto" className={"h-[80px]"} />
-                </div>
+                </div> */}
+
               </div>
 
               <div className="grid grid-cols-2 gap-5 mb-3 items-center justify-center">
@@ -142,7 +185,7 @@ export default function FormEmp() {
                   onChange={handleSelectSexo}
                   arrayselect={sexo}
                 />
-                <TextField label="Dirección" name="direccion" />
+                <TextField label="Dirección" name="direccion" onChange={handleInputChangeDi}/>
               </div>
             </Card>
 
@@ -165,7 +208,7 @@ export default function FormEmp() {
                   onChange={handleSelectCategoria}
                   arrayselect={categoria}
                 />
-                <TextField label="Cargo" name="cargo" />
+                <TextField label="Cargo" name="cargo" onChange={handleInputChangeC}/>
               </div>
 
               <div className="grid grid-cols-3 gap-5 items-center mb-3">
@@ -179,7 +222,7 @@ export default function FormEmp() {
                   onChange={handleSelectAfp}
                   arrayselect={afp}
                 />
-                <TextField label="Remuneración Básica" name="remuneracion" />
+                <TextField label="Remuneración Básica" name="remuneracion" onChange={handleInputChangeR}/>
               </div>
             </Card>
           </div>

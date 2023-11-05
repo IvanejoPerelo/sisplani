@@ -59,6 +59,7 @@ export default function Planillas() {
   };
 
   const resultado = () => {
+    
     setCardPlanillas([
       { title: "Planilla de Empleados", status: "Procesado" },
       { title: "Resumen de Planilla", status: "Procesado" },

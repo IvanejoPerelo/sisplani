@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function SubMenu({ menu, open }) {
   const [openSM, setOpenSM] = useState(false);
@@ -20,7 +22,8 @@ export default function SubMenu({ menu, open }) {
             <ul className={`${openSM ? "block" : "hidden"}`}>
               {menu.submenu.map((item) => (
                 <li className={`ml-9 py-1 hover:bg-red-700 rounded`}>
-                  {item.title}
+                  {/* {item.title} {item.ruta} */}
+                  <Link to={item.ruta}>{item.title}</Link>
                 </li>
               ))}
             </ul>
