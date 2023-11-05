@@ -3,10 +3,13 @@ import { Button, Card, SelectOptions, TextField } from "../../components";
 import { create } from "../../services";
 import Swal from "sweetalert2";
 
-export default function FormEmp() {
+export default function FormEmp() 
+  const urlNumber=false
+  const url= "empleados"
 
   const urlNumber = false
   const url = "empleados"
+
   const [textDni, setTextDni] = useState("");
   const [textApePat, setTextApePat] = useState("");
   const [textApeMat, setTextApeMat] = useState("");
@@ -85,7 +88,12 @@ export default function FormEmp() {
       return;
     }
 
+  
+  const response = await create (urlNumber,{
+
+
    await create (urlNumber,{
+
     dni: textDni,
     apellido_p: textApePat,
     apellido_m: textApeMat,
@@ -98,7 +106,11 @@ export default function FormEmp() {
     regimen_pen: selectPensionario,
     afp: selectAfp,
     remuneracion:textRemu
+
+  }, url);
+
   },url);
+
 
   Swal.fire ({
     title: "Success",
