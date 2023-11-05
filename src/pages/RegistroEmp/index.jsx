@@ -7,9 +7,9 @@ import React from "react";
 export default function RegistroEmp() {
   return (
     <>
-      <Frame className={"w-2/3"}>
-       <FormEmp />
-      </Frame>
+
+<FormEmp title={"Registro de Trabajador"}/>
+  
     </>
   );
 }

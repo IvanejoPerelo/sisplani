@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Button, Card, SelectOptions, TextField } from "../../components";
+import {
+  Button,
+  Card,
+  Frame,
+  SelectOptions,
+  TextField,
+} from "../../components";
 import { create } from "../../services";
 import Swal from "sweetalert2";
 
-export default function FormEmp() {
-
-  const urlNumber = false
-  const url = "empleados"
+export default function FormEmp({ title, values, modify, rowselect }) {
+  const urlNumber = false;
+  const url = "empleados";
   const [textDni, setTextDni] = useState("");
   const [textApePat, setTextApePat] = useState("");
   const [textApeMat, setTextApeMat] = useState("");
@@ -14,6 +19,7 @@ export default function FormEmp() {
   const [textDireccion, setTextDireccion] = useState("");
   const [textCargo, setTextCargo] = useState("");
   const [textRemu, setTextRemu] = useState("");
+
   const [selectSexo, setSelectSexo] = useState("");
   const [selectRegimen, setSelectRegimen] = useState("");
   const [selectCategoria, setSelectCategoria] = useState("");
@@ -62,7 +68,7 @@ export default function FormEmp() {
   const handleSelectSexo = (e) => setSelectSexo(e.target.value);
   const handleSelectRegimen = (e) => setSelectRegimen(e.target.value);
   const handleSelectCategoria = (e) => setSelectCategoria(e.target.value);
-  const handleSelectPensionario = (e) => setSelectPensionario(e.target.value);
+  const handleSelectPensionario = (e) => {setSelectPensionario(e.target.value); console.log(e.target.value);}
   const handleSelectAfp = (e) => setSelectAfp(e.target.value);
 
   const handleFormSubmit = async (e) => {
@@ -85,34 +91,11 @@ export default function FormEmp() {
       return;
     }
 
-   await create (urlNumber,{
-    dni: textDni,
-    apellido_p: textApePat,
-    apellido_m: textApeMat,
-    nombres: textNombres,
-    sexo: selectSexo,
-    direccion: textDireccion,
-    regimen_lab: selectRegimen,
-    categoria_ocu: selectCategoria,
-    cargo: textCargo,
-    regimen_pen: selectPensionario,
-    afp: selectAfp,
-    remuneracion:textRemu
-  },url);
-
-  Swal.fire ({
-    title: "Success",
-    text: "Se grabo correctamente",
-    icon: "success",
-  });
-  }
-=======
-
-    const response = await create(
+    await create(
       urlNumber,
       {
         dni: textDni,
-        apellido_p: textApeMat,
+        apellido_p: textApePat,
         apellido_m: textApeMat,
         nombres: textNombres,
         sexo: selectSexo,
@@ -124,44 +107,82 @@ export default function FormEmp() {
         afp: selectAfp,
         remuneracion: textRemu,
       },
-      url);
+      url
+    );
 
     Swal.fire({
       title: "Success",
       text: "Se grabo correctamente",
       icon: "success",
     });
+
+    setTextDni("");
+    setTextNombres("");
+    setTextApePat("");
+    setTextApeMat("");
+    setTextDireccion("");
+    setTextDireccion("");
+    setTextCargo("");
+    setTextRemu("");
+
   };
 
   return (
-    <>
+    <Frame wmiddle={"w-[860px]"}>
       <form onSubmit={handleFormSubmit}>
         <Card className="items-center justify-center bg-gray-50">
-          <div className="w-full  text-white p-1 mt-3 mb-1">
-            <h1 className="text-red-700 font-semibold text-xl px-2">
-              Registro de Trabajadores
-            </h1>
+          <div className="w-[850px] text-white p-1 mt-3 mb-1">
+            <h1 className="bg-gray-700 font-semibold text-xl px-2">{title}</h1>
 
             <Card className="border rounded shadow-lg mt-3 mb-3 text-xs">
-              <h2 className="mt-2 text-sm text-red-700 font-semibold px-1 underline">
+              <h2 className="mt-2 mb-2 text-sm text-white bg-red-700 font-semibold px-1 underline p-1">
                 Datos Personales
               </h2>
 
-              <div className="flex flex-row items-center justify-left">
-                <div className="w-[80%] pr-2">
-                  <div className="grid grid-cols-3 gap-5 items-center justify-center mb-2">
-                    <TextField label="DNI" name="dni" onChange={handleInputChangeD} />
-                    <TextField label="Apellido Paterno" name="apepaterno" onChange={handleInputChangeAP}/>
-                    <TextField label="Apellido Materno" name="apermaterno" onChange={handleInputChangeAM} />
+              <div className="flex flex-row justify-left">
+                <div className="w-[90%] pr-2">
+                  <div className="mb-2 grid grid-cols-2 gap-5">
+                    <TextField
+                      label="DNI"
+                      name="dni"
+                      value ={textDni}
+                      onChange={handleInputChangeD}
+                    />
+                    <TextField
+                      label="Nombres"
+                      name="nombres"
+                      value={textNombres}
+                      onChange={handleInputChangeN}
+                    />
                   </div>
-
-                  <TextField label="Nombres" name="nombres" onChange={handleInputChangeN}/>
+                  <div className="grid grid-cols-2 gap-5">
+                    <TextField
+                      label="Apellido Paterno"
+                      name="apepaterno"
+                      value ={textApePat}
+                      onChange={handleInputChangeAP}
+                    />
+                    <TextField
+                      label="Apellido Materno"
+                      name="apermaterno"
+                      value={textApeMat}
+                      onChange={handleInputChangeAM}
+                    />
+                  </div>
                 </div>
 
-                <div className="w-[20%] h-full p-1">
-                  <TextField label="Foto" name="foto" className={"h-[80px]"} />
-                </div> */}
-
+                <div className="w-[10%] h-24 bg-white border">
+                  <img
+                    src={
+                      selectSexo === "M"
+                        ? "./src/assets/hombre.png"
+                        : selectSexo === "F"
+                        ? "./src/assets/mujer.png"
+                        : "hidden"
+                    }
+                    className="w-[90%] h-[90%] p-1 mx-auto"
+                  />
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-5 mb-3 items-center justify-center">
@@ -169,45 +190,70 @@ export default function FormEmp() {
                   titulo={"Sexo"}
                   onChange={handleSelectSexo}
                   arrayselect={sexo}
+                  /*                   modify={modify}
+                  rowSelect={rowselect}
+                  valueSelect={rowselect.sexo} */
                 />
-                <TextField label="Dirección" name="direccion" onChange={handleInputChangeDi}/>
+                {/*                 {rowselect.sexo} */}
+                <TextField
+                  label="Dirección"
+                  name="direccion"
+                  onChange={handleInputChangeDi}
+                />
               </div>
             </Card>
 
             <Card className="border rounded shadow-lg flex flex-col mt-3 mb-3 text-xs">
-              <h2 className="mt-2 mb-3 text-sm text-red-700 font-semibold px-1 underline">
+              <h2 className="mt-2 mb-3 text-sm text-white bg-red-700 font-semibold px-1 underline p-1">
                 Datos Laborales
               </h2>
 
-              <div className="flex flex-col items-left mb-3">
+              <div className="grid grid-cols-2 gap-5 items-left mb-3">
                 <SelectOptions
                   titulo={"Regimen Laboral"}
                   onChange={handleSelectRegimen}
                   arrayselect={regimen}
+                  modify={modify}
+                  /*                   rowSelect={rowselect}
+                  valueSelect={rowselect.regimen_lab} */
                 />
-              </div>
-
-              <div className="grid grid-cols-2 gap-5 items-center mb-3">
                 <SelectOptions
                   titulo={"Categoria Ocupacional"}
                   onChange={handleSelectCategoria}
                   arrayselect={categoria}
                 />
-                <TextField label="Cargo" name="cargo" onChange={handleInputChangeC}/>
               </div>
 
-              <div className="grid grid-cols-3 gap-5 items-center mb-3">
+              <div className="grid grid-cols-2 gap-5 items-center mb-3">
+                <TextField
+                  label="Cargo"
+                  name="cargo"
+                  value={textCargo}
+                  onChange={handleInputChangeC}
+                />
+                <TextField
+                  label="Remuneración Básica"
+                  name="remuneracion"
+                  value={textRemu}
+                  onChange={handleInputChangeR}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-5 items-center mb-3">
                 <SelectOptions
                   titulo={"Regimen Pensionario"}
                   onChange={handleSelectPensionario}
                   arrayselect={pensionario}
                 />
+
                 <SelectOptions
                   titulo={"AFP"}
                   onChange={handleSelectAfp}
                   arrayselect={afp}
+                  disabled = {
+                    selectPensionario === "ONP" ? true : false
+                  }
                 />
-                <TextField label="Remuneración Básica" name="remuneracion" onChange={handleInputChangeR}/>
               </div>
             </Card>
           </div>
@@ -217,6 +263,6 @@ export default function FormEmp() {
           </div>
         </Card>
       </form>
-    </>
+    </Frame>
   );
 }
