@@ -28,9 +28,16 @@ export default function Router() {
           <Route path="/inicio" element={<Home />} />
           <Route path="/listaremp" element={<ListarEmp />} />
           <Route path="/modifafp" element={<ModifAfp />} />
+          
+          <Route path="/modifdes" element={<ModifDes />} />
+
           <Route path="/modifapo" element={<ModifApo />} />
+
+
+
           <Route path="/modifdes" element={<ModifDes />} />
           <Route path="/modifhab" element={<ModifHab />} />          
+
           <Route path="/planillas" element={<Planillas />} />
           <Route path="/registroemp" element={<RegistroEmp />} />
           <Route path="/registrohab" element={<RegistroHab />} />
