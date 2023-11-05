@@ -9,9 +9,11 @@ import {
 import { create } from "../../services";
 import Swal from "sweetalert2";
 
+
 export default function FormEmp({ title, values, modify, rowselect }) {
   const urlNumber = false;
   const url = "empleados";
+  
   const [textDni, setTextDni] = useState("");
   const [textApePat, setTextApePat] = useState("");
   const [textApeMat, setTextApeMat] = useState("");
@@ -19,6 +21,7 @@ export default function FormEmp({ title, values, modify, rowselect }) {
   const [textDireccion, setTextDireccion] = useState("");
   const [textCargo, setTextCargo] = useState("");
   const [textRemu, setTextRemu] = useState("");
+
   const [selectSexo, setSelectSexo] = useState("");
   const [selectRegimen, setSelectRegimen] = useState("");
   const [selectCategoria, setSelectCategoria] = useState("");

@@ -35,6 +35,8 @@ const meses = [
 ];
 
 export default function Planillas() {
+  const urlNumber = false;
+  const url = "Planilla";
   const [selectMes, setSelectMes] = useState("");
   const [planillas, setPlanillas] = useState([]);
   const [selectFilter, setSelectFilter] = useState([]);
