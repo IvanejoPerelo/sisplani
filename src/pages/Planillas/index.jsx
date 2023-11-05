@@ -36,6 +36,8 @@ const meses = [
 
 
 export default function Planillas() {
+  const urlNumber = false;
+  const url = "Planilla";
   const [selectMes, setSelectMes] = useState("");
   const [planillas, setPlanillas] = useState([]);
   const [selectFilter, setSelectFilter] = useState([]);
@@ -55,7 +57,7 @@ export default function Planillas() {
   const getPlanillas = async () => {
     const response = await read(false, "Planilla");
     setPlanillas(response);
-    setSelectFilter(response.filter((item) => item.mes === selectMes));
+/*     setSelectFilter(response.filter((item) => item.mes === selectMes)); */
   };
 
   const resultado = () => {
@@ -65,6 +67,10 @@ export default function Planillas() {
       { title: "Resumen de Planilla", status: "Procesado" },
       { title: "Boletas de Empleados", status: "Procesado" },
     ]);
+
+    
+
+
   };
 
   useEffect(() => {
