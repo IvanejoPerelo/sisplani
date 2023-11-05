@@ -9,16 +9,17 @@ import {
 } from "../../components";
 import { useState, useEffect } from "react";
 import { create, read } from "../../services";
-import {
-  BanknotesIcon,
-  EllipsisVerticalIcon,
-  DocumentTextIcon,
-  DocumentIcon,
-  LockClosedIcon,
-} from "@heroicons/react/24/solid";
-import Swal from "sweetalert2";
+// import {
+//   BanknotesIcon,
+//   EllipsisVerticalIcon,
+//   DocumentTextIcon,
+//   DocumentIcon,
+//   LockClosedIcon,
+// } from "@heroicons/react/24/solid";
+// import Swal from "sweetalert2";
 
 const meses = [
+  
   { value: "Enero", option: "Enero" },
   { value: "Febrero", option: "Febrero" },
   { value: "Marzo", option: "Marzo" },
@@ -33,8 +34,6 @@ const meses = [
   { value: "Diciembre", option: "Diciembre" },
 ];
 
-
-
 export default function Planillas() {
   const [selectMes, setSelectMes] = useState("");
   const [planillas, setPlanillas] = useState([]);
@@ -48,17 +47,27 @@ export default function Planillas() {
     { title: "Boletas de Empleados", status: "No Procesado" },
   ]);
 
+  useEffect(() => {
+    getPlanillas();
+  }, []);
+  
   const handleSelectMes = (e) => {
     setSelectMes(e.target.value);
     console.log(e.target.value);
   };
 
+  const handleMeses = async (e) =>{
+    const response = await read(false, "Planilla");
+    setPlanillas(response);
+  }
+
   const getPlanillas = async () => {
     const response = await read(false, "Planilla");
     setPlanillas(response);
     setSelectFilter(response.filter((item) => item.mes === selectMes));
+    // console.log(planillas) //muestras que ya están cargadas     
   };
-
+  
   const resultado = async() => {
     setCardPlanillas([
       { title: "Planilla de Empleados", status: "Procesado" },
@@ -77,33 +86,8 @@ export default function Planillas() {
     await getPlanillas()
   };
 
-  const cerrarPlanillas = async() => {
-    const abc = await read(false, "Planilla")
-    console.log(abc)
-    // setEstadoPlanilla([
-
-    // ]);
-  }
-
-  useEffect(() => {
-    getPlanillas();
-  }, []);
-
-  /*   const handlePlanillaSubmit = async (e) => {
-    e.preventDefault();
-
-    await create(false, "planilla");
-    if (values) {
-      Swal.fire({
-        title: "Success",
-        text: "Se creó la Planilla Correctamente",
-        icon: "success",
-      });
-      await getPlanillas();
-      console.log(selectMes);
-    }
-  }; */
-
+  //  const cerrarPlanillas = console.log(resultado)
+  
   return (
     <>
       <Frame className={"w-full"}>
@@ -128,16 +112,21 @@ export default function Planillas() {
               type="button"
               onclick={resultado}
             />
-            <Button text="Cerrar Planilla" type="button" />
+            <Button 
+              text="Cerrar Planilla" 
+              type="button" 
+              onclick={handleMeses}
+            />
             <Button text="Salir" type="button" />
           </div>
 
           <div className="grid grid-cols-3 gap-2 w-30 h-20 m-y-5">
             {cardPlanillas.map((cardPlanilla) => (
               <CardReportes
+                key={cardPlanilla.title}
                 titulo={cardPlanilla.title}
                 estado={cardPlanilla.status}
-                onclick={cerrarPlanillas}
+                // onclick={cerrarPlanillas}
               />
             ))}
           </div>
@@ -145,6 +134,7 @@ export default function Planillas() {
           {planillas.length > 0 &&
             planillas.map((planilla) => (
               <CardPlanilla
+                key={planilla.mes}
                 mesLetra={`${planilla.mes} - ${planilla.anio}`}
                 estado={planilla.estado}
               />
