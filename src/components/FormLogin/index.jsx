@@ -7,11 +7,12 @@ export default function FormLogin({
   handleInputChange,
   errors,
   textButton,
+  className,
 }) {
   return (
     <form onSubmit={handleFormSubmit}>
       {inputs.map((input) => (
-        <div key={input.name} className="mb-4">
+        <div key={input.name} className={`mb-4 ${className}`}>
           {input.isSelect ? (
             <SelectOptions
               titulo={input.label}

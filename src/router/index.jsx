@@ -33,6 +33,11 @@ export default function Router() {
 
           <Route path="/modifapo" element={<ModifApo />} />
 
+
+
+          <Route path="/modifdes" element={<ModifDes />} />
+          <Route path="/modifhab" element={<ModifHab />} />          
+
           <Route path="/planillas" element={<Planillas />} />
           <Route path="/registroemp" element={<RegistroEmp />} />
           <Route path="/registrohab" element={<RegistroHab />} />
