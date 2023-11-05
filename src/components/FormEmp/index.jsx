@@ -9,9 +9,11 @@ import {
 import { create } from "../../services";
 import Swal from "sweetalert2";
 
+
 export default function FormEmp({ title, values, modify, rowselect }) {
   const urlNumber = false;
   const url = "empleados";
+  
   const [textDni, setTextDni] = useState("");
   const [textApePat, setTextApePat] = useState("");
   const [textApeMat, setTextApeMat] = useState("");
