@@ -18,7 +18,7 @@ export default function SelectOptions({ titulo, onChange, arrayselect, nameSelec
           </option>
           {arrayselect.map((a) => {
             return (
-              <option key={a.value} value={a.value}>
+              <option key={a.option} value={a.value}>
                 {a.option}
               </option>
             );

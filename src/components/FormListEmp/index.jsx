@@ -68,8 +68,8 @@ return(
                     </tbody>
                 </table>
             </div>
-
-                        </thead>
+            <div>
+                    <table>
                         <tbody>
                             {
                                 filterEmp.length > 0 && filterEmp.map((empleado) =>(
@@ -81,11 +81,12 @@ return(
                                             <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{empleado.cargo}</td>
                                             <td className="px-3  text-center text-xs font-medium"><EditEmp key={empleado.id} empleado={empleado} getEmp={getEmp} /></td>
                                     </tr>
-                                ))}
+                                ))
+                            }
                         </tbody>
                     </table>
                                     
-                </div>
+            </div>
 
                 <div className="flex gap-3 items-center ">
                     <Button
@@ -94,6 +95,7 @@ return(
                         className="max-w-[25%] mt-2"
                         variant = "primary"
                     />
+                </div>
                 
                     
                 <div className="relative">
@@ -123,12 +125,6 @@ return(
                     />
                 </div>
                 
-
-
-                </div>
-            </form>
-        </div>
-
-
-        
+        </form>
+    </div>
     )}
