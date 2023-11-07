@@ -25,6 +25,7 @@ export { default as Layout } from "./Layouts"
 
 export { default as ModalApo } from "./ModalApo"
 export { default as ModalDes } from "./ModalDes"
+export { default as ModalEmp } from "./ModalEmp"
 export { default as ModalHab } from "./ModalHab"
 
 export {default as SelectOptions} from "./SelectOptions"

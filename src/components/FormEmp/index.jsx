@@ -9,18 +9,18 @@ import {
 import { create } from "../../services";
 import Swal from "sweetalert2";
 
-export default function FormEmp({ title, values, modify, rowselect }) {
+export default function FormEmp({modify, value }) {
   const urlNumber = false;
   const url = "empleados";
-  const [textDni, setTextDni] = useState("");
-  const [textApePat, setTextApePat] = useState("");
-  const [textApeMat, setTextApeMat] = useState("");
-  const [textNombres, setTextNombres] = useState("");
-  const [textDireccion, setTextDireccion] = useState("");
-  const [textCargo, setTextCargo] = useState("");
-  const [textRemu, setTextRemu] = useState("");
+  const [textDni, setTextDni] = useState(modify ? value.dni : "");
+  const [textApePat, setTextApePat] = useState(modify ? value.apellido_p : "");
+  const [textApeMat, setTextApeMat] = useState(modify ? value.apellido_m : "");
+  const [textNombres, setTextNombres] = useState(modify ? value.nombres : "");
+  const [textDireccion, setTextDireccion] = useState(modify ? value.direccion : "");
+  const [textCargo, setTextCargo] = useState(modify ? value.cargo : "");
+  const [textRemu, setTextRemu] = useState(modify ? value.remuneracion : "");
 
-  const [selectSexo, setSelectSexo] = useState("");
+  const [selectSexo, setSelectSexo] = useState(modify ? value.sexo : "");
   const [selectRegimen, setSelectRegimen] = useState("");
   const [selectCategoria, setSelectCategoria] = useState("");
   const [selectPensionario, setSelectPensionario] = useState("");
@@ -29,7 +29,6 @@ export default function FormEmp({ title, values, modify, rowselect }) {
   const sexo = [
     { value: "M", option: "Masculino" },
     { value: "F", option: "Femenino" },
-    { value: "O", option: "Otros" },
   ];
 
   const regimen = [
@@ -65,10 +64,10 @@ export default function FormEmp({ title, values, modify, rowselect }) {
   const handleInputChangeC = (e) => setTextCargo(e.target.value);
   const handleInputChangeR = (e) => setTextRemu(e.target.value);
 
-  const handleSelectSexo = (e) => setSelectSexo(e.target.value);
+  const handleSelectSexo = (e) => setSelectSexo(e.target.value)
   const handleSelectRegimen = (e) => setSelectRegimen(e.target.value);
   const handleSelectCategoria = (e) => setSelectCategoria(e.target.value);
-  const handleSelectPensionario = (e) => {setSelectPensionario(e.target.value); console.log(e.target.value);}
+  const handleSelectPensionario = (e) => setSelectPensionario(e.target.value)
   const handleSelectAfp = (e) => setSelectAfp(e.target.value);
 
   const handleFormSubmit = async (e) => {
@@ -121,18 +120,16 @@ export default function FormEmp({ title, values, modify, rowselect }) {
     setTextApePat("");
     setTextApeMat("");
     setTextDireccion("");
-    setTextDireccion("");
     setTextCargo("");
     setTextRemu("");
 
   };
 
   return (
-    <Frame wmiddle={"w-[860px]"}>
       <form onSubmit={handleFormSubmit}>
         <Card className="items-center justify-center bg-gray-50">
           <div className="w-[850px] text-white p-1 mt-3 mb-1">
-            <h1 className="bg-gray-700 font-semibold text-xl px-2">{title}</h1>
+            <h1 className="bg-gray-700 font-semibold text-xl px-2">{modify ===true ? "Modificación de Empleado" :  "Registro de Empleado"}</h1>
 
             <Card className="border rounded shadow-lg mt-3 mb-3 text-xs">
               <h2 className="mt-2 mb-2 text-sm text-white bg-red-700 font-semibold px-1 underline p-1">
@@ -190,6 +187,8 @@ export default function FormEmp({ title, values, modify, rowselect }) {
                   titulo={"Sexo"}
                   onChange={handleSelectSexo}
                   arrayselect={sexo}
+                  valueO={selectSexo}
+
                   /*                   modify={modify}
                   rowSelect={rowselect}
                   valueSelect={rowselect.sexo} */
@@ -198,6 +197,7 @@ export default function FormEmp({ title, values, modify, rowselect }) {
                 <TextField
                   label="Dirección"
                   name="direccion"
+                  value ={textDireccion}
                   onChange={handleInputChangeDi}
                 />
               </div>
@@ -263,6 +263,6 @@ export default function FormEmp({ title, values, modify, rowselect }) {
           </div>
         </Card>
       </form>
-    </Frame>
+
   );
 }

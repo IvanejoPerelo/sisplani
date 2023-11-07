@@ -1,4 +1,4 @@
-export default function SelectOptions({ titulo, onChange, arrayselect, nameSelected, disabled, optionValue}) {
+export default function SelectOptions({ titulo, onChange, arrayselect, nameSelected, disabled, valueO}) {
   return (
     <>
       <div className="flex flex-col items-left">
@@ -19,7 +19,7 @@ export default function SelectOptions({ titulo, onChange, arrayselect, nameSelec
           {arrayselect.map((a) => {
             return (
               <option key={a.value} value={a.value}>
-                {a.option}
+                {a.option}{valueO}
               </option>
             );
           })}
