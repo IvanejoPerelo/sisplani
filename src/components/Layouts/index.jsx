@@ -77,8 +77,8 @@ export default function Layout() {
         </div>
         <div className="flex flex-col">
           <ul className="pt-6">
-            {menus.map((menu) => (
-              <SubMenu menu={menu} open={open}
+            {menus.map((menu, index) => (
+              <SubMenu menu={menu} open={open} key={index}
               onClick={() => setOpen(!open)}
               />
             ))}

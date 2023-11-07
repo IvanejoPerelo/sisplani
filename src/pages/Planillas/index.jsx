@@ -38,7 +38,7 @@ const meses = [
 export default function Planillas() {
   const urlNumber = false;
   const url = "Planilla";
-  const [selectMes, setSelectMes] = useState("");
+  const [selected, setSelected] = useState("");
   const [planillas, setPlanillas] = useState([]);
   const [selectFilter, setSelectFilter] = useState([]);
   const [proceso, setProceso] = useState(false);
@@ -53,6 +53,11 @@ export default function Planillas() {
     setSelectMes(e.target.value);
     console.log(e.target.value);
   };
+
+  const handleSelect= (e) => {
+    setSelected(e.target.value);
+    console.log(e.target.value);
+  }
 
   const getPlanillas = async () => {
     const response = await read(false, "Planilla");
@@ -125,6 +130,7 @@ export default function Planillas() {
               <CardReportes
                 titulo={cardPlanilla.title}
                 estado={cardPlanilla.status}
+                key={cardPlanilla.title}
               />
             ))}
           </div>
@@ -133,7 +139,9 @@ export default function Planillas() {
             planillas.map((planilla) => (
               <CardPlanilla
                 mesLetra={`${planilla.mes} - ${planilla.anio}`}
+                key={Planillas.mes}
                 estado={planilla.estado}
+                onchange={handleSelect}
               />
             ))}
         </Card>

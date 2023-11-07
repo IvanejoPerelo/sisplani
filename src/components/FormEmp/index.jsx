@@ -9,7 +9,7 @@ import {
 import { create } from "../../services";
 import Swal from "sweetalert2";
 
-export default function FormEmp({modify, value }) {
+export default function FormEmp({modify, value}) {
   const urlNumber = false;
   const url = "empleados";
   const [textDni, setTextDni] = useState(modify ? value.dni : "");
@@ -123,6 +123,7 @@ export default function FormEmp({modify, value }) {
     setTextCargo("");
     setTextRemu("");
 
+
   };
 
   return (
@@ -187,7 +188,7 @@ export default function FormEmp({modify, value }) {
                   titulo={"Sexo"}
                   onChange={handleSelectSexo}
                   arrayselect={sexo}
-                  valueO={selectSexo}
+                  value={selectSexo}
 
                   /*                   modify={modify}
                   rowSelect={rowselect}
