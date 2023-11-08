@@ -93,6 +93,7 @@ export default function ModalEmp({ value, getEmp }) {
       icon: "success",
       text: "Se actualizo correctamente",
     });
+    setOpen(false);
     await getEmp();
   };
 

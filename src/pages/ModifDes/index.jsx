@@ -9,7 +9,6 @@ export default function ModifDes() {
     { title: "Descripción" },
     { title: "Tipo" },
     { title: "Estado" },
-    { title: "Accion" },
   ];
   const urlNumber = true;
   const url = "items";
@@ -125,7 +124,7 @@ export default function ModifDes() {
                       >
                         {value.estado === "A" ? "Activo" : "Inactivo"}
                       </td>
-                      <ModalDes value={value} getApo={getDes} />
+                      <ModalDes value={value} getDes={getDes} />
                     </tr>
                   ))}
                 </tbody>

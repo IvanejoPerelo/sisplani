@@ -73,7 +73,7 @@ export default function ModalDes({ value, getDes }) {
                 <Card className="items-center justify-center bg-gray-50">
                   <div className="w-[500px]  text-white p-1 mt-3 mb-2">
                     <h1 className="bg-gray-700 font-semibold text-xl px-2 text-center">
-                      Modificación de Aportaciones
+                      Modificación de Descuento
                     </h1>
                     <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
                       <span className="text-right p-2 font-semibold">
