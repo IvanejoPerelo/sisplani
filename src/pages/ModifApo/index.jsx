@@ -54,8 +54,8 @@ export default function ModifApo() {
       <Frame wmiddle={"w-[800px]"}>
         <Card className={"mb-4"} key="card-apo">
           <div className="mb-3">
-            <div className="w-full  text-white p-1 mt-3">
-              <h1 className="bg-gray-700 font-semibold text-xl px-2">
+            <div className="w-full  text-gray p-1 mt-3">
+              <h1 className="bg-gray-700 text-white text-center font-semibold text-xl px-2">
                 Listado de Aportaciones
               </h1>
             </div>
@@ -85,7 +85,7 @@ export default function ModifApo() {
                 <input
                   type="text"
                   id="table-search"
-                  className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block p-2 text-center pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-700 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="busqueda"
                   value={textBusqueda}
                   onChange={handleInputChangeSearch}
@@ -94,7 +94,7 @@ export default function ModifApo() {
             </div>
             <div>
               <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-red-700 dark:text-white">
                   <tr>
                     {header.map((head) => (
                       <th scope="col" className="px-4 py-3" key={head.title}>
@@ -107,12 +107,12 @@ export default function ModifApo() {
                   {detailTable.map((value) => (
                     <tr
                       key={value.id}
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      className="bg-white border-b dark:bg-white dark:border-gray-700 text-gray-700 hover:bg-white dark:hover:bg-gray-200"
                     >
                       <td className="px-4 py-4 ">Aqui</td>
                       <th
                         scope="row"
-                        className="px-4 py-4 font-medium text-gray-900  dark:text-white"
+                        className="px-4 py-4 font-medium text-gray-900 dark:gray-700"
                       >
                         {value.nombre}
                       </th>
