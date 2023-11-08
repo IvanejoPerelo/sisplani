@@ -36,16 +36,10 @@ const meses = [
 export default function Planillas() {
   const urlNumber = false;
   const url = "Planilla";
-
   const [selectMes, setSelectMes] = useState("");
   const [planillaFaltante, setPlanillaFaltante] = useState([]);
   const [planillaAvanzada, setPlanillaAvanzada] = useState([]);
   const [months, setMonths] = useState(meses);
-  // const [planillas, setPlanillas] = useState([]);
-  // const [selectFilter, setSelectFilter] = useState([]);
-  // const [proceso, setProceso] = useState(false);
-  // const [estadoPlanilla, setEstadoPlanilla] = useState([])
-
 
   const [cardPlanillas, setCardPlanillas] = useState([
     { title: "Planilla de Empleados", status: "No Procesado" },
@@ -61,27 +55,6 @@ export default function Planillas() {
     setSelectMes(e.target.value);
     console.log(e.target.value);
   };
-
-  const handleSelectestado = (e) => {
-    // setPlanillaAvanzada(e.target.value);
-    console.log(e);
-  };
-
-  // const cerrarPlanilla = async
-
-  // const handleMeses = async (e) =>{
-  //   const response = await read(false, "Planilla");
-  //   setPlanillas(response);
-  // }
-
-  // const getPlanillas = async () => {
-  //   const response = await read(urlNumber, "Planilla");
-  //   setPlanillas(response);
-  //   console.log(response)
-  //   setSelectFilter(response.filter((item) => item.mes === selectMes));
-  //   // console.log(planillas) //muestras que ya están cargadas
-  // };
-  // console.log(selectFilter)
 
   const getPlanillas = async () => {
     const response = await read(urlNumber, "Planilla");
@@ -116,8 +89,7 @@ export default function Planillas() {
       mes: selectMes,
       estado: "Abierto",
     };
-    await create(urlNumber, values, "Planilla");
-
+    await create(urlNumber, values, url);
     await getPlanillas();
   };
 
@@ -133,7 +105,7 @@ export default function Planillas() {
             </div>
           </div>
           <div className="flex">
-             <div className="w-1/5  border border-red-500">
+             <div className={`w-1/5  border border-red-500`}>
                 <SelectOptions
                    titulo={"Mes de Planilla:"}
                    onChange={handleSelectMes}
@@ -141,7 +113,7 @@ export default function Planillas() {
                    className={"flex w-[30%] text-lg font-semibold"}
                 />   
              </div>
-             <div className="gap-2 p-2 border border-red-500">
+             <div className={`gap-2 p-2 border border-red-500`}>
                 <Button
                  text="Procesar Planilla"
                  type="button"
@@ -159,7 +131,6 @@ export default function Planillas() {
                   key={cardPlanilla.title}
                   titulo={cardPlanilla.title}
                   estado={cardPlanilla.status}
-                  // onclick={cerrarPlanillas}
                 />
               ))}
 
