@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useForm(inputs) {
+export function useForm(inputs, selects) {
   const [values, setValues] = useState(inputs);
 
   const [errors, setErrors] = useState(inputs);
@@ -27,25 +27,15 @@ export function useForm(inputs) {
   };
 
   const cleanInput = () => {
-    console.log(inputs)
-    const keys = Object.keys(inputs).map((key) => {
-      if(!inputs.isSelect ){
-        return [[key], ""];}
-      else{
-        return (
-            [[key], inputs[0].value ]
+    console.log("bject.keys(inputs)", Object.keys(inputs));
 
-            // option key={a.value} value={a.value} selected={a.value===valueSelect}
-            // {arrayselect.map((a) => {
-            //   return (
-            //     <option key={a.value} value={a.value} selected={a.value===valueSelect}>
-            //       {a.option}
-            //     </option>
-            //   );
-        );
+    const keys = Object.keys(inputs).map((key) => {
+      if (selects.includes(key)) {
+        return [[key], "DEFAULT"];
       }
+
+      return [[key], ""];
     });
-      // nombreSelect[0].values
     setValues(Object.fromEntries(keys));
   };
 

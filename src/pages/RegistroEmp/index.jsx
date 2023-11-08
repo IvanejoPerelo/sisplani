@@ -1,7 +1,4 @@
-import {
-  Frame,
-  FormEmp
-} from "../../components";
+import { Frame, FormEmp } from "../../components";
 import React from "react";
 
 export default function RegistroEmp() {
