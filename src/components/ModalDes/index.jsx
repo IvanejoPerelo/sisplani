@@ -45,7 +45,7 @@ export default function ModalDes({ value, getDes }) {
     });
 
     setOpen(false);
-    // await getDes();
+    await getDes();
   };
 
   return (
