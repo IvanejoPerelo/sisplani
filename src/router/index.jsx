@@ -7,6 +7,7 @@ import {
   ModifAfp,
   ModifApo,
   ModifDes,
+  ModifEmp,
   ModifHab,
   RegistroDes,
   RegistroHab,
@@ -36,6 +37,7 @@ export default function Router() {
 
 
           <Route path="/modifdes" element={<ModifDes />} />
+          <Route path="/modifemp" element={<ModifEmp />} />
           <Route path="/modifhab" element={<ModifHab />} />          
 
           <Route path="/planillas" element={<Planillas />} />
