@@ -117,7 +117,7 @@ export default function ModalHab({ value, getHab }) {
                         />
                       </div>
                       <div className="mt-5">
-                        <Button text="Modificar Descuento" type="submit" />
+                        <Button text="Modificar Haber" type="submit" />
                       </div>
                     </Card>
                   </div>

@@ -9,7 +9,6 @@ export default function ModifDes() {
     { title: "Descripción" },
     { title: "Tipo" },
     { title: "Estado" },
-    { title: "Accion" },
   ];
   const urlNumber = true;
   const url = "items";
@@ -22,13 +21,13 @@ export default function ModifDes() {
 
   const getDes = async () => {
     const response = await read(urlNumber, url);
-    const result = response.filter((apo) => apo.tipo === "D");
+    const result = response.filter((desc) => desc.tipo === "D");
     setDetailTable(result);
   };
 
   const filterSearch = async () => {
     const response = await read(urlNumber, url);
-    const result = response.filter((apo) => apo.tipo === "D");
+    const result = response.filter((desc) => desc.tipo === "D");
     const filter = result.filter(
       (row) =>
         row.nombre.toLowerCase().includes(textBusqueda.toLowerCase()) ||
@@ -125,7 +124,7 @@ export default function ModifDes() {
                       >
                         {value.estado === "A" ? "Activo" : "Inactivo"}
                       </td>
-                      <ModalDes value={value} getApo={getDes} />
+                      <ModalDes value={value} getDes={getDes} />
                     </tr>
                   ))}
                 </tbody>
