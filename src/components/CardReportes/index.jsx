@@ -8,7 +8,12 @@ export default function CardReportes({ titulo, estado }) {
     <>
       <div className="flex items-center justify-between border bg-gray-50 rounded mt-2 h-16 shadow-lg">
         <div className="flex items-center text-black">
-          <DocumentTextIcon className="ml-2 h-14 text-white hover:text-red-700 p-3 border border-red-700 rounded-full bg-red-700 hover:bg-white" />
+
+          {
+            estado === "No Procesado"
+               ? <DocumentTextIcon className="ml-2 h-14 text-white hover:text-red-700 p-3 border border-red-700 rounded-full bg-red-700 hover:bg-white" />
+               : <DocumentTextIcon className="ml-2 h-14 text-white hover:text-red-700 p-3 border border-green-700 rounded-full bg-green-700" />
+          }
           <div className="ml-2">
             <p className="text-xl font-semibold">{titulo}</p>
             <span>{estado}</span>
