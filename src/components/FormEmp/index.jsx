@@ -1,29 +1,34 @@
 import { useState } from "react";
-import {
-  Button,
-  Card,
-  SelectOptions,
-  TextField,
-} from "../../components";
+import { Button, Card, SelectOptions, TextField } from "../../components";
 import { create, update } from "../../services";
 import Swal from "sweetalert2";
 
-export default function FormEmp({modify, value}) {
+export default function FormEmp({ modify, value, getEmp }) {
   const urlNumber = false;
   const url = "empleados";
   const [textDni, setTextDni] = useState(modify ? value.dni : "");
   const [textApePat, setTextApePat] = useState(modify ? value.apellido_p : "");
   const [textApeMat, setTextApeMat] = useState(modify ? value.apellido_m : "");
   const [textNombres, setTextNombres] = useState(modify ? value.nombres : "");
-  const [textDireccion, setTextDireccion] = useState(modify ? value.direccion : "");
+  const [textDireccion, setTextDireccion] = useState(
+    modify ? value.direccion : ""
+  );
   const [textCargo, setTextCargo] = useState(modify ? value.cargo : "");
   const [textRemu, setTextRemu] = useState(modify ? value.remuneracion : "");
 
-  const [selectSexo, setSelectSexo] = useState(modify===true ? value.sexo : "");
-  const [selectRegimen, setSelectRegimen] = useState(modify ? value.regimen_lab : "");
-  const [selectCategoria, setSelectCategoria] = useState(modify ? value.categoria_ocu : "");
-  const [selectPensionario, setSelectPensionario] = useState(modify ? value.regimen_pen : "");
-  const [selectAfp, setSelectAfp] = useState(modify ? value.afp : "");;
+  const [selectSexo, setSelectSexo] = useState(
+    modify === true ? value.sexo : ""
+  );
+  const [selectRegimen, setSelectRegimen] = useState(
+    modify ? value.regimen_lab : ""
+  );
+  const [selectCategoria, setSelectCategoria] = useState(
+    modify ? value.categoria_ocu : ""
+  );
+  const [selectPensionario, setSelectPensionario] = useState(
+    modify ? value.regimen_pen : ""
+  );
+  const [selectAfp, setSelectAfp] = useState(modify ? value.afp : "");
 
   const sexo = [
     { value: "M", option: "Masculino" },
@@ -63,10 +68,10 @@ export default function FormEmp({modify, value}) {
   const handleInputChangeC = (e) => setTextCargo(e.target.value);
   const handleInputChangeR = (e) => setTextRemu(e.target.value);
 
-  const handleSelectSexo = (e) => setSelectSexo(e.target.value)
+  const handleSelectSexo = (e) => setSelectSexo(e.target.value);
   const handleSelectRegimen = (e) => setSelectRegimen(e.target.value);
   const handleSelectCategoria = (e) => setSelectCategoria(e.target.value);
-  const handleSelectPensionario = (e) => setSelectPensionario(e.target.value)
+  const handleSelectPensionario = (e) => setSelectPensionario(e.target.value);
   const handleSelectAfp = (e) => setSelectAfp(e.target.value);
 
   const handleFormSubmit = async (e) => {
@@ -89,32 +94,35 @@ export default function FormEmp({modify, value}) {
       return;
     }
 
-    if (modify){
+    if (modify) {
+      await update(
+        urlNumber,
+        value.id,
+        {
+          dni: textDni,
+          apellido_p: textApePat,
+          apellido_m: textApeMat,
+          nombres: textNombres,
+          sexo: selectSexo,
+          direccion: textDireccion,
+          regimen_lab: selectRegimen,
+          categoria_ocu: selectCategoria,
+          cargo: textCargo,
+          regimen_pen: selectPensionario,
+          afp: selectAfp,
+          remuneracion: textRemu,
+        },
+        url
+      );
 
-      await update(urlNumber, value.id, {
-        dni: textDni,
-        apellido_p: textApePat,
-        apellido_m: textApeMat,
-        nombres: textNombres,
-        sexo: selectSexo,
-        direccion: textDireccion,
-        regimen_lab: selectRegimen,
-        categoria_ocu: selectCategoria,
-        cargo: textCargo,
-        regimen_pen: selectPensionario,
-        afp: selectAfp,
-        remuneracion: textRemu,
-    }, url)
-
-    Swal.fire({
+      Swal.fire({
         title: "Success",
         icon: "success",
-        text: "Se actualizo correctamente"
-    });
-
+        text: "Se actualizo correctamente",
+      });
+      await getEmp();
 
     } else {
-
       await create(
         urlNumber,
         {
@@ -130,167 +138,165 @@ export default function FormEmp({modify, value}) {
           regimen_pen: selectPensionario,
           afp: selectAfp,
           remuneracion: textRemu,
-          estado: "A"
+          estado: "A",
         },
         url
       );
-  
+
       Swal.fire({
         title: "Success",
         text: "Se grabo correctamente",
         icon: "success",
       });
-  
+
       setTextDni("");
       setTextNombres("");
       setTextApePat("");
       setTextApeMat("");
       setTextDireccion("");
       setTextCargo("");
-      setTextRemu("");  
+      setTextRemu("");
     }
-
-
   };
 
   return (
-      <form onSubmit={handleFormSubmit}>
-        <Card className="items-center justify-center bg-gray-50">
-          <div className="w-[850px] text-white p-1 mt-3 mb-1">
-            <h1 className="bg-gray-700 font-semibold text-xl px-2">{modify ===true ? "Modificación de Empleado" :  "Registro de Empleado"}</h1>
+    <form onSubmit={handleFormSubmit}>
+      <Card className="items-center justify-center bg-gray-50">
+        <div className="w-[850px] text-white p-1 mt-3 mb-1">
+          <h1 className="bg-gray-700 font-semibold text-xl px-2">
+            {modify === true
+              ? "Modificación de Empleado"
+              : "Registro de Empleado"}
+          </h1>
 
-            <Card className="border rounded shadow-lg mt-3 mb-3 text-xs">
-              <h2 className="mt-2 mb-2 text-sm text-white bg-red-700 font-semibold px-1 underline p-1">
-                Datos Personales
-              </h2>
+          <Card className="border rounded shadow-lg mt-3 mb-3 text-xs">
+            <h2 className="mt-2 mb-2 text-sm text-white bg-red-700 font-semibold px-1 underline p-1">
+              Datos Personales
+            </h2>
 
-              <div className="flex flex-row justify-left">
-                <div className="w-[90%] pr-2">
-                  <div className="mb-2 grid grid-cols-2 gap-5">
-                    <TextField
-                      label="DNI"
-                      name="dni"
-                      value ={textDni}
-                      onChange={handleInputChangeD}
-                    />
-                    <TextField
-                      label="Nombres"
-                      name="nombres"
-                      value={textNombres}
-                      onChange={handleInputChangeN}
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-5">
-                    <TextField
-                      label="Apellido Paterno"
-                      name="apepaterno"
-                      value ={textApePat}
-                      onChange={handleInputChangeAP}
-                    />
-                    <TextField
-                      label="Apellido Materno"
-                      name="apermaterno"
-                      value={textApeMat}
-                      onChange={handleInputChangeAM}
-                    />
-                  </div>
+            <div className="flex flex-row justify-left">
+              <div className="w-[90%] pr-2">
+                <div className="mb-2 grid grid-cols-2 gap-5">
+                  <TextField
+                    label="DNI"
+                    name="dni"
+                    value={textDni}
+                    onChange={handleInputChangeD}
+                  />
+                  <TextField
+                    label="Nombres"
+                    name="nombres"
+                    value={textNombres}
+                    onChange={handleInputChangeN}
+                  />
                 </div>
-
-                <div className="w-[10%] h-24 bg-white border">
-                  <img
-                    src={
-                      selectSexo === "M"
-                        ? "./src/assets/hombre.png"
-                        : selectSexo === "F"
-                        ? "./src/assets/mujer.png"
-                        : "hidden"
-                    }
-                    className="w-[90%] h-[90%] p-1 mx-auto"
+                <div className="grid grid-cols-2 gap-5">
+                  <TextField
+                    label="Apellido Paterno"
+                    name="apepaterno"
+                    value={textApePat}
+                    onChange={handleInputChangeAP}
+                  />
+                  <TextField
+                    label="Apellido Materno"
+                    name="apermaterno"
+                    value={textApeMat}
+                    onChange={handleInputChangeAM}
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-5 mb-3 items-center justify-center">
-                <SelectOptions
-                  titulo={"Sexo"}
-                  onChange={handleSelectSexo}
-                  arrayselect={sexo}
-                  value={selectSexo}
-
-                />
-                {/*                 {rowselect.sexo} */}
-                <TextField
-                  label="Dirección"
-                  name="direccion"
-                  value ={textDireccion}
-                  onChange={handleInputChangeDi}
-                />
-              </div>
-            </Card>
-
-            <Card className="border rounded shadow-lg flex flex-col mt-3 mb-3 text-xs">
-              <h2 className="mt-2 mb-3 text-sm text-white bg-red-700 font-semibold px-1 underline p-1">
-                Datos Laborales
-              </h2>
-
-              <div className="grid grid-cols-2 gap-5 items-left mb-3">
-                <SelectOptions
-                  titulo={"Regimen Laboral"}
-                  onChange={handleSelectRegimen}
-                  arrayselect={regimen}
-                  value={selectRegimen}
-                  /*                   rowSelect={rowselect}
-                  valueSelect={rowselect.regimen_lab} */
-                />
-                <SelectOptions
-                  titulo={"Categoria Ocupacional"}
-                  onChange={handleSelectCategoria}
-                  arrayselect={categoria}
-                  value={selectCategoria}
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-5 items-center mb-3">
-                <TextField
-                  label="Cargo"
-                  name="cargo"
-                  value={textCargo}
-                  onChange={handleInputChangeC}
-                />
-                <TextField
-                  label="Remuneración Básica"
-                  name="remuneracion"
-                  value={textRemu}
-                  onChange={handleInputChangeR}
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-5 items-center mb-3">
-                <SelectOptions
-                  titulo={"Regimen Pensionario"}
-                  onChange={handleSelectPensionario}
-                  arrayselect={pensionario}
-                  value={selectPensionario}
-                />
-
-                <SelectOptions
-                  titulo={"AFP"}
-                  onChange={handleSelectAfp}
-                  arrayselect={afp}
-                  disabled = {
-                    selectPensionario === "ONP" ? true : false
+              <div className="w-[10%] h-24 bg-white border">
+                <img
+                  src={
+                    selectSexo === "M"
+                      ? "./src/assets/hombre.png"
+                      : selectSexo === "F"
+                      ? "./src/assets/mujer.png"
+                      : "hidden"
                   }
-                  value={selectAfp}
+                  className="w-[90%] h-[90%] p-1 mx-auto"
                 />
               </div>
-            </Card>
-          </div>
-          <div className="w-[50%] flex items-center justify-right gap-4">
-            <Button text="Grabar Empleado" type="submit" />
-            <Button text="Salir" onclick={console.log(value)}/>
-          </div>
-        </Card>
-      </form>
+            </div>
 
+            <div className="grid grid-cols-2 gap-5 mb-3 items-center justify-center">
+              <SelectOptions
+                titulo={"Sexo"}
+                onChange={handleSelectSexo}
+                arrayselect={sexo}
+                value={selectSexo}
+              />
+              {/*                 {rowselect.sexo} */}
+              <TextField
+                label="Dirección"
+                name="direccion"
+                value={textDireccion}
+                onChange={handleInputChangeDi}
+              />
+            </div>
+          </Card>
+
+          <Card className="border rounded shadow-lg flex flex-col mt-3 mb-3 text-xs">
+            <h2 className="mt-2 mb-3 text-sm text-white bg-red-700 font-semibold px-1 underline p-1">
+              Datos Laborales
+            </h2>
+
+            <div className="grid grid-cols-2 gap-5 items-left mb-3">
+              <SelectOptions
+                titulo={"Regimen Laboral"}
+                onChange={handleSelectRegimen}
+                arrayselect={regimen}
+                value={selectRegimen}
+                /*                   rowSelect={rowselect}
+                  valueSelect={rowselect.regimen_lab} */
+              />
+              <SelectOptions
+                titulo={"Categoria Ocupacional"}
+                onChange={handleSelectCategoria}
+                arrayselect={categoria}
+                value={selectCategoria}
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-5 items-center mb-3">
+              <TextField
+                label="Cargo"
+                name="cargo"
+                value={textCargo}
+                onChange={handleInputChangeC}
+              />
+              <TextField
+                label="Remuneración Básica"
+                name="remuneracion"
+                value={textRemu}
+                onChange={handleInputChangeR}
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-5 items-center mb-3">
+              <SelectOptions
+                titulo={"Regimen Pensionario"}
+                onChange={handleSelectPensionario}
+                arrayselect={pensionario}
+                value={selectPensionario}
+              />
+
+              <SelectOptions
+                titulo={"AFP"}
+                onChange={handleSelectAfp}
+                arrayselect={afp}
+                disabled={selectPensionario === "ONP" ? true : false}
+                value={selectAfp}
+              />
+            </div>
+          </Card>
+        </div>
+        <div className="w-[50%] flex items-center justify-right gap-4">
+          <Button text="Grabar Empleado" type="submit" />
+          <Button text="Salir" onclick={console.log(value)} />
+        </div>
+      </Card>
+    </form>
   );
 }
