@@ -19,6 +19,7 @@ export default function FormLogin({
               arrayselect={input.data}
               onChange={handleInputChange}
               nameSelected={input.name}
+              valueSelected={values[input.name]}
             />
           ) : (
             <>
