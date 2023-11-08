@@ -41,8 +41,8 @@ export default function FormHab() {
   return(
     <>
     <Card className="items-center justify-center bg-gray-50">
-      <div className="w-full  text-white p-1 mt-3 mb-2">
-        <h1 className="bg-red-700 font-semibold text-xl px-2 text-center">
+      <div className="w-[500px] text-white p-1 mt-3 mb-2">
+        <h1 className="bg-gray-700 font-semibold text-xl px-2 text-center">
           Registro de Haberes
         </h1>
         <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">

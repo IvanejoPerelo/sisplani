@@ -20,7 +20,7 @@ export default function FormEmp({modify, value}) {
   const [textCargo, setTextCargo] = useState(modify ? value.cargo : "");
   const [textRemu, setTextRemu] = useState(modify ? value.remuneracion : "");
 
-  const [selectSexo, setSelectSexo] = useState(modify ? value.sexo : "");
+  const [selectSexo, setSelectSexo] = useState(modify===true ? value.sexo : "");
   const [selectRegimen, setSelectRegimen] = useState(modify ? value.regimen_lab : "");
   const [selectCategoria, setSelectCategoria] = useState(modify ? value.categoria_ocu : "");
   const [selectPensionario, setSelectPensionario] = useState(modify ? value.regimen_pen : "");
