@@ -1,48 +1,59 @@
-import { Card, EditHab, Frame } from "../../components";
+import { Card, Frame, ModalHab } from "../../components";
 import { read } from "../../services";
 import { useState, useEffect } from "react";
 
-export default function ModifHab () {
-    const haberes = [
-        { title: "Nombre", action: false },
-        { title: "Descripción", action: false },
-        { title: "Periodo", action: false },
-        { title: "Estado", action: true },
-        { title: "Accion", action: true },
-      ];
-    
-      const [detailTable, setDetailTable] = useState([]);
-      const [global, setGlobal] = useState ([]);
-      const [textBusqueda, setTextBusqueda] = useState("");
+export default function ModifHab() {
+  const header = [
+    { title: "" },
+    { title: "Nombre" },
+    { title: "Descripción" },
+    { title: "Periodo" },
+    { title: "Estado" },
+    { title: "Accion" },
+  ];
 
-      const handleInputChangeSearch = (e) => setTextBusqueda(e.target.value);
+  const urlNumber = true;
+  const url = "items";
+  const [detailTable, setDetailTable] = useState([]);
+  const [textBusqueda, setTextBusqueda] = useState("");
 
-      const getTablaHab = async () => {
-        const response = await read(true, "items");
-        setDetailTable(response.filter((item) => item.tipo === "H"));
-        setGlobal(response.filter((item) => item.tipo === "H"));
-      };
+  const handleInputChangeSearch = (e) => {
+    setTextBusqueda(e.target.value);
+  };
 
-      useEffect(() => {
-        getTablaHab();
-      }, []);
-    
-      useEffect(() => {
-        setGlobal(
-          detailTable.filter(
-            row => row.nombre.toLowerCase().includes(textBusqueda.toLowerCase())
-          )
-        )
-      }, [textBusqueda]);
+  const getHab = async () => {
+    const response = await read(urlNumber, url);
+    const result = response.filter((apo) => apo.tipo === "H");
+    setDetailTable(result);
+  };
 
-    return (
+  const filterSearch = async () => {
+    const response = await read(urlNumber, url);
+    const result = response.filter((apo) => apo.tipo === "H");
+    const filter = result.filter(
+      (row) =>
+        row.nombre.toLowerCase().includes(textBusqueda.toLowerCase()) ||
+        row.descripcion.toLowerCase().includes(textBusqueda.toLowerCase())
+    );
 
+    setDetailTable(filter);
+  };
+
+  useEffect(() => {
+    getHab();
+  }, []);
+
+  useEffect(() => {
+    filterSearch();
+  }, [textBusqueda]);
+
+  return (
     <>
-    <Frame>
-        <Card className={"mb-4"}>
+      <Frame wmiddle={"w-[800px]"}>
+        <Card className={"mb-4"} key="card-hab">
           <div className="mb-3">
             <div className="w-full  text-white p-1 mt-3">
-              <h1 className="bg-red-700 font-semibold text-xl px-2">
+              <h1 className="bg-gray-700 font-semibold text-xl px-2">
                 Listado de Haberes
               </h1>
             </div>
@@ -80,11 +91,51 @@ export default function ModifHab () {
                 />
               </div>
             </div>
-            <EditHab header={haberes} valuesHab={global}/>
+            <div>
+              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    {header.map((head) => (
+                      <th scope="col" className="px-4 py-3" key={head.title}>
+                        {head.title}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {detailTable.map((value) => (
+                    <tr
+                      key={value.id}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 "><img src="./src/assets/mas.png" className="w-6" /></td>
+                      <th
+                        scope="row"
+                        className="px-4 py-4 font-medium text-gray-900  dark:text-white"
+                      >
+                        {value.nombre}
+                      </th>
+                      <td className="px-4 py-4 "> {value.descripcion}</td>
+                      <td className="px-4 py-4 "> {value.meshab}</td>
+
+                      <td
+                        className={`${
+                          value.estado === "A"
+                            ? "text-blue-950 font-medium"
+                            : "text-gray-500"
+                        } px-4 py-4`}
+                      >
+                        {value.estado === "A" ? "Activo" : "Inactivo"}
+                      </td>
+                      <ModalHab value={value} getHab={getHab} />
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </Card>
       </Frame>
     </>
-    );
-
+  );
 }
