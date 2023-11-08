@@ -249,7 +249,6 @@ export default function ModalEmp({ value, getEmp }) {
                   </div>
                   <div className="w-[50%] flex items-center justify-right gap-4">
                     <Button text="Grabar Empleado" type="submit" />
-                    <Button text="Salir" onclick={console.log(value)} />
                   </div>
                 </Card>
               </form>
