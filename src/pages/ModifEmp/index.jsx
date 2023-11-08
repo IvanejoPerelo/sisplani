@@ -22,7 +22,7 @@ export default function ModifEmp() {
 
   const getEmp = async () => {
     const response = await read(urlNumber, url);
-    // setDetailTable(response);
+    setDetailTable(response);
   };
 
   const filterSearch = async () => {
@@ -38,11 +38,12 @@ export default function ModifEmp() {
     setDetailTable(filter);
   };
 
-  useEffect(() => {
-    getEmp();
-  }, []);
+  // useEffect(() => {
+    
+  // }, []);
 
   useEffect(() => {
+    getEmp();
     filterSearch();
   }, [textBusqueda]);
 
