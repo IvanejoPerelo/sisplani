@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Card,
@@ -6,7 +7,7 @@ import {
   SelectOptions,
   TextField,
 } from "../../components";
-import { create } from "../../services";
+import { create, update } from "../../services";
 import Swal from "sweetalert2";
 
 export default function FormEmp({modify, value}) {
@@ -90,9 +91,9 @@ export default function FormEmp({modify, value}) {
       return;
     }
 
-    await create(
-      urlNumber,
-      {
+    if (modify){
+
+      await update(urlNumber, value.id, {
         dni: textDni,
         apellido_p: textApePat,
         apellido_m: textApeMat,
@@ -105,24 +106,51 @@ export default function FormEmp({modify, value}) {
         regimen_pen: selectPensionario,
         afp: selectAfp,
         remuneracion: textRemu,
-        estado: "A"
-      },
-      url
-    );
+    }, url)
 
     Swal.fire({
-      title: "Success",
-      text: "Se grabo correctamente",
-      icon: "success",
+        title: "Success",
+        icon: "success",
+        text: "Se actualizo correctamente"
     });
 
-    setTextDni("");
-    setTextNombres("");
-    setTextApePat("");
-    setTextApeMat("");
-    setTextDireccion("");
-    setTextCargo("");
-    setTextRemu("");
+
+    } else {
+
+      await create(
+        urlNumber,
+        {
+          dni: textDni,
+          apellido_p: textApePat,
+          apellido_m: textApeMat,
+          nombres: textNombres,
+          sexo: selectSexo,
+          direccion: textDireccion,
+          regimen_lab: selectRegimen,
+          categoria_ocu: selectCategoria,
+          cargo: textCargo,
+          regimen_pen: selectPensionario,
+          afp: selectAfp,
+          remuneracion: textRemu,
+          estado: "A"
+        },
+        url
+      );
+  
+      Swal.fire({
+        title: "Success",
+        text: "Se grabo correctamente",
+        icon: "success",
+      });
+  
+      setTextDni("");
+      setTextNombres("");
+      setTextApePat("");
+      setTextApeMat("");
+      setTextDireccion("");
+      setTextCargo("");
+      setTextRemu("");  
+    }
 
 
   };
@@ -261,7 +289,7 @@ export default function FormEmp({modify, value}) {
           </div>
           <div className="w-[50%] flex items-center justify-right gap-4">
             <Button text="Grabar Empleado" type="submit" />
-            <Button text="Salir" type="button" />
+            <Button text="Salir" onclick={console.log(value)}/>
           </div>
         </Card>
       </form>

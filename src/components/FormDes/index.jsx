@@ -46,7 +46,7 @@ export default function FormDes(title, valuesDes, modify, rowSelect) {
             Registro de Descuentos
         </h1> 
       </div>
-      <Card className="w-[450px] border rounded shadow-lg mt-3 mb-3 text-xs ">
+      <Card className="w-[500px] border rounded shadow-lg mt-3 mb-3 text-xs ">
         <span className="text-right">{`Código: ${prefijo}`}</span>    
         <div className="items-center justify-end gap-3 mb-2 mt-2">
           <FormLogin
