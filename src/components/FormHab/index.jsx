@@ -5,7 +5,7 @@ import { create, read } from "../../services";
 import { useCod } from "../../hooks/useCod";
 import Swal from "sweetalert2";
 
-export default function FormHab() {
+export default function FormHab({modify, value}) {
   const urlNumber = true;
   const item = "HAB";
   const url = "items";
@@ -48,14 +48,14 @@ export default function FormHab() {
   };
   return (
     <>
-      <Card className="items-center justify-center bg-gray-50">
-        <div className="w-full  text-white p-1 mt-3 mb-2">
-          <h1 className="bg-red-700 font-semibold text-xl px-2 text-center">
-            Registro de Haberes
-          </h1>
-          <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
-            <span className="text-right">{`Código: ${prefijo}`}</span>
-            <div className="gap-3 mb-2 mt-2">
+    <Card className="items-center justify-center bg-gray-50">
+      <div className="w-[500px] text-white p-1 mt-3 mb-2">
+        <h1 className="bg-gray-700 font-semibold text-xl px-2 text-center">
+          {modify ===true ? "Modificación de Haberes" :  "Registro de Haberes"}
+        </h1>
+        <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
+          <span className="text-right">{`Código: ${prefijo}`}</span>
+          <div className="gap-3 mb-2 mt-2">
               <FormLogin
                 inputs={inputs}
                 errors={errors}
