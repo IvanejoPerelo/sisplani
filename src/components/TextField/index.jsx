@@ -11,7 +11,7 @@ export default function TextField({
     <div className="">
       <span>{label}</span>
       <input
-        className={`border border-red-200 focus:border-red-700 focus:bg-red-100 outline-none py-1 px-2 text-right w-full ${className}`}
+        className={`text-sm border border-red-200 focus:border-red-700 focus:bg-red-100 outline-none py-1 px-2 text-right w-full ${className}`}
         value={value}
         onChange={onChange}
         type={type}

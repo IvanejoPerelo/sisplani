@@ -21,10 +21,10 @@ export default function FormEmp({modify, value}) {
   const [textRemu, setTextRemu] = useState(modify ? value.remuneracion : "");
 
   const [selectSexo, setSelectSexo] = useState(modify ? value.sexo : "");
-  const [selectRegimen, setSelectRegimen] = useState("");
-  const [selectCategoria, setSelectCategoria] = useState("");
-  const [selectPensionario, setSelectPensionario] = useState("");
-  const [selectAfp, setSelectAfp] = useState("");
+  const [selectRegimen, setSelectRegimen] = useState(modify ? value.regimen_lab : "");
+  const [selectCategoria, setSelectCategoria] = useState(modify ? value.categoria_ocu : "");
+  const [selectPensionario, setSelectPensionario] = useState(modify ? value.regimen_pen : "");
+  const [selectAfp, setSelectAfp] = useState(modify ? value.afp : "");;
 
   const sexo = [
     { value: "M", option: "Masculino" },
@@ -105,6 +105,7 @@ export default function FormEmp({modify, value}) {
         regimen_pen: selectPensionario,
         afp: selectAfp,
         remuneracion: textRemu,
+        estado: "A"
       },
       url
     );
@@ -190,9 +191,6 @@ export default function FormEmp({modify, value}) {
                   arrayselect={sexo}
                   value={selectSexo}
 
-                  /*                   modify={modify}
-                  rowSelect={rowselect}
-                  valueSelect={rowselect.sexo} */
                 />
                 {/*                 {rowselect.sexo} */}
                 <TextField
@@ -214,7 +212,7 @@ export default function FormEmp({modify, value}) {
                   titulo={"Regimen Laboral"}
                   onChange={handleSelectRegimen}
                   arrayselect={regimen}
-                  modify={modify}
+                  value={selectRegimen}
                   /*                   rowSelect={rowselect}
                   valueSelect={rowselect.regimen_lab} */
                 />
@@ -222,6 +220,7 @@ export default function FormEmp({modify, value}) {
                   titulo={"Categoria Ocupacional"}
                   onChange={handleSelectCategoria}
                   arrayselect={categoria}
+                  value={selectCategoria}
                 />
               </div>
 
@@ -245,6 +244,7 @@ export default function FormEmp({modify, value}) {
                   titulo={"Regimen Pensionario"}
                   onChange={handleSelectPensionario}
                   arrayselect={pensionario}
+                  value={selectPensionario}
                 />
 
                 <SelectOptions
@@ -254,6 +254,7 @@ export default function FormEmp({modify, value}) {
                   disabled = {
                     selectPensionario === "ONP" ? true : false
                   }
+                  value={selectAfp}
                 />
               </div>
             </Card>
