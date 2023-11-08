@@ -138,17 +138,17 @@ export default function Planillas() {
             className={"flex w-[30%] text-lg font-semibold"}
           />
           <div className="w-full flex jusitfy-right gap-2 mt-3 p-2">
-            {/* <Button
+            <Button
               text="Procesar Planilla"
               type="button"
               onclick={resultado}
-            /> */}
-            <Button
+            />
+            {/* <Button
               text="Cerrar Planilla"
               type="button"
               // onclick={handleMeses}
             />
-            <Button text="Salir" type="button" />
+            <Button text="Salir" type="button" /> */}
           </div>
 
           <div className="grid grid-cols-3 gap-2 w-30 h-20 m-y-5">
@@ -167,9 +167,9 @@ export default function Planillas() {
             planillaAvanzada.map((mA) => (
               <CardPlanilla
                 key={mA.id}
-                mes={mA.mes}
-                anio={mA.anio}
+                mesLetra={`${mA.mes} - ${mA.anio}`}
                 estado={mA.estado}
+                id={mA.id}
               />
             ))}
         </Card>
