@@ -12,19 +12,27 @@ export default function FormHab() {
   const tipo = "H";
   const { prefijo, getCod } = useCod(item, url, tipo);
 
-  const { values, errors, handleInputChange, validateIfValuesHasEmpty, cleanInput } = useForm({
-    nombre: "",
-    descripcion: "",
-    meshab: "",
-    // tipo,
-    formulahab: "",
-  });
+  const {
+    values,
+    errors,
+    handleInputChange,
+    validateIfValuesHasEmpty,
+    cleanInput,
+  } = useForm(
+    {
+      nombre: "",
+      descripcion: "",
+      meshab: "",
+      formulahab: "",
+    },
+    ["meshab"]
+  );
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     values.codigo = prefijo;
     if (!validateIfValuesHasEmpty()) return;
-    values.tipo = tipo
+    values.tipo = tipo;
     await create(urlNumber, values, url);
     if (values) {
       cleanInput();
@@ -36,18 +44,18 @@ export default function FormHab() {
       });
       return;
     }
-    console.log(values)
+    console.log(values);
   };
-  return(
+  return (
     <>
-    <Card className="items-center justify-center bg-gray-50">
-      <div className="w-full  text-white p-1 mt-3 mb-2">
-        <h1 className="bg-red-700 font-semibold text-xl px-2 text-center">
-          Registro de Haberes
-        </h1>
-        <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
-          <span className="text-right">{`Código: ${prefijo}`}</span>
-          <div className="gap-3 mb-2 mt-2">
+      <Card className="items-center justify-center bg-gray-50">
+        <div className="w-full  text-white p-1 mt-3 mb-2">
+          <h1 className="bg-red-700 font-semibold text-xl px-2 text-center">
+            Registro de Haberes
+          </h1>
+          <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
+            <span className="text-right">{`Código: ${prefijo}`}</span>
+            <div className="gap-3 mb-2 mt-2">
               <FormLogin
                 inputs={inputs}
                 errors={errors}
@@ -57,11 +65,11 @@ export default function FormHab() {
                 values={values}
               />
             </div>
-        </Card>
-      </div>
-    </Card>
+          </Card>
+        </div>
+      </Card>
     </>
-  )
+  );
   // const [textNombre, setTextNombre] = useState("");
   // const [textDescripcion, setTextDescripcion] = useState("");
   // const [selectPeriodo, setSelectPeriodo] = useState("");

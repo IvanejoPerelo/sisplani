@@ -1,15 +1,10 @@
-import {
-  Frame,
-  FormEmp
-} from "../../components";
+import { Frame, FormEmp } from "../../components";
 import React from "react";
 
 export default function RegistroEmp() {
   return (
     <>
-
-<FormEmp title={"Registro de Trabajador"}/>
-  
+      <FormEmp title={"Registro de Trabajador"} />
     </>
   );
 }
