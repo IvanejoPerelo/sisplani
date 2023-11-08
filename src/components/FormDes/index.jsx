@@ -41,7 +41,7 @@ export default function FormDes(title, valuesDes, modify, rowSelect) {
   return (
     <>
     <Card className="items-center justify-center bg-gray-50">
-      <div className="w-[450px] text-white p-1 mt-3 mb-2">
+      <div className="w-[500px] text-white p-1 mt-3 mb-2">
         <h1 className="bg-gray-700 font-semibold text-xl px-2 text-center">
             Registro de Descuentos
         </h1> 
