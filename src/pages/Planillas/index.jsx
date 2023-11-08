@@ -36,6 +36,7 @@ const meses = [
 export default function Planillas() {
   const urlNumber = false;
   const url = "Planilla";
+
   const [selectMes, setSelectMes] = useState("");
   const [planillaFaltante, setPlanillaFaltante] = useState([]);
   const [planillaAvanzada, setPlanillaAvanzada] = useState([]);
@@ -44,6 +45,7 @@ export default function Planillas() {
   // const [selectFilter, setSelectFilter] = useState([]);
   // const [proceso, setProceso] = useState(false);
   // const [estadoPlanilla, setEstadoPlanilla] = useState([])
+
 
   const [cardPlanillas, setCardPlanillas] = useState([
     { title: "Planilla de Empleados", status: "No Procesado" },
@@ -152,6 +154,7 @@ export default function Planillas() {
           </div>
 
           <div className="grid grid-cols-3 gap-2 w-30 h-20 m-y-5">
+
             {cardPlanillas.length > 0 &&
               cardPlanillas.map((cardPlanilla) => (
                 <CardReportes
@@ -161,11 +164,13 @@ export default function Planillas() {
                   // onclick={cerrarPlanillas}
                 />
               ))}
+
           </div>
 
           {planillaAvanzada.length > 0 &&
             planillaAvanzada.map((mA) => (
               <CardPlanilla
+
                 key={mA.id}
                 mesLetra={`${mA.mes} - ${mA.anio}`}
                 estado={mA.estado}
