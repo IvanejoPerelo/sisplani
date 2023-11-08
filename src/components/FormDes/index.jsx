@@ -48,7 +48,7 @@ export default function FormDes({modify, value}) {
       </div>
       <Card className="w-[490px] border rounded shadow-lg mt-3 mb-3 text-xs ">
         <span className="text-right">{`Código: ${prefijo}`}</span>    
-        <div className="items-center justify-end gap-3 mb-2 mt-2">
+        <div className="items-center justify-center gap-3 mb-2 mt-2">
           <FormLogin
             inputs={inputs}
             errors={errors}
