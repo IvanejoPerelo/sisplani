@@ -1,14 +1,18 @@
 import { Card, Frame, ModalApo } from "../../components";
 import { read } from "../../services";
 import { useState, useEffect } from "react";
+import {
+  PlusIcon,
+} from "@heroicons/react/24/solid";
 
 export default function ModifApo() {
   const header = [
-    { title: "Nombre", action: false },
-    { title: "Descripción", action: false },
-    { title: "Porcentaje (%)", action: false },
-    { title: "Estado", action: true },
-    { title: "Accion", action: true },
+    { title: "" },
+    { title: "Nombre" },
+    { title: "Descripción" },
+    { title: "Porcentaje (%)" },
+    { title: "Estado" },
+    { title: "Accion" },
   ];
   const urlNumber = true;
   const url = "items";
@@ -21,12 +25,14 @@ export default function ModifApo() {
 
   const getApo = async () => {
     const response = await read(urlNumber, url);
-    setDetailTable(response);
+    const result = response.filter((apo) => apo.tipo === "A");
+    setDetailTable(result);
   };
 
   const filterSearch = async () => {
     const response = await read(urlNumber, url);
-    const filter = response.filter(
+    const result = response.filter((apo) => apo.tipo === "A");
+    const filter = result.filter(
       (row) =>
         row.nombre.toLowerCase().includes(textBusqueda.toLowerCase()) ||
         row.descripcion.toLowerCase().includes(textBusqueda.toLowerCase())
@@ -49,7 +55,7 @@ export default function ModifApo() {
         <Card className={"mb-4"} key="card-apo">
           <div className="mb-3">
             <div className="w-full  text-white p-1 mt-3">
-              <h1 className="bg-red-700 font-semibold text-xl px-2">
+              <h1 className="bg-gray-700 font-semibold text-xl px-2">
                 Listado de Aportaciones
               </h1>
             </div>
@@ -103,6 +109,7 @@ export default function ModifApo() {
                       key={value.id}
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                     >
+                      <td className="px-4 py-4 ">Aqui</td>
                       <th
                         scope="row"
                         className="px-4 py-4 font-medium text-gray-900  dark:text-white"

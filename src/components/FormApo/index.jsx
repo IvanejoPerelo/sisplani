@@ -5,7 +5,7 @@ import { create, read } from "../../services";
 import { useCod } from "../../hooks/useCod";
 import Swal from "sweetalert2";
 
-export default function FormApo(title, valuesApo, modify, rowSelect) {
+export default function FormApo({modify, value}) {
   const urlNumber = true;
   const item = "APO";
   const url = "items";
