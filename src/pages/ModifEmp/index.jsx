@@ -22,7 +22,7 @@ export default function ModifEmp() {
 
   const getEmp = async () => {
     const response = await read(urlNumber, url);
-    setDetailTable(response);
+    // setDetailTable(response);
   };
 
   const filterSearch = async () => {
@@ -52,7 +52,7 @@ export default function ModifEmp() {
         <Card className={"mb-4"} key="card-emp">
           <div className="mb-3">
             <div className="w-full  text-white p-1 mt-3">
-              <h1 className="bg-gray-700 font-semibold text-xl px-2">
+              <h1 className="bg-gray-700 font-semibold text-xl px-2 text-center">
                 Listado de Empleados
               </h1>
             </div>
@@ -80,7 +80,7 @@ export default function ModifEmp() {
                 <input
                   type="text"
                   id="table-search"
-                  className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="busqueda"
                   value={textBusqueda}
                   onChange={handleInputChangeSearch}
@@ -103,7 +103,7 @@ export default function ModifEmp() {
                   {detailTable.map((value) => (
                     <tr
                       key={value.dni}
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      className="bg-gray-800 border-b dark:bg-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                     >
                       <th scope="row" className="px-4 py-4">
                         {value.sexo === "M" ? (
@@ -112,11 +112,11 @@ export default function ModifEmp() {
                           <img src="./src/assets/mujer.png" className="w-10" />
                         )}
                       </th>
-                      <td className="px-4 py-4 font-medium text-gray-900  dark:text-white">
+                      <td className="px-4 py-4 font-medium text-gray-900  dark:text-gray-900 hover:text-white">
                         {" "}
                         {value.dni}
                       </td>
-                      <td className="px-4 py-4 font-medium text-gray-900  dark:text-white">
+                      <td className="px-4 py-4 font-medium text-gray-900  dark:text-gray-900 hover:text-white">
                         {value.apellido_p} {value.apellido_m}, {value.nombres}
                       </td>
                       <td className="px-4 py-4">{value.cargo}</td>

@@ -13,7 +13,6 @@ import { useSelector } from "react-redux";
 
 export default function Layout() {
   const [open, setOpen] = useState(true);
-  const [gotcha, setGotcha] = useState("");
   const user = useSelector((state) => state.user.data)
 
   if(!user) return <Navigate to="/" />
@@ -22,22 +21,22 @@ export default function Layout() {
     {
       title: "Empleados",
       src: <UserIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Empleado", ruta: "/registroemp" }, { title: "Modificar Empleado", ruta: "/listaremp" }],
+      submenu: [{ title: "Nuevo Empleado", ruta: "/registroemp" }, { title: "Modificar Empleado", ruta: "/ModifEmp" }],
     },
     {
       title: "Haberes",
       src: <PlusIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Haber", ruta:"registrohab" }, { title: "Modificar Haber", ruta:"registrohab", ruta:"modifhab" }],
+      submenu: [{ title: "Nuevo Haber", ruta:"registrohab" }, { title: "Modificar Haber", ruta:"ModifHab"}],
     },
     {
       title: "Descuentos",
       src: <MinusIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Descuento", ruta:"registrodes" }, { title: "Modificar Descuento", ruta:"modifdes" }],
+      submenu: [{ title: "Nuevo Descuento", ruta:"registrodes" }, { title: "Modificar Descuento", ruta:"ModifDes" }],
     },
     {
       title: "Aportaciones",
       src: <HandThumbUpIcon className="w-5"/>,
-      submenu: [{ title: "Nuevo Aportación", ruta: "/registroapo" }, { title: "Modificar Aportación", ruta: "/modifapo" }],
+      submenu: [{ title: "Nuevo Aportación", ruta: "/registroapo" }, { title: "Modificar Aportación", ruta: "/ModifApo" }],
     },
     {
       title: "Procesos",

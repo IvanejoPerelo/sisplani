@@ -16,10 +16,9 @@ export default function FormApo({modify, value}) {
     nombre: "",
     descripcion: "",
     porcentajeapo: "",
-    // tipo,
-  });
+  },[]);
 
-  // console.log(typeof(prefijo))
+  console.log(typeof(prefijo))
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     values.codigo = prefijo;

@@ -160,14 +160,10 @@ export default function FormEmp({ modify, value, getEmp }) {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <Card className="items-center justify-center bg-gray-50">
-        <div className="w-[850px] text-white p-1 mt-3 mb-1">
-          <h1 className="bg-gray-700 font-semibold text-xl px-2">
-            {modify === true
-              ? "Modificación de Empleado"
-              : "Registro de Empleado"}
-          </h1>
+      <form onSubmit={handleFormSubmit}>
+        <Card className="items-center justify-center bg-gray-50">
+          <div className="w-[850px] text-white p-1 mt-3 mb-1">
+            <h1 className="bg-gray-700 text-center font-semibold text-xl px-2">{modify ===true ? "Modificación de Empleado" :  "Registro de Empleado"}</h1>
 
           <Card className="border rounded shadow-lg mt-3 mb-3 text-xs">
             <h2 className="mt-2 mb-2 text-sm text-white bg-red-700 font-semibold px-1 underline p-1">
