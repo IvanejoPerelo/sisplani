@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthLayout } from "../layouts";
 import {
   Home,
-  ListarEmp,
   Login,
   ModifAfp,
   ModifApo,
   ModifDes,
+  ModifEmp,
   ModifHab,
   RegistroDes,
   RegistroHab,
@@ -26,14 +26,12 @@ export default function Router() {
         </Route>
         <Route element={<Layout />}>
           <Route path="/inicio" element={<Home />} />
-          <Route path="/listaremp" element={<ListarEmp />} />
           <Route path="/modifafp" element={<ModifAfp />} />
-          
           <Route path="/modifdes" element={<ModifDes />} />
-
           <Route path="/modifapo" element={<ModifApo />} />
           <Route path="/modifdes" element={<ModifDes />} />
-          <Route path="/modifhab" element={<ModifHab />} />          
+          <Route path="/modifemp" element={<ModifEmp />} />
+          <Route path="/modifhab" element={<ModifHab />} />      
           <Route path="/planillas" element={<Planillas />} />
           <Route path="/registroemp" element={<RegistroEmp />} />
           <Route path="/registrohab" element={<RegistroHab />} />

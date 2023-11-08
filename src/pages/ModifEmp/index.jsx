@@ -1,19 +1,18 @@
-import { Card, Frame, ModalHab } from "../../components";
+import { Card, Frame, ModalEmp } from "../../components";
 import { read } from "../../services";
 import { useState, useEffect } from "react";
 
-export default function ModifHab() {
+export default function ModifEmp() {
   const header = [
-    { title: "" },
-    { title: "Nombre" },
-    { title: "Descripción" },
-    { title: "Periodo" },
-    { title: "Estado" },
-    { title: "Accion" },
+    { title: "Foto", action: false },
+    { title: "DNI", action: false },
+    { title: "Apellidos y Nombres", action: false },
+    { title: "Cargo", action: false },
+    { title: "Estado", action: false },
+    { title: "Accion", action: true },
   ];
-
-  const urlNumber = true;
-  const url = "items";
+  const urlNumber = false;
+  const url = "empleados";
   const [detailTable, setDetailTable] = useState([]);
   const [textBusqueda, setTextBusqueda] = useState("");
 
@@ -21,48 +20,48 @@ export default function ModifHab() {
     setTextBusqueda(e.target.value);
   };
 
-  const getHab = async () => {
+  const getEmp = async () => {
     const response = await read(urlNumber, url);
-    const result = response.filter((apo) => apo.tipo === "H");
-    setDetailTable(result);
+    setDetailTable(response);
   };
 
   const filterSearch = async () => {
     const response = await read(urlNumber, url);
-    const result = response.filter((apo) => apo.tipo === "H");
-    const filter = result.filter(
+    const filter = response.filter(
       (row) =>
-        row.nombre.toLowerCase().includes(textBusqueda.toLowerCase()) ||
-        row.descripcion.toLowerCase().includes(textBusqueda.toLowerCase())
+        row.dni.toLowerCase().includes(textBusqueda.toLowerCase()) ||
+        row.nombres.toLowerCase().includes(textBusqueda.toLowerCase()) ||
+        row.apellido_p.toLowerCase().includes(textBusqueda.toLowerCase()) ||
+        row.apellido_m.toLowerCase().includes(textBusqueda.toLowerCase())
     );
 
     setDetailTable(filter);
   };
 
-  useEffect(() => {
-    getHab();
-  }, []);
+  // useEffect(() => {
+    
+  // }, []);
 
   useEffect(() => {
+    getEmp();
     filterSearch();
   }, [textBusqueda]);
 
   return (
     <>
       <Frame wmiddle={"w-[800px]"}>
-        <Card className={"mb-4"} key="card-hab">
+        <Card className={"mb-4"} key="card-emp">
           <div className="mb-3">
             <div className="w-full  text-white p-1 mt-3">
-              <h1 className="bg-gray-700 font-semibold text-xl px-2">
-                Listado de Haberes
+              <h1 className="bg-gray-700 font-semibold text-xl px-2 text-center">
+                Listado de Empleados
               </h1>
             </div>
           </div>
-
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div className="flex items-center justify-left pb-4">
               <span className="pr-3" for="table-search">
-                Búsqueda de Haberes:
+                Búsqueda de Trabajadores:
               </span>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -76,18 +75,16 @@ export default function ModifHab() {
                     <path
                       fill-rule="evenodd"
                       d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                      clip-rule="evenodd"
                     ></path>
                   </svg>
                 </div>
                 <input
                   type="text"
                   id="table-search"
-                  className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="busqueda de Haberes"
+                  className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="busqueda"
                   value={textBusqueda}
                   onChange={handleInputChangeSearch}
-                  autocomplete="off"
                 />
               </div>
             </div>
@@ -102,22 +99,28 @@ export default function ModifHab() {
                     ))}
                   </tr>
                 </thead>
+
                 <tbody>
                   {detailTable.map((value) => (
                     <tr
-                      key={value.id}
+                      key={value.dni}
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                     >
-                      <td className="px-4 py-4 "><img src="./src/assets/mas.png" className="w-6" /></td>
-                      <th
-                        scope="row"
-                        className="px-4 py-4 font-medium text-gray-900  dark:text-white"
-                      >
-                        {value.nombre}
+                      <th scope="row" className="px-4 py-4">
+                        {value.sexo === "M" ? (
+                          <img src="./src/assets/hombre.png" className="w-10" />
+                        ) : (
+                          <img src="./src/assets/mujer.png" className="w-10" />
+                        )}
                       </th>
-                      <td className="px-4 py-4 "> {value.descripcion}</td>
-                      <td className="px-4 py-4 "> {value.meshab}</td>
-
+                      <td className="px-4 py-4 font-medium text-gray-900  dark:text-gray-900 hover:text-white">
+                        {" "}
+                        {value.dni}
+                      </td>
+                      <td className="px-4 py-4 font-medium text-gray-900  dark:text-gray-900">
+                        {value.apellido_p} {value.apellido_m}, {value.nombres}
+                      </td>
+                      <td className="px-4 py-4">{value.cargo}</td>
                       <td
                         className={`${
                           value.estado === "A"
@@ -127,7 +130,7 @@ export default function ModifHab() {
                       >
                         {value.estado === "A" ? "Activo" : "Inactivo"}
                       </td>
-                      <ModalHab value={value} getHab={getHab} />
+                      <ModalEmp value={value} getEmp={getEmp} />
                     </tr>
                   ))}
                 </tbody>

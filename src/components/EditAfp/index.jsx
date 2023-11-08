@@ -13,7 +13,7 @@ export default function EditAfp({ header, valuesAfp }) {
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             {header.map((head) => (
-              <th scope="col" className="px-4 py-3">
+              <th scope="col" className="px-4 py-3" key={head.title}>
                 {head.title}
               </th>
             ))}

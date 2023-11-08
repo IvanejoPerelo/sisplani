@@ -1,113 +1,124 @@
-import { TextField, Button } from "../../components";
-import { useState, useEffect } from "react";
-import { read } from "../../services";
-import { EditDes } from "../../components"
+import { Dialog } from "@headlessui/react";
+import { Button, Card, SelectOptions, TextField } from "../../components";
+import { update } from "../../services";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
-export default function ModalDes(){
+export default function ModalDes({ value, getDes }) {
+  const [open, setOpen] = useState(false);
+  const urlNumber = true;
+  const url = "items";
+  const [textNombre, setTextNombre] = useState(value.nombre);
+  const [textDescripcion, setTextDescripcion] = useState(value.descripcion);
+  const [selectTipoDes, setSelectTipoDes] = useState(value.tipodes);
+  const [textMontoDes, setTextMontoDes] = useState(value.montodes);
 
-const urlNumber=true
-const url= "items"
+  const handleInputChangeN = (e) => setTextNombre(e.target.value);
+  const handleInputChangeD = (e) => setTextDescripcion(e.target.value);
+  const handleInputChangeM = (e) => setTextMontoDes(e.target.value);
 
-const [detailTable, setDetailTable] = useState([]);
-const [textBusqueda, setTextBusqueda] = useState("");
-const [global, setGlobal] = useState ([]);
+  const handleSelectTipoDes = (e) => setSelectTipoDes(e.target.value);
 
-const getTablaDes = async () => {
-        const response = await read(urlNumber, url)
-        setDetailTable(response)
-        setGlobal(response)
-    };
+  const tipo = [
+    { value: "Fijo", option: "Fijo" },
+    { value: "Variable", option: "Variable" },
+  ];
 
-useEffect(() => {
-    getTablaDes();
-    }, []);
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
 
-const filtrarItems = () =>{
-    const filtrar = detailTable.filter((item) => item.nombre.toLowerCase().includes(textBusqueda.toLocaleLowerCase) )
-    setTextBusqueda(filtrar)
-}  
+    await update(
+      urlNumber,
+      value.id,
+      {
+        nombre: textNombre,
+        descripcion: textDescripcion,
+        tipodes: selectTipoDes,
+        montodes: textMontoDes,
+      },
+      url
+    );
+    Swal.fire({
+      title: "Success",
+      icon: "success",
+      text: "Se actualizo correctamente",
+    });
 
-    useEffect(() => {
-        filtrarItems()
-    
-    }, [textBusqueda]);
+    setOpen(false);
+    await getDes();
+  };
 
+  return (
+    <>
+      <td className="px-4 py-4">
+        <a
+          className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Editar
+        </a>
+      </td>
+      <Dialog
+        className={"relative z-50"}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        <div className="fixed inset-0 bg-black/30" />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="bg-white mx-auto  rounded p-4 ">
+            <div className="flex items-center justify-center">
+              <form onSubmit={handleFormSubmit}>
+                <Card className="items-center justify-center bg-gray-50">
+                  <div className="w-[500px]  text-white p-1 mt-3 mb-2">
+                    <h1 className="bg-gray-700 font-semibold text-xl px-2 text-center">
+                      Modificación de Descuento
+                    </h1>
+                    <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
+                      <span className="text-right p-2 font-semibold">
+                        {`Código: ${value.codigo}`}
+                      </span>
+                      <div className="grid grid-cols-1 gap-5 mb-1 items-center">
+                        <TextField
+                          label="Nombre:"
+                          name="nombredes"
+                          value={textNombre}
+                          onChange={handleInputChangeN}
+                        />
 
-return(
-        
-        <div className="container m-auto mt-4 items-center justify-center max-w-[90%] ">
-            <h1 className="bg-red-700 font-semibold text-xl px-2 text-white"> Registro de Trabajadores </h1>
-            <form className=" justify-between">
-                <div className="mt-2">
-                    <table>
-                        <thead>
-                            <tr className="">
-                                <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase ">NOMBRE</th>
-                                <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase ">DESCRIPCION</th>
-                                <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase ">TIPO DESCUENTO</th>
-                                <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase ">ESTADO</th>
-                                <th className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase ">ACCION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                global.map((item) =>(
-                                    <tr key={item.id} >
-                                        <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{item.nombre}</td>
-                                        <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{item.descripcion}</td>
-                                        <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{item.tipodes}</td>
-                                        <td className="px-5 py-2 text-xs font-medium whitespace-nowrap">{item.estado}</td>
-                                        <td className="px-3  text-center text-xs font-medium"><EditDes key={item.id} item={item} getTablaDes={getTablaDes} /></td>
-                                    </tr> 
-                                ))}
-                        </tbody>
-                    </table>
-                                    
-                </div>
-                <div className="flex gap-3 items-center ">
-                    
-                    <Button
-                        text="Listar Descuentos"
-                        type = "submit"
-                        className="max-w-[25%] mt-2"
-                        variant = "primary"
-                    />
-                
-                    
-                <div className="relative">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg
-                            className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                            aria-hidden="true"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                        <path
-                        fill-rule="evenodd"
-                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                        clip-rule="evenodd"
-                        ></path>
-                        </svg>
-                    </div>
-                    <TextField
-                        type="text"
-                        id="buscarEmp"
-                        className="p-2 pl-10 text-sm text-justify text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50"
-                        placeholder="Buscar Empleado"
-                        value={textBusqueda}
-                        onChange={(e) => setTextBusqueda (e.target.value)}
-                        autocomplete="off"
-                    />
-                </div>
-                
+                        <TextField
+                          label="Descripcion:"
+                          name="descripciondes"
+                          value={textDescripcion}
+                          onChange={handleInputChangeD}
+                        />
 
+                        <SelectOptions
+                          titulo={"Tipo de Descuento:"}
+                          onChange={handleSelectTipoDes}
+                          arrayselect={tipo}
+                          value={selectTipoDes}
+                        />
 
-                </div>
-            </form>
+                        <TextField
+                          label="Monto:"
+                          name="montodes"
+                          value={textMontoDes}
+                          onChange={handleInputChangeM}
+                        />
+                      </div>
+                      <div className="mt-5">
+                        <Button text="Modificar Descuento" type="submit" />
+                      </div>
+                    </Card>
+                  </div>
+                </Card>
+              </form>
+            </div>
+          </Dialog.Panel>
         </div>
-
-
-        
-    )}
-    
+      </Dialog>
+    </>
+  );
+}

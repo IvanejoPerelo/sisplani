@@ -40,7 +40,7 @@ export default function Login () {
 
     return (
       <>
-        <Frame wmiddle={"w-full xl:w-2/5"}>
+        <Frame wmiddle={"w-full xl:w-2/5 mt-20"}>
           <div className="w-full lg:w-1/2 flex flex-col text-black items-center justify-center bg-[url('/../../src/assets/planillas.jpg')] bg-no-repeat bg-center bg-cover">
             <h1 className="text-4xl font-bold text-red-700">Welcome</h1>
           </div>

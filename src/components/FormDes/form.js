@@ -11,6 +11,7 @@ export const inputs = [
         label: "Tipo descuento",
         name: "tipodes",
         isSelect: true,
+        default: "DEFAULT",
         data: [
             {
                 value: "Fijo",
