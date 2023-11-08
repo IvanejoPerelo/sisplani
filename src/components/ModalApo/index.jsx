@@ -59,7 +59,6 @@ export default function ModalApo({ value, getApo }) {
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <Dialog.Panel className="bg-white mx-auto  rounded p-4 ">
             <div className="flex items-center justify-center">
-              {/*               <FormApo modify={true} value={value} /> */}
 
               <form onSubmit={handleFormSubmit}>
                 <Card className="items-center justify-center bg-gray-50">
@@ -75,20 +74,20 @@ export default function ModalApo({ value, getApo }) {
 
                           <TextField
                             label="Nombre:"
-                            name="nombredes"
+                            name="nombreapo"
                             value={textNombre}
                             onChange={handleInputChangeN}
                           />
 
                         <TextField
                           label="Descripcion:"
-                          name="descripciondes"
+                          name="descripcionapo"
                           value={textDescripcion}
                           onChange={handleInputChangeD}
                         />
                         <TextField
                           label="Porcentaje (%):"
-                          name="porcentajedes"
+                          name="porcentajeapo"
                           value={textPorcentaje}
                           onChange={handleInputChangeP}
                         />
