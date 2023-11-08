@@ -116,7 +116,7 @@ export default function ModifEmp() {
                         {" "}
                         {value.dni}
                       </td>
-                      <td className="px-4 py-4 font-medium text-gray-900  dark:text-gray-900 hover:text-white">
+                      <td className="px-4 py-4 font-medium text-gray-900  dark:text-gray-900">
                         {value.apellido_p} {value.apellido_m}, {value.nombres}
                       </td>
                       <td className="px-4 py-4">{value.cargo}</td>
