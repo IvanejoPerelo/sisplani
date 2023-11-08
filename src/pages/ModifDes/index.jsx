@@ -21,13 +21,13 @@ export default function ModifDes() {
 
   const getDes = async () => {
     const response = await read(urlNumber, url);
-    const result = response.filter((desc) => desc.tipo === "D");
+    const result = response.filter((des) => des.tipo === "D");
     setDetailTable(result);
   };
 
   const filterSearch = async () => {
     const response = await read(urlNumber, url);
-    const result = response.filter((desc) => desc.tipo === "D");
+    const result = response.filter((des) => des.tipo === "D");
     const filter = result.filter(
       (row) =>
         row.nombre.toLowerCase().includes(textBusqueda.toLowerCase()) ||
