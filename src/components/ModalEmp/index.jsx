@@ -13,9 +13,7 @@ export default function ModalEmp({ value, getEmp }) {
           className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
           onClick={() => {
             setOpen(true);
-            console.log(arraySelect);
             setRowSelect(arraySelect);
-            console.log(rowSelect);
           }}
         >
           Editar
