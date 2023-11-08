@@ -2,6 +2,7 @@ import { Dialog } from "@headlessui/react";
 import { Button, Card, TextField } from "../../components";
 import { update } from "../../services";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function ModalApo({ value, getApo }) {
   const [open, setOpen] = useState(false);
