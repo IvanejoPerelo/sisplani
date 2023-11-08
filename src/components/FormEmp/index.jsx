@@ -3,32 +3,22 @@ import { Button, Card, SelectOptions, TextField } from "../../components";
 import { create, update } from "../../services";
 import Swal from "sweetalert2";
 
-export default function FormEmp({ modify, value, getEmp }) {
+export default function FormEmp() {
   const urlNumber = false;
   const url = "empleados";
-  const [textDni, setTextDni] = useState(modify ? value.dni : "");
-  const [textApePat, setTextApePat] = useState(modify ? value.apellido_p : "");
-  const [textApeMat, setTextApeMat] = useState(modify ? value.apellido_m : "");
-  const [textNombres, setTextNombres] = useState(modify ? value.nombres : "");
-  const [textDireccion, setTextDireccion] = useState(
-    modify ? value.direccion : ""
-  );
-  const [textCargo, setTextCargo] = useState(modify ? value.cargo : "");
-  const [textRemu, setTextRemu] = useState(modify ? value.remuneracion : "");
+  const [textDni, setTextDni] = useState("");
+  const [textApePat, setTextApePat] = useState("");
+  const [textApeMat, setTextApeMat] = useState("");
+  const [textNombres, setTextNombres] = useState("");
+  const [textDireccion, setTextDireccion] = useState("");
+  const [textCargo, setTextCargo] = useState("");
+  const [textRemu, setTextRemu] = useState("");
 
-  const [selectSexo, setSelectSexo] = useState(
-    modify === true ? value.sexo : ""
-  );
-  const [selectRegimen, setSelectRegimen] = useState(
-    modify ? value.regimen_lab : ""
-  );
-  const [selectCategoria, setSelectCategoria] = useState(
-    modify ? value.categoria_ocu : ""
-  );
-  const [selectPensionario, setSelectPensionario] = useState(
-    modify ? value.regimen_pen : ""
-  );
-  const [selectAfp, setSelectAfp] = useState(modify ? value.afp : "");
+  const [selectSexo, setSelectSexo] = useState("");
+  const [selectRegimen, setSelectRegimen] = useState("");
+  const [selectCategoria, setSelectCategoria] = useState("");
+  const [selectPensionario, setSelectPensionario] = useState("");
+  const [selectAfp, setSelectAfp] = useState("");
 
   const sexo = [
     { value: "M", option: "Masculino" },
@@ -94,35 +84,6 @@ export default function FormEmp({ modify, value, getEmp }) {
       return;
     }
 
-    if (modify) {
-      await update(
-        urlNumber,
-        value.id,
-        {
-          dni: textDni,
-          apellido_p: textApePat,
-          apellido_m: textApeMat,
-          nombres: textNombres,
-          sexo: selectSexo,
-          direccion: textDireccion,
-          regimen_lab: selectRegimen,
-          categoria_ocu: selectCategoria,
-          cargo: textCargo,
-          regimen_pen: selectPensionario,
-          afp: selectAfp,
-          remuneracion: textRemu,
-        },
-        url
-      );
-
-      Swal.fire({
-        title: "Success",
-        icon: "success",
-        text: "Se actualizo correctamente",
-      });
-      await getEmp();
-
-    } else {
       await create(
         urlNumber,
         {
@@ -156,14 +117,14 @@ export default function FormEmp({ modify, value, getEmp }) {
       setTextDireccion("");
       setTextCargo("");
       setTextRemu("");
-    }
+    
   };
 
   return (
       <form onSubmit={handleFormSubmit}>
         <Card className="items-center justify-center bg-gray-50">
           <div className="w-[850px] text-white p-1 mt-3 mb-1">
-            <h1 className="bg-gray-700 text-center font-semibold text-xl px-2">{modify ===true ? "Modificación de Empleado" :  "Registro de Empleado"}</h1>
+            <h1 className="bg-gray-700 text-center font-semibold text-xl px-2">Registro de Empleado</h1>
 
           <Card className="border rounded shadow-lg mt-3 mb-3 text-xs">
             <h2 className="mt-2 mb-2 text-sm text-white bg-red-700 font-semibold px-1 underline p-1">
@@ -290,7 +251,6 @@ export default function FormEmp({ modify, value, getEmp }) {
         </div>
         <div className="w-[50%] flex items-center justify-right gap-4">
           <Button text="Grabar Empleado" type="submit" />
-          <Button text="Salir" onclick={console.log(value)} />
         </div>
       </Card>
     </form>

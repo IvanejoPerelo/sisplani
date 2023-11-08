@@ -103,7 +103,7 @@ export default function ModifEmp() {
                   {detailTable.map((value) => (
                     <tr
                       key={value.dni}
-                      className="bg-gray-800 border-b dark:bg-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                     >
                       <th scope="row" className="px-4 py-4">
                         {value.sexo === "M" ? (
