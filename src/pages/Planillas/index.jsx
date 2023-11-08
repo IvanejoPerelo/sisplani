@@ -104,8 +104,8 @@ export default function Planillas() {
               </h1>
             </div>
           </div>
-          <div className="flex">
-             <div className={`w-1/5  border border-red-500`}>
+          <div className="flex items-center">
+             <div className={`w-1/5   `}>
                 <SelectOptions
                    titulo={"Mes de Planilla:"}
                    onChange={handleSelectMes}
@@ -113,13 +113,13 @@ export default function Planillas() {
                    className={"flex w-[30%] text-lg font-semibold"}
                 />   
              </div>
-             <div className={`gap-2 p-2 border border-red-500`}>
-                <Button
-                 text="Procesar Planilla"
-                 type="button"
-                 onclick={resultado}   
-                 className="w-[200px]"            
-                />
+              <div className={`gap-2 p-2 `}>
+                  <Button
+                  text="Procesar Planilla"
+                  type="button"
+                  onclick={resultado}   
+                  className="w-[200px]"            
+                  />
              </div>
           </div>
 

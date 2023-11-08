@@ -55,7 +55,7 @@ export default function FormHab({modify, value}) {
         </h1>
         <Card className="border rounded shadow-lg mt-3 mb-3 text-xs ">
           <span className="text-right">{`Código: ${prefijo}`}</span>
-          <div className="gap-3 mb-2 mt-2">
+            <div className="gap-3 mb-2 mt-2">
               <FormLogin
                 inputs={inputs}
                 errors={errors}
@@ -65,8 +65,8 @@ export default function FormHab({modify, value}) {
                 values={values}
               />
             </div>
-          </Card>
-        </div>
+        </Card>
+      </div>
       </Card>
     </>
   );
