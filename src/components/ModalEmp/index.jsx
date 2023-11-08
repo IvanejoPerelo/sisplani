@@ -26,7 +26,7 @@ export default function ModalEmp({ value, getEmp }) {
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <Dialog.Panel className="bg-white mx-auto  rounded p-4 ">
             <div className="flex items-center justify-center">
-              <FormEmp modify={true} value={value} />
+              <FormEmp modify={true} value={value}  getEmp={getEmp} />
             </div>
           </Dialog.Panel>
         </div>
