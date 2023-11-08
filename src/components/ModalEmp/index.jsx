@@ -1,9 +1,8 @@
-import { FormEmp } from "../../components";
 import { Dialog } from "@headlessui/react";
+import { FormEmp } from "../../components";
 import { useState } from "react";
 
 export default function ModalEmp({ value, getEmp }) {
-  const [rowSelect, setRowSelect] = useState(null);
   const [open, setOpen] = useState(false);
 
   return (
@@ -13,7 +12,6 @@ export default function ModalEmp({ value, getEmp }) {
           className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
           onClick={() => {
             setOpen(true);
-            setRowSelect(arraySelect);
           }}
         >
           Editar
