@@ -20,6 +20,7 @@ export default function SubMenu({ menu, open }) {
           </div>
           {menu.submenu.length > 0 && (
             <ul className={`${openSM ? "block" : "hidden"}`}>
+
               {menu.submenu.map((item, index) => (
                 <li className={`ml-9 py-1 hover:bg-red-700 rounded`} key={index}>
                   {/* {item.title} {item.ruta} */}

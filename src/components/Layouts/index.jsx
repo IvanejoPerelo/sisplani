@@ -27,12 +27,12 @@ export default function Layout() {
     {
       title: "Haberes",
       src: <PlusIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Haber", ruta:"registrohab" }, { title: "Modificar Haber" }],
+      submenu: [{ title: "Nuevo Haber", ruta:"registrohab" }, { title: "Modificar Haber", ruta:"registrohab", ruta:"modifhab" }],
     },
     {
       title: "Descuentos",
       src: <MinusIcon className="w-5" />,
-      submenu: [{ title: "Nuevo Descuento", ruta:"registrodes" }, { title: "Modificar Descuento" }],
+      submenu: [{ title: "Nuevo Descuento", ruta:"registrodes" }, { title: "Modificar Descuento", ruta:"modifdes" }],
     },
     {
       title: "Aportaciones",
@@ -77,6 +77,7 @@ export default function Layout() {
         </div>
         <div className="flex flex-col">
           <ul className="pt-6">
+
             {menus.map((menu, index) => (
               <SubMenu menu={menu} open={open} key={index}
               onClick={() => setOpen(!open)}
