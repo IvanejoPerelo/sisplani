@@ -1,9 +1,6 @@
 import { Card, Frame, ModalApo } from "../../components";
 import { read } from "../../services";
 import { useState, useEffect } from "react";
-import {
-  PlusIcon,
-} from "@heroicons/react/24/solid";
 
 export default function ModifApo() {
   const header = [
